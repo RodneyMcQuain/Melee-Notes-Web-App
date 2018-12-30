@@ -22,11 +22,11 @@ namespace melee_notes.Controllers
             _context = context;
         }
 
-        // GET: api/Set
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Set>>> GetSets()
+        // GET: api/Set/User/5
+        [HttpGet("User/{userId}")]
+        public async Task<ActionResult<IEnumerable<Set>>> GetSets(long userId)
         {
-            return await _context.Sets.ToListAsync();
+            return await _context.Sets.Where(s => s.UserId == userId).ToListAsync();
         }
 
         // GET: api/Set/5
@@ -74,9 +74,11 @@ namespace melee_notes.Controllers
         }
 
         // POST: api/Set
-        [HttpPost]
-        public async Task<ActionResult<Set>> PostSet(Set @set)
+        [HttpPost("User/{userId}")]
+        public async Task<ActionResult<Set>> PostSet(long userId, Set @set)
         {
+            @set.UserId = userId; 
+
             _context.Sets.Add(@set);
             await _context.SaveChangesAsync();
 

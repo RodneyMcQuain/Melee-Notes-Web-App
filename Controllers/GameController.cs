@@ -22,11 +22,11 @@ namespace melee_notes.Controllers
             _context = context;
         }
 
-        // GET: api/Game
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Game>>> GetGames()
+        // GET: api/Game/User/5
+        [HttpGet("User/{userId}")]
+        public async Task<ActionResult<IEnumerable<Game>>> GetGames(long userId)
         {
-            return await _context.Games.ToListAsync();
+            return await _context.Games.Where(g => g.UserId == userId).ToListAsync();
         }
 
         // GET: api/Game/5
@@ -73,10 +73,12 @@ namespace melee_notes.Controllers
             return NoContent();
         }
 
-        // POST: api/Game
-        [HttpPost]
-        public async Task<ActionResult<Game>> PostGame(Game game)
+        // POST: api/Game/User/5
+        [HttpPost("User/{userId}")]
+        public async Task<ActionResult<Game>> PostGame(long userId, Game game)
         {
+            game.UserId = userId;
+
             _context.Games.Add(game);
             await _context.SaveChangesAsync();
 

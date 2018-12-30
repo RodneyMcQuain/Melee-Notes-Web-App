@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Login } from './components/User/Login';
@@ -14,9 +14,11 @@ import { SelectedPlayer } from './components/Player/SelectedPlayer';
 import { Players } from './components/Player/Players';
 import { AddPlayer } from './components/Player/AddPlayer';
 import { Statistics } from './components/Statistic/Statistics';
+import { MyAccount } from './components/User/MyAccount';
 import { RoutingError } from './components/Errors/RoutingError';
 import { NotFoundError } from './components/Errors/NotFoundError';
 import { ServerError } from './components/Errors/ServerError';
+import { isAuthenticated } from './helpers/token';
 
 export const routes = <Layout>
     <Switch>
@@ -35,8 +37,9 @@ export const routes = <Layout>
         <Route path='/player/:playerId' component={ SelectedPlayer } />
         <Route path='/players' component={ Players } />
         <Route path='/statistics' component={ Statistics } />
+        <Route path='/myAccount' component={ MyAccount } />
         <Route path='/NotFoundError' component={NotFoundError} />
-        <Route path='/ServerError' component={ ServerError } />
+        <Route path='/ServerError' component={ServerError} />
         <Route component={ RoutingError } />
     </Switch>
 </Layout>;

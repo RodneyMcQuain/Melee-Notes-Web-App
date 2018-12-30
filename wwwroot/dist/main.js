@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "826ce309740a574ff4f4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a252e8e840fb5b7ef48b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -704,7 +704,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(236)(__webpack_require__.s = 236);
+/******/ 	return hotCreateRequire(237)(__webpack_require__.s = 237);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -755,12 +755,12 @@ module.exports = function(originalModule) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process, module) {/* unused harmony export isAuthenticated */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getCurrentUserId; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getAuthorizationHeaders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getCurrentUserId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getAuthorizationHeaders; });
 /* unused harmony export getUser */
 /* unused harmony export getToken */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setToken; });
-/* unused harmony export logout */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return setToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return logout; });
 var isAuthenticated = false;
 var getCurrentUserId = function () {
     return userId;
@@ -1338,7 +1338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Layout__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Home__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_User_Login__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_User_Registration__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_User_Registration__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Tournament_AddTournament__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Set_AddSet__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Game_AddGame__ = __webpack_require__(202);
@@ -1349,9 +1349,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Player_Players__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Player_AddPlayer__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Statistic_Statistics__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_Errors_RoutingError__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Errors_NotFoundError__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_Errors_ServerError__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_User_MyAccount__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Errors_RoutingError__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_Errors_NotFoundError__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_Errors_ServerError__ = __webpack_require__(201);
+
 
 
 
@@ -1388,9 +1390,10 @@ var routes = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPO
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/player/:playerId', component: __WEBPACK_IMPORTED_MODULE_12__components_Player_SelectedPlayer__["a" /* SelectedPlayer */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/players', component: __WEBPACK_IMPORTED_MODULE_13__components_Player_Players__["a" /* Players */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/statistics', component: __WEBPACK_IMPORTED_MODULE_15__components_Statistic_Statistics__["a" /* Statistics */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/NotFoundError', component: __WEBPACK_IMPORTED_MODULE_17__components_Errors_NotFoundError__["a" /* NotFoundError */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/ServerError', component: __WEBPACK_IMPORTED_MODULE_18__components_Errors_ServerError__["a" /* ServerError */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { component: __WEBPACK_IMPORTED_MODULE_16__components_Errors_RoutingError__["a" /* RoutingError */] })));
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/myAccount', component: __WEBPACK_IMPORTED_MODULE_16__components_User_MyAccount__["a" /* MyAccount */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/NotFoundError', component: __WEBPACK_IMPORTED_MODULE_18__components_Errors_NotFoundError__["a" /* NotFoundError */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/ServerError', component: __WEBPACK_IMPORTED_MODULE_19__components_Errors_ServerError__["a" /* ServerError */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { component: __WEBPACK_IMPORTED_MODULE_17__components_Errors_RoutingError__["a" /* RoutingError */] })));
 
 
  ;(function register() { /* react-hot-loader/webpack */ if (process.env.NODE_ENV !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\routes.tsx"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\routes.tsx"); } } })();
@@ -2803,8 +2806,8 @@ var PlayerDropdown = (function (_super) {
     }
     PlayerDropdown.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* getCurrentUserId */])();
-        fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getCurrentUserId */])();
+        fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (players) { _this.setState({ players: players }); });
     };
@@ -3169,9 +3172,9 @@ module.exports = __webpack_require__(195);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css__ = __webpack_require__(228);
+/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_site_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -3346,11 +3349,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(227);
+  var strip = __webpack_require__(228);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(231);
+    overlay = __webpack_require__(232);
   }
 
   var styles = {
@@ -3403,7 +3406,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(232);
+var processUpdate = __webpack_require__(233);
 
 var customHandler;
 var subscribeAllHandler;
@@ -3762,7 +3765,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
     /* istanbul ignore next */
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(226)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(227)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -8000,7 +8003,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(1);
 var deepForceUpdate = __webpack_require__(187);
-var Redbox = __webpack_require__(222).default;
+var Redbox = __webpack_require__(223).default;
 var Component = React.Component;
 
 var AppContainer = function (_Component) {
@@ -8183,7 +8186,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var React = __webpack_require__(1);
-var createProxy = __webpack_require__(221).default;
+var createProxy = __webpack_require__(222).default;
 var global = __webpack_require__(82);
 
 var ComponentMap = function () {
@@ -8413,7 +8416,7 @@ var SetDropdown = (function (_super) {
     }
     SetDropdown.prototype.componentDidMount = function () {
         var _this = this;
-        fetch("api/Tournament/" + this.props.tournamentId + "/Set", { headers: __WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getAuthorizationHeaders */] })
+        fetch("api/Tournament/" + this.props.tournamentId + "/Set", { headers: __WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */] })
             .then(function (response) { return response.json(); })
             .then(function (sets) { _this.setState({ sets: sets }); });
     };
@@ -8461,8 +8464,8 @@ var TournamentDropdown = (function (_super) {
     }
     TournamentDropdown.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* getCurrentUserId */])();
-        fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getCurrentUserId */])();
+        fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (tournaments) {
             _this.setState({ tournaments: tournaments });
@@ -8569,8 +8572,8 @@ var AddGame = (function (_super) {
         var selectedSetId = parseInt(this.props.match.params.setId) || 0;
         var game = {};
         if (selectedSetId === 0) {
-            var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* getCurrentUserId */])();
-            fetch("api/Set/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getAuthorizationHeaders */])() })
+            var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
+            fetch("api/Set/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])() })
                 .then(function (response) { return response.json(); })
                 .then(function (sets) {
                 selectedSetId = sets[0].id;
@@ -8612,10 +8615,10 @@ var AddGame = (function (_super) {
         var _this = this;
         event.preventDefault();
         var game = this.state.game;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* getCurrentUserId */])();
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
         fetch("api/Game/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(game)
         })
             .then(function () { _this.props.history.push("/set/" + game.setId); });
@@ -8672,7 +8675,7 @@ var SelectedGame = (function (_super) {
     SelectedGame.prototype.componentDidMount = function () {
         var _this = this;
         var selectedGameId = parseInt(this.props.match.params.gameId) || 0;
-        fetch("api/Game/" + selectedGameId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        fetch("api/Game/" + selectedGameId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (game) { return _this.setState({ game: game, isLoading: false }); });
     };
@@ -8698,7 +8701,7 @@ var SelectedGame = (function (_super) {
         var game = this.state.game;
         fetch("api/Game/" + game.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(game)
         });
         //catch
@@ -8749,8 +8752,8 @@ var Home = (function (_super) {
     }
     Home.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* getCurrentUserId */])();
-        fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getCurrentUserId */])();
+        fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (tournaments) {
             tournaments.map(function (tournament) {
@@ -8893,7 +8896,11 @@ var NavMenu = (function (_super) {
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("li", null,
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["NavLink"], { to: '/statistics', activeClassName: 'active' },
                                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: 'glyphicon glyphicon-th-list' }),
-                                " Statistics"))))));
+                                " Statistics")),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("li", null,
+                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["NavLink"], { to: '/myAccount', activeClassName: 'active' },
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: 'glyphicon glyphicon-th-list' }),
+                                " My Account"))))));
     };
     return NavMenu;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -8950,10 +8957,10 @@ var AddPlayer = (function (_super) {
         var _this = this;
         event.preventDefault();
         var player = this.state.player;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* getCurrentUserId */])();
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getCurrentUserId */])();
         fetch("api/Player/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(player)
         })
             .then(function () { return _this.props.history.push('/players'); });
@@ -9002,8 +9009,8 @@ var Players = (function (_super) {
     }
     Players.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* getCurrentUserId */])();
-        fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getCurrentUserId */])();
+        fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (players) { _this.setState({ players: players, isLoading: false }); });
     };
@@ -9083,7 +9090,7 @@ var SelectedPlayer = (function (_super) {
     SelectedPlayer.prototype.componentDidMount = function () {
         var _this = this;
         var selectedPlayerId = parseInt(this.props.match.params.playerId) || 0;
-        fetch("api/Player/" + selectedPlayerId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        fetch("api/Player/" + selectedPlayerId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (player) { _this.setState({ player: player, isLoading: false }); });
     };
@@ -9113,7 +9120,7 @@ var SelectedPlayer = (function (_super) {
         var player = this.state.player;
         fetch("api/Player/" + player.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(player)
         });
     };
@@ -9122,7 +9129,7 @@ var SelectedPlayer = (function (_super) {
         var player = this.state.player;
         fetch("api/Player/" + player.id, {
             method: 'DELETE',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(player)
         })
             .then(function () { return _this.props.history.push('/players'); });
@@ -9177,9 +9184,9 @@ var AddSet = (function (_super) {
         var selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
         var selectedPlayerId = 0;
         var set = {};
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* getCurrentUserId */])();
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
         if (selectedTournamentId === 0) {
-            fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getAuthorizationHeaders */])() })
+            fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])() })
                 .then(function (response) { return response.json(); })
                 .then(function (tournaments) {
                 if (tournaments[0])
@@ -9197,7 +9204,7 @@ var AddSet = (function (_super) {
         }
     };
     AddSet.prototype.fetchInitialPlayerId = function (userId) {
-        return fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        return fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (players) {
             if (players[0])
@@ -9235,10 +9242,10 @@ var AddSet = (function (_super) {
         var _this = this;
         event.preventDefault();
         var set = this.state.set;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* getCurrentUserId */])();
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
         fetch("api/Set/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(set)
         })
             .then(function () { _this.props.history.push("/tournament/" + set.tournamentId); });
@@ -9295,7 +9302,7 @@ var SelectedSet = (function (_super) {
     SelectedSet.prototype.componentDidMount = function () {
         var _this = this;
         var selectedSetId = parseInt(this.props.match.params.setId) || 0;
-        fetch("api/Set/" + selectedSetId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        fetch("api/Set/" + selectedSetId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (set) { return _this.setState({ set: set, isLoading: false }); });
     };
@@ -9349,7 +9356,7 @@ var SelectedSet = (function (_super) {
         console.log(set);
         fetch("api/Set/" + set.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(set)
         });
         //catch
@@ -9359,7 +9366,7 @@ var SelectedSet = (function (_super) {
         var set = this.state.set;
         fetch("api/Set/" + set.id, {
             method: 'DELETE',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(set)
         })
             .then(function () { return _this.props.history.push("/tournament/" + set.tournamentId); });
@@ -9537,10 +9544,10 @@ var AddTournament = (function (_super) {
     AddTournament.prototype.handleSubmit = function (event) {
         var _this = this;
         event.preventDefault();
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* getCurrentUserId */])();
+        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getCurrentUserId */])();
         fetch("api/Tournament/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(this.state.tournament)
         })
             .then(function () { return _this.props.history.push('/'); });
@@ -9600,13 +9607,13 @@ var SelectedTournament = (function (_super) {
     SelectedTournament.prototype.componentDidMount = function () {
         var _this = this;
         var selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
-        fetch("api/Tournament/" + selectedTournamentId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["b" /* getAuthorizationHeaders */])() })
+        fetch("api/Tournament/" + selectedTournamentId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])() })
             .then(function (response) { return response.json(); })
             .then(function (tournament) {
             tournament.date = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_formatDate__["a" /* formatDate */])(tournament.date);
             _this.setState({ tournament: tournament, isLoading: false });
             tournament.sets.map(function (set) {
-                fetch("api/Player/" + set.playerId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["b" /* getAuthorizationHeaders */])() })
+                fetch("api/Player/" + set.playerId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])() })
                     .then(function (response) { return response.json(); })
                     .then(function (player) { return _this.setState(function (prevState) { return ({ playerTags: prevState.playerTags.concat([player.tag]) }); }); });
             });
@@ -9658,7 +9665,7 @@ var SelectedTournament = (function (_super) {
         var tournament = this.state.tournament;
         fetch("api/Tournament/" + tournament.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(tournament)
         });
     };
@@ -9670,7 +9677,7 @@ var SelectedTournament = (function (_super) {
         var tournament = this.state.tournament;
         fetch("api/Tournament/" + tournament.id, {
             method: 'DELETE',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["b" /* getAuthorizationHeaders */])(),
+            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])(),
             body: JSON.stringify(tournament)
         })
             .then(function () { return _this.props.history.push('/'); });
@@ -9741,7 +9748,7 @@ var Login = (function (_super) {
             body: JSON.stringify(this.state.user)
         })
             .then(function (response) { return response.json(); })
-            .then(function (token) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* setToken */])(token); });
+            .then(function (token) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["d" /* setToken */])(token); });
         //catch
     };
     return Login;
@@ -9754,6 +9761,50 @@ var Login = (function (_super) {
 
 /***/ }),
 /* 216 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyAccount; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_token__ = __webpack_require__(3);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+var MyAccount = (function (_super) {
+    __extends(MyAccount, _super);
+    function MyAccount() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MyAccount.prototype.render = function () {
+        var _this = this;
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "My Account"),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btLogout(); } }, "Logout")));
+    };
+    MyAccount.prototype.onClick_btLogout = function () {
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* logout */])();
+        this.props.history.push("/login");
+    };
+    return MyAccount;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+
+
+ ;(function register() { /* react-hot-loader/webpack */ if (process.env.NODE_ENV !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\components\\User\\MyAccount.tsx"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\components\\User\\MyAccount.tsx"); } } })();
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(2)(module)))
+
+/***/ }),
+/* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9825,7 +9876,7 @@ var Registration = (function (_super) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(2)(module)))
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9924,7 +9975,7 @@ function bindAutoBindMethodsFromArray(component) {
 }
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9944,15 +9995,15 @@ var _find = __webpack_require__(171);
 
 var _find2 = _interopRequireDefault(_find);
 
-var _createPrototypeProxy = __webpack_require__(219);
+var _createPrototypeProxy = __webpack_require__(220);
 
 var _createPrototypeProxy2 = _interopRequireDefault(_createPrototypeProxy);
 
-var _bindAutoBindMethods = __webpack_require__(217);
+var _bindAutoBindMethods = __webpack_require__(218);
 
 var _bindAutoBindMethods2 = _interopRequireDefault(_bindAutoBindMethods);
 
-var _deleteUnknownAutoBindMethods = __webpack_require__(220);
+var _deleteUnknownAutoBindMethods = __webpack_require__(221);
 
 var _deleteUnknownAutoBindMethods2 = _interopRequireDefault(_deleteUnknownAutoBindMethods);
 
@@ -10220,7 +10271,7 @@ function createClassProxy(Component) {
 }
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10433,7 +10484,7 @@ function createPrototypeProxy() {
 };
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10522,7 +10573,7 @@ function deleteUnknownAutoBindMethods(component) {
 }
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10536,7 +10587,7 @@ var _supportsProtoAssignment = __webpack_require__(72);
 
 var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
 
-var _createClassProxy = __webpack_require__(218);
+var _createClassProxy = __webpack_require__(219);
 
 var _createClassProxy2 = _interopRequireDefault(_createClassProxy);
 
@@ -10549,7 +10600,7 @@ if (!(0, _supportsProtoAssignment2.default)()) {
 exports.default = _createClassProxy2.default;
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10566,7 +10617,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _propTypes = __webpack_require__(234);
+var _propTypes = __webpack_require__(235);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -10578,7 +10629,7 @@ var _reactDom = __webpack_require__(73);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _style = __webpack_require__(224);
+var _style = __webpack_require__(225);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -10586,13 +10637,13 @@ var _errorStackParser = __webpack_require__(81);
 
 var _errorStackParser2 = _interopRequireDefault(_errorStackParser);
 
-var _objectAssign = __webpack_require__(233);
+var _objectAssign = __webpack_require__(234);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _lib = __webpack_require__(223);
+var _lib = __webpack_require__(224);
 
-var _sourcemappedStacktrace = __webpack_require__(225);
+var _sourcemappedStacktrace = __webpack_require__(226);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11148,7 +11199,7 @@ exports.__RewireAPI__ = _RewireAPI__;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11441,7 +11492,7 @@ exports.default = _RewireAPI__;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11491,7 +11542,7 @@ var _DefaultExportValue = {
 exports.default = _DefaultExportValue;
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -13889,7 +13940,7 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
@@ -14005,7 +14056,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14018,7 +14069,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -14032,7 +14083,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(229)(content, options);
+var update = __webpack_require__(230)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(true) {
@@ -14049,7 +14100,7 @@ if(true) {
 }
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14095,7 +14146,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(230);
+var	fixUrls = __webpack_require__(231);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -14408,7 +14459,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports) {
 
 
@@ -14503,7 +14554,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -14588,7 +14639,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -14726,25 +14777,25 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(6))(3);
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(6))(9);
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(6))(96);
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(74);

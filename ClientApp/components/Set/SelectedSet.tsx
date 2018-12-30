@@ -4,6 +4,7 @@ import { SetForm } from '../Set/SetForm';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
+import { getAuthorizationHeaders } from '../../helpers/token';
 
 interface SelectedSetState {
     set: ISet;
@@ -31,7 +32,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
     public componentDidMount() {
         let selectedSetId = parseInt(this.props.match.params.setId) || 0;
 
-        fetch(`api/Set/${selectedSetId}`)
+        fetch(`api/Set/${selectedSetId}`, { headers: getAuthorizationHeaders() })
             .then(response => response.json() as Promise<ISet>)
             .then(set => this.setState({ set: set, isLoading: false }));
     }
@@ -104,7 +105,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
         console.log(set);
         fetch(`api/Set/${set.id}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
         //catch
@@ -115,7 +116,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
 
         fetch(`api/Set/${set.id}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
+            headers: getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(() => this.props.history.push(`/tournament/${set.tournamentId}`));

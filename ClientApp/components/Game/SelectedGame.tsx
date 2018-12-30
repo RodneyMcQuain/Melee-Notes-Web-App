@@ -4,6 +4,7 @@ import { GameForm } from '../Game/GameForm';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
+import { getAuthorizationHeaders } from '../../helpers/token';
 
 interface SelectedGameState {
     game: IGame,
@@ -28,7 +29,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
     public componentDidMount() {
         let selectedGameId = parseInt(this.props.match.params.gameId) || 0;
 
-        fetch(`api/Game/${selectedGameId}`)
+        fetch(`api/Game/${selectedGameId}`, { headers: getAuthorizationHeaders() })
             .then(response => response.json() as Promise<IGame>)
             .then(game => this.setState({ game: game, isLoading: false }));
     }
@@ -63,7 +64,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
 
         fetch(`api/Game/${game.id}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
         //catch

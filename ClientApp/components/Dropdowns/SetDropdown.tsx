@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import { ISet } from 'ClientApp/helpers/interfaces';
+import { getAuthorizationHeaders } from '../../helpers/token';
 
 interface SetDropdownProps {
     handleFieldChange: Function;
@@ -19,7 +20,7 @@ export class SetDropdown extends React.Component<SetDropdownProps, SetDropdownSt
     }
 
     public componentDidMount() {
-        fetch(`api/Tournament/${this.props.tournamentId}/Set`)
+        fetch(`api/Tournament/${this.props.tournamentId}/Set`, { headers: getAuthorizationHeaders })
             .then(response => response.json() as Promise<ISet[]>)
             .then(sets => { this.setState({ sets: sets }); });
     }

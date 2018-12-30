@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
+import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
 
 interface PlayerDropdownProps {
     handleFieldChange: Function;
@@ -18,11 +19,11 @@ export class PlayerDropdown extends React.Component<PlayerDropdownProps, PlayerD
     }
 
     public componentDidMount() {
-        fetch('api/Player/')
+        let userId = getCurrentUserId();
+
+        fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
             .then(response => response.json() as Promise<IPlayer[]>)
-            .then(players => {
-                this.setState({ players: players });
-            });
+            .then(players => { this.setState({ players: players }); });
     }
 
     public render() {

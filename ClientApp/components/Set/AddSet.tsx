@@ -3,6 +3,7 @@ import { SetForm } from '../Set/SetForm';
 import { RouteComponentProps } from 'react-router';
 import { ITournament, ISet } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
+import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
 
 interface AddSetState {
     set: ISet;
@@ -27,9 +28,10 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
         let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
         let selectedPlayerId = 0;
         let set = {} as ISet;
+        let userId = getCurrentUserId();
 
         if (selectedTournamentId === 0) {
-            fetch('api/Tournament/')
+            fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
                 .then(response => response.json() as Promise<ITournament[]>)
                 .then(tournaments => {
                     if (tournaments[0])
@@ -38,17 +40,17 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
                     return -1;
                 })
                 .then(initialTournamentId => {
-                    let initialPlayerId = this.fetchInitialPlayerId();
+                    let initialPlayerId = this.fetchInitialPlayerId(userId);
                     initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(initialTournamentId, initialPlayerId));
                 });
         } else {
-            let initialPlayerId = this.fetchInitialPlayerId();
+            let initialPlayerId = this.fetchInitialPlayerId(userId);
             initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(selectedTournamentId, initialPlayerId));
         }        
     }
 
-    private fetchInitialPlayerId() : Promise<number> {
-        return fetch('api/Player/')
+    private fetchInitialPlayerId(userId: string): Promise<number> {
+        return fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
             .then(response => response.json() as Promise<ITournament[]>)
             .then(players => {
                 if (players[0])
@@ -97,10 +99,11 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         let set = this.state.set;
+        let userId = getCurrentUserId();
 
-        fetch(`api/Set/`, {
+        fetch(`api/Set/User/${userId}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(() => { this.props.history.push(`/tournament/${set.tournamentId}`) });

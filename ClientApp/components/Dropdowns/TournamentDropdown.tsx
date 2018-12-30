@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import { ITournament } from 'ClientApp/helpers/interfaces';
+import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
 
 interface TournamentDropdownProps {
     handleFieldChange: Function;
@@ -18,7 +19,9 @@ export class TournamentDropdown extends React.Component<TournamentDropdownProps,
     }
 
     public componentDidMount() {
-        fetch('api/Tournament/')
+        let userId = getCurrentUserId();
+
+        fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
             .then(response => response.json() as Promise<ITournament[]>)
             .then(tournaments => {
                 this.setState({ tournaments: tournaments });

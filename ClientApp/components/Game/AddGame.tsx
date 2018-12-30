@@ -3,6 +3,7 @@ import { GameForm } from '../Game/GameForm';
 import { RouteComponentProps } from 'react-router';
 import { ISet, IGame } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
+import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
 
 interface AddGameState {
     game: IGame;
@@ -31,7 +32,9 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         let game = {} as IGame;
 
         if (selectedSetId === 0) {
-            fetch('api/Set/')
+            let userId = getCurrentUserId();
+
+            fetch(`api/Set/User/${userId}`, { headers: getAuthorizationHeaders() })
                 .then(response => response.json() as Promise<ISet[]>)
                 .then(sets => {
                     selectedSetId = sets[0].id;
@@ -82,10 +85,11 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         let game = this.state.game;
+        let userId = getCurrentUserId();
 
-        fetch(`api/Game/`, {
+        fetch(`api/Game/User/${userId}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
             .then(() => { this.props.history.push(`/set/${game.setId}`) });

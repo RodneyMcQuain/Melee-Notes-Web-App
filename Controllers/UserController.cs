@@ -138,6 +138,12 @@ namespace melee_notes.Controllers
             }
 
             User userFromDatabase = _context.Users.Where(u => u.Username == user.Username).FirstOrDefault();
+
+            if (userFromDatabase == null)
+            {
+                return StatusCode(404);
+            }
+
             byte[] hashBytesDatabase = Convert.FromBase64String(userFromDatabase.Password);
 
             byte[] salt = new byte[SALT_LENGTH];

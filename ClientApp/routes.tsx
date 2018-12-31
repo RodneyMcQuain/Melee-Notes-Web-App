@@ -20,26 +20,34 @@ import { NotFoundError } from './components/Errors/NotFoundError';
 import { ServerError } from './components/Errors/ServerError';
 import { isAuthenticated } from './helpers/token';
 
+const PrivateRoute = ({ component: Component, ...rest }: any) => (
+    <Route {...rest} render={(props) => (
+        isAuthenticated === true
+            ? <Component {...props} />
+            : <Redirect to='/login' />
+     )}/>
+);
+
 export const routes = <Layout>
     <Switch>
-        <Route exact path='/' component={ Home } />
+        <PrivateRoute exact path='/' component={ Home } />
         <Route path='/login' component={ Login } />
         <Route path='/registration' component={ Registration } />
-        <Route path='/addTournament' component={ AddTournament } />
-        <Route path='/addSet/:tournamentId' component={ AddSet } />
-        <Route path='/addSet' component={ AddSet } />
-        <Route path='/addGame/tournament/:tournamentId/set/:setId' component={ AddGame } />
-        <Route path='/addGame' component={ AddGame } />
-        <Route path='/addPlayer' component={ AddPlayer } />
-        <Route path='/tournament/:tournamentId/set/:setId/game/:gameId' component={ SelectedGame } />
-        <Route path='/tournament/:tournamentId/set/:setId' component={ SelectedSet } />
-        <Route path='/tournament/:tournamentId' component={ SelectedTournament } />
-        <Route path='/player/:playerId' component={ SelectedPlayer } />
-        <Route path='/players' component={ Players } />
-        <Route path='/statistics' component={ Statistics } />
+        <PrivateRoute path='/addTournament' component={ AddTournament } />
+        <PrivateRoute path='/addSet/:tournamentId' component={ AddSet } />
+        <PrivateRoute path='/addSet' component={ AddSet } />
+        <PrivateRoute path='/addGame/tournament/:tournamentId/set/:setId' component={ AddGame } />
+        <PrivateRoute path='/addGame' component={ AddGame } />
+        <PrivateRoute path='/addPlayer' component={ AddPlayer } />
+        <PrivateRoute path='/tournament/:tournamentId/set/:setId/game/:gameId' component={ SelectedGame } />
+        <PrivateRoute path='/tournament/:tournamentId/set/:setId' component={ SelectedSet } />
+        <PrivateRoute path='/tournament/:tournamentId' component={ SelectedTournament } />
+        <PrivateRoute path='/player/:playerId' component={ SelectedPlayer } />
+        <PrivateRoute path='/players' component={ Players } />
+        <PrivateRoute path='/statistics' component={ Statistics } />
         <Route path='/myAccount' component={ MyAccount } />
-        <Route path='/NotFoundError' component={NotFoundError} />
-        <Route path='/ServerError' component={ServerError} />
+        <Route path='/NotFoundError' component={ NotFoundError } />
+        <Route path='/ServerError' component={ ServerError } />
         <Route component={ RoutingError } />
     </Switch>
 </Layout>;

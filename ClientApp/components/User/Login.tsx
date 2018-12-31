@@ -38,7 +38,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
         if (isServerError)
             errorMessage = <div>Sorry, there was a server error</div>
         else if (isNotFoundError)
-            errorMessage = <div>That username does not exist</div>
+            errorMessage = <div>That username or email does not exist</div>
         else if (isUnauthorizedError)
             errorMessage = <div>Those credentials are invalid</div>
 
@@ -50,8 +50,8 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
                     <h1>Login</h1>
 
                     <form onSubmit={ this.handleSubmit } >
-                        <label>Username</label>
-                        <input type="text" name="username" className="form-control input-md" placeholder="Username" value={ user.username } onChange={ e => this.handleFieldChange(e) } />
+                        <label>Username or Email</label>
+                        <input type="text" name="username" className="form-control input-md" placeholder="Username or Email" value={ user.username } onChange={ e => this.handleFieldChange(e) } />
 
                         <label>Password</label>
                         <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handleFieldChange(e) } />

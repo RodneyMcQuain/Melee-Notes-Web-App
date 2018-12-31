@@ -10,7 +10,8 @@ interface LoginState {
     user: IUser;
     isLoading: boolean;
     isServerError: boolean;
-    isForbiddenError: boolean;
+    isNotFoundError: boolean;
+    isUnauthorizedError: boolean;
 }
 
 export class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
@@ -21,7 +22,9 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
             user: {} as IUser,
             isLoading: false,
             isServerError: false,
-            isForbiddenError: false
+            isNotFoundError: false,
+            isUnauthorizedError: false
+
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -29,13 +32,15 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
     }
 
     public render() {
-        const { user, isLoading, isForbiddenError, isServerError } = this.state;
+        const { user, isLoading, isServerError, isNotFoundError, isUnauthorizedError } = this.state;
 
         let errorMessage = <div></div>;
         if (isServerError)
             errorMessage = <div>Sorry, there was a server error</div>
-        else if (isForbiddenError)
-            errorMessage = <div>Sorry, those credentials do not match</div>
+        else if (isNotFoundError)
+            errorMessage = <div>That username does not exist</div>
+        else if (isUnauthorizedError)
+            errorMessage = <div>Those credentials are invalid</div>
 
         if (isLoading)
             return <Preloader />
@@ -101,15 +106,19 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
     private handleLoginResponse(response: Response) {
         let statusCode = response.status;
 
-        if (statusCode === 403) {
-            this.setState({ isForbiddenError: true });
-            throw new Error("403");
-        } else if (statusCode >= 500) {
+        if(statusCode >= 500) {
             this.setState({ isServerError: true });
             throw new Error(statusCode.toString());
+        } else if (statusCode == 404) {
+            this.setState({ isNotFoundError: true });
+            throw new Error("404");
+        } else if (statusCode == 401) {
+            this.setState({ isUnauthorizedError: true });
+            throw new Error("401");
         } else {
             this.setState({
-                isForbiddenError: false,
+                isUnauthorizedError: false,
+                isNotFoundError: false,
                 isServerError: false
             });
 

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a9d64d29990aa0a4db19"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4acd2bf7a7f6229eceb0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -711,13 +711,13 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(31);
+module.exports = (__webpack_require__(8))(31);
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(7);
+module.exports = (__webpack_require__(8))(7);
 
 /***/ }),
 /* 2 */
@@ -901,12 +901,6 @@ module.exports = isArray;
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
-
-module.exports = vendor_d1e1f440a898564f5017;
-
-/***/ }),
-/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -922,6 +916,12 @@ var Preloader = function () {
 
  ;(function register() { /* react-hot-loader/webpack */ if (process.env.NODE_ENV !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\components\\General\\Preloader.tsx"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\components\\General\\Preloader.tsx"); } } })();
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(2)(module)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = vendor_d1e1f440a898564f5017;
 
 /***/ }),
 /* 9 */
@@ -985,7 +985,7 @@ module.exports = isObjectLike;
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(99);
+module.exports = (__webpack_require__(8))(99);
 
 /***/ }),
 /* 12 */
@@ -1763,7 +1763,7 @@ module.exports = function(module) {
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(101);
+module.exports = (__webpack_require__(8))(101);
 
 /***/ }),
 /* 36 */
@@ -3225,7 +3225,7 @@ function supportsProtoAssignment() {
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(100);
+module.exports = (__webpack_require__(8))(100);
 
 /***/ }),
 /* 75 */
@@ -3545,7 +3545,7 @@ if (module) {
 /* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(97);
+module.exports = (__webpack_require__(8))(97);
 
 /***/ }),
 /* 79 */
@@ -8643,7 +8643,7 @@ var UnhandledError = function () { return __WEBPACK_IMPORTED_MODULE_0_react__["c
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Game_GameForm__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
@@ -8752,7 +8752,7 @@ var AddGame = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Game_GameForm__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
@@ -8837,7 +8837,7 @@ var SelectedGame = (function (_super) {
 /* WEBPACK VAR INJECTION */(function(process, module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Home; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_formatDate__ = __webpack_require__(72);
@@ -9107,7 +9107,7 @@ var AddPlayer = (function (_super) {
 /* WEBPACK VAR INJECTION */(function(process, module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Players; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
@@ -9187,7 +9187,7 @@ var Players = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Player_PlayerForm__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
@@ -9289,7 +9289,7 @@ var SelectedPlayer = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Set_SetForm__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
@@ -9415,7 +9415,7 @@ var AddSet = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Set_SetForm__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
@@ -9727,7 +9727,7 @@ var AddTournament = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tournament_TournamentForm__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__General_Preloader__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_formatDate__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_token__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__ = __webpack_require__(4);
@@ -9865,6 +9865,7 @@ var SelectedTournament = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_token__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__General_Preloader__ = __webpack_require__(7);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -9877,12 +9878,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 
 
+
 var Login = (function (_super) {
     __extends(Login, _super);
     function Login() {
         var _this = _super.call(this) || this;
         _this.state = {
             user: {},
+            isLoading: false,
+            isServerError: false,
+            isNotFoundError: false,
+            isUnauthorizedError: false
         };
         _this.handleFieldChange = _this.handleFieldChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -9890,37 +9896,86 @@ var Login = (function (_super) {
     }
     Login.prototype.render = function () {
         var _this = this;
-        var user = this.state.user;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Login"),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("form", { onSubmit: this.handleSubmit },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Username"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "text", name: "username", className: "form-control input-md", placeholder: "Username", value: user.username, onChange: function (e) { return _this.handleFieldChange(e); } }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Password"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "password", name: "password", className: "form-control input-md", placeholder: "Password", value: user.password, onChange: function (e) { return _this.handleFieldChange(e); } }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Login", className: "btn" }))));
+        var _a = this.state, user = _a.user, isLoading = _a.isLoading, isServerError = _a.isServerError, isNotFoundError = _a.isNotFoundError, isUnauthorizedError = _a.isUnauthorizedError;
+        var errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null);
+        if (isServerError)
+            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, "Sorry, there was a server error");
+        else if (isNotFoundError)
+            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, "That username or email does not exist");
+        else if (isUnauthorizedError)
+            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, "Those credentials are invalid");
+        if (isLoading)
+            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__General_Preloader__["a" /* Preloader */], null);
+        else
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Login"),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("form", { onSubmit: this.handleSubmit },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Username or Email"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "text", name: "username", className: "form-control input-md", placeholder: "Username or Email", value: user.username, onChange: function (e) { return _this.handleFieldChange(e); } }),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Password"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "password", name: "password", className: "form-control input-md", placeholder: "Password", value: user.password, onChange: function (e) { return _this.handleFieldChange(e); } }),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Login", className: "btn" })),
+                errorMessage));
     };
     Login.prototype.handleFieldChange = function (event) {
         var key = event.target.name;
         var user = this.state.user;
         user[key] = event.target.value;
-        this.setState({ user: user }); //cover password check
+        this.setState({ user: user });
     };
     Login.prototype.handleSubmit = function (event) {
-        var _this = this;
         event.preventDefault();
+        var user = this.state.user;
+        this.setState({ isLoading: true });
+        this.attemptLogin(user);
+        this.clearPassword(user);
+    };
+    Login.prototype.attemptLogin = function (user) {
+        var _this = this;
         fetch("api/User/Login", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.state.user)
+            body: JSON.stringify(user)
         })
+            .then(function (response) { return _this.handleLoginResponse(response); })
             .then(function (response) { return response.json(); })
             .then(function (token) {
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["e" /* setToken */])(token);
+            _this.setState({ isLoading: false });
             if (__WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* isAuthenticated */])
                 _this.props.history.push('/');
+        })
+            .catch(function (error) {
+            _this.setState({ isLoading: false });
+            console.log(error);
         });
-        //catch
+    };
+    Login.prototype.handleLoginResponse = function (response) {
+        var statusCode = response.status;
+        if (statusCode >= 500) {
+            this.setState({ isServerError: true });
+            throw new Error(statusCode.toString());
+        }
+        else if (statusCode == 404) {
+            this.setState({ isNotFoundError: true });
+            throw new Error("404");
+        }
+        else if (statusCode == 401) {
+            this.setState({ isUnauthorizedError: true });
+            throw new Error("401");
+        }
+        else {
+            this.setState({
+                isUnauthorizedError: false,
+                isNotFoundError: false,
+                isServerError: false
+            });
+            return response;
+        }
+    };
+    Login.prototype.clearPassword = function (user) {
+        user.password = "";
+        this.setState({ user: user });
     };
     return Login;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -14951,19 +15006,19 @@ module.exports = function(hash, moduleMap, options) {
 /* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(3);
+module.exports = (__webpack_require__(8))(3);
 
 /***/ }),
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(9);
+module.exports = (__webpack_require__(8))(9);
 
 /***/ }),
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(7))(96);
+module.exports = (__webpack_require__(8))(96);
 
 /***/ }),
 /* 240 */

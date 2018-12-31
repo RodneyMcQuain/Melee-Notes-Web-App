@@ -17,7 +17,9 @@ import { Statistics } from './components/Statistic/Statistics';
 import { MyAccount } from './components/User/MyAccount';
 import { RoutingError } from './components/Errors/RoutingError';
 import { NotFoundError } from './components/Errors/NotFoundError';
+import { UnauthorizedError } from './components/Errors/UnauthorizedError';
 import { ServerError } from './components/Errors/ServerError';
+import { UnhandledError } from './components/Errors/UnhandledError';
 import { isAuthenticated } from './helpers/token';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
@@ -47,7 +49,9 @@ export const routes = <Layout>
         <PrivateRoute path='/statistics' component={ Statistics } />
         <Route path='/myAccount' component={ MyAccount } />
         <Route path='/notFoundError' component={ NotFoundError } />
+        <Route path='/unauthorizedError' component={ UnauthorizedError } />
         <Route path='/serverError' component={ ServerError } />
+        <Route path='/error' component={ UnhandledError } />
         <Route component={ RoutingError } />
     </Switch>
 </Layout>;

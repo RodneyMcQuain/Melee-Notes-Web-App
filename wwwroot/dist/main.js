@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "68f7f847828e15bee9bb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a9d64d29990aa0a4db19"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1452,7 +1452,7 @@ var routes = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPO
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](PrivateRoute, { path: '/player/:playerId', component: __WEBPACK_IMPORTED_MODULE_12__components_Player_SelectedPlayer__["a" /* SelectedPlayer */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](PrivateRoute, { path: '/players', component: __WEBPACK_IMPORTED_MODULE_13__components_Player_Players__["a" /* Players */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](PrivateRoute, { path: '/statistics', component: __WEBPACK_IMPORTED_MODULE_15__components_Statistic_Statistics__["a" /* Statistics */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/myAccount', component: __WEBPACK_IMPORTED_MODULE_16__components_User_MyAccount__["a" /* MyAccount */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](PrivateRoute, { path: '/myAccount', component: __WEBPACK_IMPORTED_MODULE_16__components_User_MyAccount__["a" /* MyAccount */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/notFoundError', component: __WEBPACK_IMPORTED_MODULE_18__components_Errors_NotFoundError__["a" /* NotFoundError */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/unauthorizedError', component: __WEBPACK_IMPORTED_MODULE_19__components_Errors_UnauthorizedError__["a" /* UnauthorizedError */] }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], { path: '/serverError', component: __WEBPACK_IMPORTED_MODULE_20__components_Errors_ServerError__["a" /* ServerError */] }),
@@ -8921,6 +8921,7 @@ var Home = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavMenu__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_token__ = __webpack_require__(3);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -8933,17 +8934,23 @@ var __extends = (this && this.__extends) || (function () {
 })();
 
 
+
 var Layout = (function (_super) {
     __extends(Layout, _super);
     function Layout() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Layout.prototype.render = function () {
-        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'container-fluid' },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'row' },
+        var body;
+        if (__WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* isAuthenticated */])
+            body = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-3' },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__NavMenu__["a" /* NavMenu */], null)),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-9' }, this.props.children)));
+        else
+            body = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-12' }, this.props.children));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'container-fluid' },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'row' }, body)));
     };
     return Layout;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -8980,7 +8987,7 @@ var NavMenu = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     NavMenu.prototype.render = function () {
-        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'main-nav' },
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'main-nav' },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'navbar navbar-inverse' },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'navbar-header' },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { type: 'button', className: 'navbar-toggle', "data-toggle": 'collapse', "data-target": '.navbar-collapse' },
@@ -9015,7 +9022,7 @@ var NavMenu = (function (_super) {
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("li", null,
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["NavLink"], { to: '/myAccount', activeClassName: 'active' },
                                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: 'glyphicon glyphicon-th-list' }),
-                                " My Account"))))));
+                                " My Account")))))));
     };
     return NavMenu;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));

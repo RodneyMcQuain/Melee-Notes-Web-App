@@ -56,7 +56,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
             Stage: "Battlefield"
         }
 
-        this.setState({ game: game });
+        this.setState({ game: game, isLoading: false });
     }
 
     public render() {

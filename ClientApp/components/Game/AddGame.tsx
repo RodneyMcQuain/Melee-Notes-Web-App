@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { ISet, IGame } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
 import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddGameState {
     game: IGame;
@@ -35,11 +36,13 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
             let userId = getCurrentUserId();
 
             fetch(`api/Set/User/${userId}`, { headers: getAuthorizationHeaders() })
+                .then(response => handleResponse(this.props.history, response))
                 .then(response => response.json() as Promise<ISet[]>)
                 .then(sets => {
                     selectedSetId = sets[0].id;
                     this.setDefaultGameValues(selectedSetId);
-                });
+                })
+                .catch(error => console.log(error));
         } else {
             this.setDefaultGameValues(selectedSetId);
         }
@@ -92,7 +95,8 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
-            .then(() => { this.props.history.push(`/set/${game.setId}`) });
-        //catch
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => { this.props.history.push(`/set/${game.setId}`) })
+            .catch (error => console.log(error));
     }
 }

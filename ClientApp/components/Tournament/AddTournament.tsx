@@ -3,6 +3,7 @@ import { TournamentForm } from '../Tournament/TournamentForm';
 import { RouteComponentProps } from 'react-router';
 import { ITournament } from 'ClientApp/helpers/interfaces';
 import { getCurrentUserId, getToken, getAuthorizationHeaders } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddTournamentState { tournament: ITournament; }
 
@@ -42,8 +43,8 @@ export class AddTournament extends React.Component<RouteComponentProps<{}>, AddT
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(this.state.tournament)
         })
-            .then(() => this.props.history.push('/'));
-            
-        //catch
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => this.props.history.push('/'))
+            .catch(error => console.log(error));
     }
 }

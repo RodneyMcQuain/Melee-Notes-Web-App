@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { ITournament, ISet } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
 import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddSetState {
     set: ISet;
@@ -32,6 +33,7 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
 
         if (selectedTournamentId === 0) {
             fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
+                .then(response => handleResponse(this.props.history, response))
                 .then(response => response.json() as Promise<ITournament[]>)
                 .then(tournaments => {
                     if (tournaments[0])
@@ -42,7 +44,8 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
                 .then(initialTournamentId => {
                     let initialPlayerId = this.fetchInitialPlayerId(userId);
                     initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(initialTournamentId, initialPlayerId));
-                });
+                })
+                .catch(error => console.log(error));
         } else {
             let initialPlayerId = this.fetchInitialPlayerId(userId);
             initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(selectedTournamentId, initialPlayerId));
@@ -51,13 +54,14 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
 
     private fetchInitialPlayerId(userId: string): Promise<number> {
         return fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament[]>)
             .then(players => {
                 if (players[0])
                     return players[0].id;
 
                 return -1;
-            });
+            })
     }
 
     private setDefaultSetValues(initialTournamentId: number, intialPlayerId: number) {
@@ -106,7 +110,8 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
-            .then(() => { this.props.history.push(`/tournament/${set.tournamentId}`) });
-        //catch
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => { this.props.history.push(`/tournament/${set.tournamentId}`) })
+            .catch (error => console.log(error));
     }
 }

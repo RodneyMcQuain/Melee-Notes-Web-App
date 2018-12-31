@@ -1,6 +1,8 @@
 ﻿import * as React from 'react';
 import { ISet } from 'ClientApp/helpers/interfaces';
 import { getAuthorizationHeaders } from '../../helpers/token';
+import { RouteComponentProps } from 'react-router';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SetDropdownProps {
     handleFieldChange: Function;
@@ -12,7 +14,11 @@ interface SetDropdownState {
     sets: ISet[];
 }
 
-export class SetDropdown extends React.Component<SetDropdownProps, SetDropdownState> {
+interface OptionalRouteComponentProps {
+    history?: RouteComponentProps<{}>;
+}
+
+export class SetDropdown extends React.Component<SetDropdownProps & OptionalRouteComponentProps, SetDropdownState> {
     constructor() {
         super();
 
@@ -20,9 +26,11 @@ export class SetDropdown extends React.Component<SetDropdownProps, SetDropdownSt
     }
 
     public componentDidMount() {
-        fetch(`api/Tournament/${this.props.tournamentId}/Set`, { headers: getAuthorizationHeaders })
+        fetch(`api/Tournament/${this.props.tournamentId}/Set`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ISet[]>)
-            .then(sets => { this.setState({ sets: sets }); });
+            .then(sets => this.setState({ sets: sets }))
+            .catch(error => console.log(error));
     }
 
     public render() {

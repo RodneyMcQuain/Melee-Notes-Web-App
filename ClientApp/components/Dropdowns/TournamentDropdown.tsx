@@ -1,6 +1,8 @@
 ﻿import * as React from 'react';
 import { ITournament } from 'ClientApp/helpers/interfaces';
 import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { RouteComponentProps } from 'react-router';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface TournamentDropdownProps {
     handleFieldChange: Function;
@@ -11,7 +13,11 @@ interface TournamentDropdownState {
     tournaments: ITournament[];
 }
 
-export class TournamentDropdown extends React.Component<TournamentDropdownProps, TournamentDropdownState> {
+interface OptionalRouteComponentProps {
+    history?: RouteComponentProps<{}>;
+}
+
+export class TournamentDropdown extends React.Component<TournamentDropdownProps & OptionalRouteComponentProps, TournamentDropdownState> {
     constructor() {
         super();
 
@@ -22,10 +28,10 @@ export class TournamentDropdown extends React.Component<TournamentDropdownProps,
         let userId = getCurrentUserId();
 
         fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament[]>)
-            .then(tournaments => {
-                this.setState({ tournaments: tournaments });
-            });
+            .then(tournaments => this.setState({ tournaments: tournaments }))
+            .catch (error => console.log(error));
     }
 
     public render() {

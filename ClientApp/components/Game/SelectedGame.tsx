@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { getAuthorizationHeaders } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedGameState {
     game: IGame,
@@ -30,8 +31,10 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
         let selectedGameId = parseInt(this.props.match.params.gameId) || 0;
 
         fetch(`api/Game/${selectedGameId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IGame>)
-            .then(game => this.setState({ game: game, isLoading: false }));
+            .then(game => this.setState({ game: game, isLoading: false }))
+            .catch(error => console.log(error));
     }
 
     public render() {
@@ -67,6 +70,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
-        //catch
+            .then(response => handleResponse(this.props.history, response))
+            .catch(error => console.log(error));
     }
 }

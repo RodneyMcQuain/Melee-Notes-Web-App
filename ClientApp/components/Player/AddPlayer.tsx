@@ -3,6 +3,7 @@ import { PlayerForm } from '../Player/PlayerForm';
 import { RouteComponentProps } from 'react-router';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
 import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddPlayerState { player: IPlayer; }
 
@@ -41,8 +42,8 @@ export class AddPlayer extends React.Component<RouteComponentProps<{}>, AddPlaye
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
-            .then(() => this.props.history.push('/players'));
-
-        //catch
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => this.props.history.push('/players'))
+            .catch(error => console.log(error));
     }
 }

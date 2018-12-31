@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
 import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface PlayersState {
     players: IPlayer[];
@@ -22,8 +23,10 @@ export class Players extends React.Component<RouteComponentProps<{}>, PlayersSta
         let userId = getCurrentUserId();
         
         fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IPlayer[]>)
-            .then(players => { this.setState({ players: players, isLoading: false }); });
+            .then(players => { this.setState({ players: players, isLoading: false }); })
+            .catch(error => console.log(error));
     }
 
     public render() {

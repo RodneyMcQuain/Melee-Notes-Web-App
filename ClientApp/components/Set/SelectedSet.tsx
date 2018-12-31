@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { getAuthorizationHeaders } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedSetState {
     set: ISet;
@@ -33,8 +34,10 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
         let selectedSetId = parseInt(this.props.match.params.setId) || 0;
 
         fetch(`api/Set/${selectedSetId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ISet>)
-            .then(set => this.setState({ set: set, isLoading: false }));
+            .then(set => this.setState({ set: set, isLoading: false }))
+            .catch(error => console.log(error));
     }
 
     public render() {
@@ -102,13 +105,14 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         let set = this.state.set;
-        console.log(set);
+
         fetch(`api/Set/${set.id}`, {
             method: 'PUT',
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
-        //catch
+            .then(response => handleResponse(this.props.history, response))
+            .catch(error => console.log(error));
     }
 
     private onClick_btRemoveSet() {
@@ -119,7 +123,9 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
-            .then(() => this.props.history.push(`/tournament/${set.tournamentId}`));
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => this.props.history.push(`/tournament/${set.tournamentId}`))
+            .catch (error => console.log(error));
     }
 
     private onClick_btAddGame(tournamentId: number, setId: number) {

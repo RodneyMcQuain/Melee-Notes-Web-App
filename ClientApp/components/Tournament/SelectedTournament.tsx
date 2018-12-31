@@ -6,6 +6,7 @@ import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { formatDate } from '../../helpers/formatDate';
 import { getAuthorizationHeaders } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedTournamentState {
     tournament: ITournament;
@@ -32,6 +33,7 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
         let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
         fetch(`api/Tournament/${selectedTournamentId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament>)
             .then(tournament => {
                 tournament.date = formatDate(tournament.date);
@@ -39,10 +41,14 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
 
                 tournament.sets.map(set => {
                     fetch(`api/Player/${set.playerId}`, { headers: getAuthorizationHeaders() })
+                        .then(response => handleResponse(this.props.history, response))
                         .then(response => response.json() as Promise<ITournament>)
-                        .then(player => this.setState(prevState => ({ playerTags: [...prevState.playerTags, player.tag] })));
+                        .then(player => this.setState(prevState => ({ playerTags: [...prevState.playerTags, player.tag] })))
+                        .catch (error => console.log(error));
+
                 });
-            });
+            })
+            .catch(error => console.log(error));
     }
 
     public render() {
@@ -110,7 +116,9 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
             method: 'PUT',
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(tournament)
-        });    
+        })
+            .then(response => handleResponse(this.props.history, response))
+            .catch(error => console.log(error));
     }
 
     private onClick_btAddSet(tournamentId: number) {
@@ -125,6 +133,8 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(tournament)
         })
-            .then(() => this.props.history.push('/'));
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => this.props.history.push('/'))
+            .catch(error => console.log(error));
     }
 }

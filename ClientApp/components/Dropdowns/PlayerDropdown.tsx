@@ -1,6 +1,8 @@
 ﻿import * as React from 'react';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
 import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { RouteComponentProps } from 'react-router';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface PlayerDropdownProps {
     handleFieldChange: Function;
@@ -11,7 +13,11 @@ interface PlayerDropdownState {
     players: IPlayer[];
 }
 
-export class PlayerDropdown extends React.Component<PlayerDropdownProps, PlayerDropdownState> {
+interface OptionalRouteComponentProps {
+    history?: RouteComponentProps<{}>;
+}
+
+export class PlayerDropdown extends React.Component<PlayerDropdownProps & OptionalRouteComponentProps, PlayerDropdownState> {
     constructor() {
         super();
 
@@ -22,8 +28,10 @@ export class PlayerDropdown extends React.Component<PlayerDropdownProps, PlayerD
         let userId = getCurrentUserId();
 
         fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IPlayer[]>)
-            .then(players => { this.setState({ players: players }); });
+            .then(players => { this.setState({ players: players }); })
+            .catch(error => console.log(error));
     }
 
     public render() {

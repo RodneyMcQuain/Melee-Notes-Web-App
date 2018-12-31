@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { getAuthorizationHeaders } from '../../helpers/token';
+import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedPlayerState {
     player: IPlayer;
@@ -29,8 +30,10 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
         let selectedPlayerId = parseInt(this.props.match.params.playerId) || 0;
 
         fetch(`api/Player/${selectedPlayerId}`, { headers: getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IPlayer>)
-            .then(player => { this.setState({ player: player, isLoading: false }); });
+            .then(player => { this.setState({ player: player, isLoading: false }); })
+            .catch(error => console.log(error));
     }
 
     public render() {
@@ -65,7 +68,9 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
             method: 'PUT',
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(player)
-        });
+        })
+            .then(response => handleResponse(this.props.history, response))
+            .catch(error => console.log(error));
     }
 
     private onClick_btRemoveTournament() {
@@ -76,6 +81,8 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
             headers: getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
-            .then(() => this.props.history.push('/players'));
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => this.props.history.push('/players'))
+            .catch(error => console.log(error));
     }
 }

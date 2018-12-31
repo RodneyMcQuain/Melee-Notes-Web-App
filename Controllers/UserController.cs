@@ -137,7 +137,11 @@ namespace melee_notes.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            User userFromDatabase = _context.Users.Where(u => u.Username == user.Username).FirstOrDefault();
+            string usernameOrEmail = user.Username; // Username can hold username or email on the client side.
+
+            User userFromDatabase = _context.Users
+                .Where(u => u.Username == usernameOrEmail || u.Email == usernameOrEmail)
+                .FirstOrDefault();
 
             if (userFromDatabase == null)
             {

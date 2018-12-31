@@ -47,7 +47,7 @@ export const routes = <Layout>
         <PrivateRoute path='/player/:playerId' component={ SelectedPlayer } />
         <PrivateRoute path='/players' component={ Players } />
         <PrivateRoute path='/statistics' component={ Statistics } />
-        <Route path='/myAccount' component={ MyAccount } />
+        <PrivateRoute path='/myAccount' component={ MyAccount } />
         <Route path='/notFoundError' component={ NotFoundError } />
         <Route path='/unauthorizedError' component={ UnauthorizedError } />
         <Route path='/serverError' component={ ServerError } />

@@ -60,8 +60,14 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
                     </form>
 
                     { errorMessage }
+
+                    <button className="btn" onClick={ () => this.onClick_btRegistration() } >Go To Registration</button>
                 </div>
             );
+    }
+
+    private onClick_btRegistration() {
+        this.props.history.push('/registration');
     }
 
     private handleFieldChange(event: React.ChangeEvent<HTMLInputElement>) {

@@ -1,7 +1,14 @@
 ﻿//YYYY-MM-DD
 export const formatDate = (date: string): string => {
-    let dateString = date.toString();
-    let formattedDate = dateString.substring(0, 10);
+    let formattedDate = date.substring(0, 10);
+
+    return formattedDate;
+}
+
+//YYYY-MM-DD
+export const getTodaysFormattedDate = (): string => {
+    const date = new Date();
+    let formattedDate = date.toISOString().slice(0, 10);
 
     return formattedDate;
 }

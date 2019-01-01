@@ -1,4 +1,4 @@
-.main-nav li .glyphicon {
+﻿.main-nav li .glyphicon {
     margin-right: 10px;
 }
 
@@ -98,4 +98,20 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    content: "✘ ";
+}
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    content: "✓ ";
 }

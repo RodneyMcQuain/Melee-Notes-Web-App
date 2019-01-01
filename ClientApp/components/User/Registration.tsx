@@ -183,18 +183,6 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             });
     }
 
-    private handleResponse(response: Response) {
-        if (response.ok) {
-            return true;
-        } else if (response.status === 400) {
-            throw new Error("400");
-        } else if (response.status >= 500) {
-            throw new Error(response.status.toString());
-        } else {
-            return false;
-        }
-    }
-
     private isNotEmpty(text: string) {
         if (text.trim().length !== 0)
             return true;
@@ -294,11 +282,15 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
 
         fetch(`api/User/`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(user)
         })
-            .then(() => this.props.history.push('/login'));
-        //catch
+            .then(response => this.handleResponse(response))
+            .then(() => this.props.history.push('/login'))
+            .catch(error => console.log(error));
     }
 
     private modifyUserBeforePost(user: IUser): IUser {
@@ -308,5 +300,19 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         user.dateCreated = formatDate(today);
 
         return user;
+    }
+
+    private handleResponse(response: Response) {
+        let statusCode = response.status;
+
+        if (response.ok) {
+            return true;
+        } else if (statusCode === 400) {
+            throw new Error("400");
+        } else if (statusCode >= 500) {
+            throw new Error(response.status.toString());
+        } else {
+            return false;
+        }
     }
 }

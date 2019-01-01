@@ -7,9 +7,11 @@ import { formatDate } from '../../helpers/formatDate';
 interface RegistrationState {
     user: IUser;
     passwordCheck: string;
-    isEmailValid: boolean;
     isEmailNotEmpty: boolean;
+    isEmailValid: boolean;
+    isEmailDuplicate: boolean;
     isUsernameNotEmpty: boolean;
+    isUsernameDuplicate: boolean;
     isPasswordMatch: boolean;
     hasPasswordLength: boolean;
     hasPasswordNumber: boolean;
@@ -25,9 +27,11 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         this.state = {
             user: {} as IUser,
             passwordCheck: "",
-            isEmailValid: false,
             isEmailNotEmpty: false,
+            isEmailValid: false,
+            isEmailDuplicate: false,
             isUsernameNotEmpty: false,
+            isUsernameDuplicate: false,
             isPasswordMatch: false,
             hasPasswordLength: false,
             hasPasswordNumber: false,
@@ -43,29 +47,24 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
     }
 
     public render() {
-        const { user, passwordCheck, isEmailNotEmpty, isEmailValid, isUsernameNotEmpty,
-            isPasswordMatch, hasPasswordLength, hasPasswordNumber, hasPasswordLowercase,
-            hasPasswordUppercase, hasPasswordSymbol } = this.state;
+        const { user, passwordCheck, isEmailNotEmpty, isEmailValid, isEmailDuplicate, isUsernameNotEmpty,
+            isUsernameDuplicate, isPasswordMatch, hasPasswordLength, hasPasswordNumber,
+            hasPasswordLowercase, hasPasswordUppercase, hasPasswordSymbol } = this.state;
 
-        const possibleErrors = [isEmailNotEmpty, isEmailValid, isUsernameNotEmpty,
-            isPasswordMatch, hasPasswordLength, hasPasswordNumber, hasPasswordLowercase,
+        const possibleErrors = [isEmailNotEmpty, isEmailValid, isEmailDuplicate, isUsernameNotEmpty,
+            isUsernameDuplicate, isPasswordMatch, hasPasswordLength, hasPasswordNumber, hasPasswordLowercase,
             hasPasswordUppercase, hasPasswordSymbol];
 
         const isButtonEnabled = this.isButtonEnabled(possibleErrors);
-        console.log(isButtonEnabled);
         let registerButton = isButtonEnabled
             ? <input type="submit" value="Register" className="btn" /> 
             : <input type="submit" value="Register" className="btn" disabled />
 
-        let usernameValidationClassName = isUsernameNotEmpty ? "valid" : "invalid";
+        let usernameValidationArray = [isUsernameNotEmpty, isUsernameDuplicate]
+        let usernameValidationClassNames = usernameValidationArray.map(isValid => this.setValidity(isValid));
 
-        let emailValidationArray = [isEmailNotEmpty, isEmailValid]
-        let emailValidationClassNames = emailValidationArray.map(isValid => {
-            if (isValid)
-                return "valid";
-            else
-                return "invalid";
-        });
+        let emailValidationArray = [isEmailNotEmpty, isEmailValid, isEmailDuplicate]
+        let emailValidationClassNames = emailValidationArray.map(isValid => this.setValidity(isValid));
 
         return (
             <div>
@@ -74,12 +73,14 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
                 <form onSubmit={ this.handleSubmit } >
                     <label>Username</label>
                     <input type="text" name="username" className="form-control input-md" placeholder="Username" value={ user.username } onChange={ e => this.handleUsernameChange(e) } />
-                    <p className={ usernameValidationClassName }>Username is not empty</p>
+                    <p className={ usernameValidationClassNames[0] }>Username is not empty</p>
+                    <p className={ usernameValidationClassNames[1] }>Username is available</p>
 
                     <label>Email</label>
                     <input type="text" name="email" className="form-control input-md" placeholder="Email" value={ user.email } onChange={ e => this.handleEmailChange(e) } />
                     <p className={ emailValidationClassNames[0] }>Email is not empty</p>
                     <p className={ emailValidationClassNames[1] }>Email is valid</p>
+                    <p className={ emailValidationClassNames[2] }>Email is available</p>
 
                     <label>Password</label>
                     <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handlePasswordChange(e) } />
@@ -102,6 +103,11 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         );
     }
 
+    private setValidity(isValid: boolean) {
+        if (isValid) return "valid";
+        else return "invalid";
+    }
+
     private isButtonEnabled(possibleErrors: boolean[]) {
         let isError = false;
 
@@ -119,26 +125,43 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
     private handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>) {
         const username = event.target.value;
         const isUsernameNotEmpty = this.isNotEmpty(username);
+        const isUsernameDuplicate = this.isUsernameDuplicate(username);
         let user = this.state.user;
         user.username = username;
 
-        this.setState({
-            user: user,
-            isUsernameNotEmpty: isUsernameNotEmpty
+        isUsernameDuplicate.then(isDuplicate => {
+            this.setState({
+                user: user,
+                isUsernameNotEmpty: isUsernameNotEmpty,
+                isUsernameDuplicate: isDuplicate
+            });
         });
+    }
+
+    private isUsernameDuplicate(username: string): Promise<boolean> {
+        return fetch(`api/User/CheckUsername/${username}`)
+            .then(response => this.handleResponse(response))
+            .catch(error => {
+                console.log(error)
+                return false;
+            });
     }
 
     private handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
         const email = event.target.value;
         const isEmailValid = this.isEmailValid(email);
         const isEmailNotEmpty = this.isNotEmpty(email);
+        const isEmailDuplicate = this.isEmailDuplicate(email);
         let user = this.state.user;
         user.email = email;
 
-        this.setState({
-            user: user,
-            isEmailValid: isEmailValid,
-            isEmailNotEmpty: isEmailNotEmpty
+        isEmailDuplicate.then(isDuplicate => {
+            this.setState({
+                user: user,
+                isEmailNotEmpty: isEmailNotEmpty,
+                isEmailValid: isEmailValid,
+                isEmailDuplicate: isDuplicate
+            });
         });
     }
 
@@ -149,6 +172,27 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             return true;
         else
             return false;
+    }
+
+    private isEmailDuplicate(email: string): Promise<boolean> {
+        return fetch(`api/User/CheckEmail/${email}`)
+            .then(response => this.handleResponse(response))
+            .catch(error => {
+                console.log(error)
+                return false;
+            });
+    }
+
+    private handleResponse(response: Response) {
+        if (response.ok) {
+            return true;
+        } else if (response.status === 400) {
+            throw new Error("400");
+        } else if (response.status >= 500) {
+            throw new Error(response.status.toString());
+        } else {
+            return false;
+        }
     }
 
     private isNotEmpty(text: string) {

@@ -3,10 +3,12 @@ import { IUser } from 'ClientApp/helpers/interfaces';
 import { RouteComponentProps } from 'react-router';
 import { PasswordValidation } from './PasswordValidation';
 import { formatDate } from '../../helpers/formatDate';
+import { Preloader } from '../General/Preloader';
 
 interface RegistrationState {
     user: IUser;
     passwordCheck: string;
+    isLoading: boolean;
     isEmailNotEmpty: boolean;
     isEmailValid: boolean;
     isEmailDuplicate: boolean;
@@ -27,6 +29,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         this.state = {
             user: {} as IUser,
             passwordCheck: "",
+            isLoading: false,
             isEmailNotEmpty: false,
             isEmailValid: false,
             isEmailDuplicate: false,
@@ -47,7 +50,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
     }
 
     public render() {
-        const { user, passwordCheck, isEmailNotEmpty, isEmailValid, isEmailDuplicate, isUsernameNotEmpty,
+        const { user, passwordCheck, isLoading, isEmailNotEmpty, isEmailValid, isEmailDuplicate, isUsernameNotEmpty,
             isUsernameDuplicate, isPasswordMatch, hasPasswordLength, hasPasswordNumber,
             hasPasswordLowercase, hasPasswordUppercase, hasPasswordSymbol } = this.state;
 
@@ -66,41 +69,44 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         let emailValidationArray = [isEmailNotEmpty, isEmailValid, isEmailDuplicate]
         let emailValidationClassNames = emailValidationArray.map(isValid => this.setValidity(isValid));
 
-        return (
-            <div>
-                <h1>Register</h1>
+        if (isLoading)
+            return <Preloader />
+        else
+            return (
+                <div>
+                    <h1>Register</h1>
 
-                <form onSubmit={ this.handleSubmit } >
-                    <label>Username</label>
-                    <input type="text" name="username" className="form-control input-md" placeholder="Username" value={ user.username } onChange={ e => this.handleUsernameChange(e) } />
-                    <p className={ usernameValidationClassNames[0] }>Username is not empty</p>
-                    <p className={ usernameValidationClassNames[1] }>Username is available</p>
+                    <form onSubmit={ this.handleSubmit } >
+                        <label>Username</label>
+                        <input type="text" name="username" className="form-control input-md" placeholder="Username" value={ user.username } onChange={ e => this.handleUsernameChange(e) } />
+                        <p className={ usernameValidationClassNames[0] }>Username is not empty</p>
+                        <p className={ usernameValidationClassNames[1] }>Username is available</p>
 
-                    <label>Email</label>
-                    <input type="text" name="email" className="form-control input-md" placeholder="Email" value={ user.email } onChange={ e => this.handleEmailChange(e) } />
-                    <p className={ emailValidationClassNames[0] }>Email is not empty</p>
-                    <p className={ emailValidationClassNames[1] }>Email is valid</p>
-                    <p className={ emailValidationClassNames[2] }>Email is available</p>
+                        <label>Email</label>
+                        <input type="text" name="email" className="form-control input-md" placeholder="Email" value={ user.email } onChange={ e => this.handleEmailChange(e) } />
+                        <p className={ emailValidationClassNames[0] }>Email is not empty</p>
+                        <p className={ emailValidationClassNames[1] }>Email is valid</p>
+                        <p className={ emailValidationClassNames[2] }>Email is available</p>
 
-                    <label>Password</label>
-                    <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handlePasswordChange(e) } />
+                        <label>Password</label>
+                        <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handlePasswordChange(e) } />
 
-                    <label>Re-Enter Password</label>
-                    <input type="password" name="passwordCheck" className="form-control input-md" placeholder="Re-Enter Password" value={ passwordCheck } onChange={ e => this.handlePasswordCheckChange(e) } />
+                        <label>Re-Enter Password</label>
+                        <input type="password" name="passwordCheck" className="form-control input-md" placeholder="Re-Enter Password" value={ passwordCheck } onChange={ e => this.handlePasswordCheckChange(e) } />
 
-                    <PasswordValidation
-                        isPasswordMatch={ isPasswordMatch }
-                        hasPasswordLength={ hasPasswordLength }
-                        hasPasswordNumber={ hasPasswordNumber }
-                        hasPasswordLowercase={ hasPasswordLowercase }
-                        hasPasswordUppercase={ hasPasswordUppercase }
-                        hasPasswordSymbol={ hasPasswordSymbol }
-                    />
+                        <PasswordValidation
+                            isPasswordMatch={ isPasswordMatch }
+                            hasPasswordLength={ hasPasswordLength }
+                            hasPasswordNumber={ hasPasswordNumber }
+                            hasPasswordLowercase={ hasPasswordLowercase }
+                            hasPasswordUppercase={ hasPasswordUppercase }
+                            hasPasswordSymbol={ hasPasswordSymbol }
+                        />
 
-                    { registerButton }
-                </form>
-            </div>
-        );
+                        { registerButton }
+                    </form>
+                </div>
+            );
     }
 
     private setValidity(isValid: boolean) {
@@ -280,6 +286,8 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         let user = this.state.user;
         user = this.modifyUserBeforePost(user);
 
+        this.setState({ isLoading: true });
+
         fetch(`api/User/`, {
             method: 'POST',
             headers: {
@@ -289,8 +297,16 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             body: JSON.stringify(user)
         })
             .then(response => this.handleResponse(response))
-            .then(() => this.props.history.push('/login'))
-            .catch(error => console.log(error));
+            .then(() => {
+                this.setState({ isLoading: false });
+
+                this.props.history.push('/login');
+            })
+            .catch(error => {
+                this.setState({ isLoading: false });
+
+                console.log(error);
+            });
     }
 
     private modifyUserBeforePost(user: IUser): IUser {

@@ -13,6 +13,8 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace melee_notes.Controllers
 {
@@ -87,7 +89,64 @@ namespace melee_notes.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            // Check Username length
+            if (user.Username.Trim().Length == 0)
+                return BadRequest(new { responseMessage = "Username must not be empty" });
+
+            // Check Email length
+            if (user.Email.Trim().Length == 0)
+                return BadRequest(new { responseMessage = "Email must not be empty" });
+
+            // Check if Email exists
+            bool hasEmail = await _context.Users.AnyAsync(u => u.Email == user.Email);
+            if (hasEmail)
+                return BadRequest(new { responseMessage = "Email already exists" });
+
+            // Check if Username exists
+            bool hasUsername = await _context.Users.AnyAsync(u => u.Username == user.Username);
+            if (hasUsername)
+                return BadRequest(new { responseMessage = "Username already exists" });
+
+            // Check email validity
+            try
+            {
+                MailAddress emailAddress = new MailAddress(user.Email);
+                if (emailAddress.Address != user.Email)                 
+                    return BadRequest(new { responseMessage = "Email is invalid" });
+            }
+            catch
+            {
+                return BadRequest(new { responseMessage = "Email is invalid" });
+            }
+
             string password = user.Password;
+
+            // Check password length
+            const int MIN_PASSWORD_LENGTH = 8;
+            if (user.Password.Length < MIN_PASSWORD_LENGTH)
+                return BadRequest(new { responseMessage = "Password must be at least " + MIN_PASSWORD_LENGTH + " characters long" });
+
+            // Check if password has a number
+            string numberRegex = @"[0-9]";
+            if (!Regex.IsMatch(password, numberRegex))
+                return BadRequest(new { responseMessage = "Password must contain a number" });
+
+            // Check if password has a lowercase letter
+            string lowercaseLetterRegex = @"[a-z]";
+            if (!Regex.IsMatch(password, lowercaseLetterRegex))
+                return BadRequest(new { responseMessage = "Password must contain a lowercase letter" });
+
+            // Check if password has a uppercase letter
+            string uppercaseLetterRegex = @"[A-Z]";
+            if (!Regex.IsMatch(password, uppercaseLetterRegex))
+                return BadRequest(new { responseMessage = "Password must contain a uppercase letter" });
+
+            // Check if password has a symbol
+            string symbolRegex = @"[?!@#$%^&*]";
+            if (!Regex.IsMatch(password, symbolRegex))
+                return BadRequest(new { responseMessage = "Password must contain a symbol (?!@#$%^&*)" });
+
+            // Salt and hash password
             byte[] salt = CreateSalt();
             byte[] hash = CreateHash(password, salt);
             user.Password = CreateHashedPasswordString(hash, salt);          

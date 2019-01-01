@@ -4,13 +4,14 @@ import { RouteComponentProps } from 'react-router';
 import { ITournament } from 'ClientApp/helpers/interfaces';
 import { getCurrentUserId, getToken, getAuthorizationHeaders } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { getTodaysFormattedDate } from '../../helpers/formatDate';
 
 interface AddTournamentState { tournament: ITournament; }
 
 export class AddTournament extends React.Component<RouteComponentProps<{}>, AddTournamentState> {
     constructor() {
         super();
-        this.state = { tournament: {} as ITournament }
+        this.state = { tournament: { date: getTodaysFormattedDate() } as ITournament }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

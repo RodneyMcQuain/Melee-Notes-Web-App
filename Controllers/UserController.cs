@@ -112,6 +112,32 @@ namespace melee_notes.Controllers
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
+        // GET: api/User/CheckUsername/someone
+        [HttpGet("CheckUsername/{username}")]
+        public async Task<ActionResult<User>> CheckUsername(string username)
+        {
+            bool hasUsername = await _context.Users.AnyAsync(u => u.Username == username);
+            if (hasUsername)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        // GET: api/User/CheckEmail/someone@gmail.com
+        [HttpGet("CheckEmail/{email}")]
+        public async Task<ActionResult<User>> CheckEmail(string email)
+        {
+            bool hasEmail = await _context.Users.AnyAsync(u => u.Email == email);
+            if (hasEmail)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(long id)

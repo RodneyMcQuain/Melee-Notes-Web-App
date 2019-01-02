@@ -1,6 +1,8 @@
 ﻿//YYYY-MM-DD
 export const formatDate = (date: string): string => {
-    let formattedDate = date.substring(0, 10);
+    let formattedDate = "";
+    if (date)
+        formattedDate = date.substring(0, 10);
 
     return formattedDate;
 }

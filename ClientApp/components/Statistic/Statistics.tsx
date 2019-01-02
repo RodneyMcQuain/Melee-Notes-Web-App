@@ -35,7 +35,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         this.state = {
             statistic: {} as IStatistic,
             isLoading: true,
-            dateDropdown: "All Time"
+            dateDropdown: "All Time",
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -84,17 +84,14 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                     <label>Opponent Character</label>
                     <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.opponentCharacter} characterType="opponentCharacter" hasAll={true} />
 
-                    <label>Stage</label>
-                    <StageDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} stage={statistic.stage} />
-
                     <label>Player</label>
-                    <PlayerDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} playerId={statistic.playerId} />
+                    <PlayerDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} playerId={statistic.playerId} hasAll={true} />
 
                     <label>Format</label>
-                    <FormatDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} format={statistic.format} />
+                    <FormatDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} format={statistic.format} hasAll={true} />
 
                     <label>Type</label>
-                    <TypeDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} type={statistic.type} />
+                    <TypeDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} type={statistic.type} hasAll={true} />
 
                     <label>Date</label> 
                     <select name="dateType" className="form-control" value={ this.state.dateDropdown } onChange={ this.handleDateDropdownChange } >

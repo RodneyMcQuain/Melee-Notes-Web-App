@@ -251,9 +251,6 @@ namespace melee_notes.Controllers
                 List<Claim> claims = new List<Claim>
                 {
                     new Claim("userId", userFromDatabase.Id.ToString()),
-                    new Claim("username", userFromDatabase.Username),
-                    new Claim("email", userFromDatabase.Email),
-                    new Claim("dateCreated", userFromDatabase.DateCreated.ToString())
                 };
 
                 JwtSecurityToken token = new JwtSecurityToken(

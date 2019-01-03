@@ -2,7 +2,7 @@
 import { IUser, IToken } from 'ClientApp/helpers/interfaces';
 import { RouteComponentProps } from 'react-router';
 import * as jwtDecode from 'jwt-decode';
-import { setToken, isAuthenticated } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { Preloader } from '../General/Preloader';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
@@ -96,10 +96,10 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
             .then(response => this.handleLoginResponse(response))
             .then(response => response.json() as Promise<IToken>)
             .then(token => {
-                setToken(token);
+                Token.setToken(token);
                 this.setState({ isLoading: false })
 
-                if (isAuthenticated)
+                if (Token.isUserAuthenticated())
                     this.props.history.push('/');
             })
             .catch(error => {

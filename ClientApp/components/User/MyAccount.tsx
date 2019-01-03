@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { logout, getCurrentUserId, getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { RouteComponentProps } from 'react-router';
 import { IUser } from '../../helpers/interfaces';
 import { handleResponse } from '../../helpers/handleResponseErrors';
@@ -20,9 +20,9 @@ export class MyAccount extends React.Component<RouteComponentProps<{}>, MyAccoun
     }
 
     public componentDidMount() {
-        const userId = getCurrentUserId();
+        const userId = Token.getUserId();
 
-        fetch(`api/User/${userId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IUser>)
             .then(user => this.setState({
@@ -47,7 +47,7 @@ export class MyAccount extends React.Component<RouteComponentProps<{}>, MyAccoun
     }
 
     private onClick_btLogout() {
-        logout();
+        Token.logout();
         this.props.history.push(`/login`);
     }
 }

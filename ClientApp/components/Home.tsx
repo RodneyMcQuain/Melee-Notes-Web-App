@@ -4,7 +4,7 @@ import { Preloader } from './General/Preloader';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { formatDate } from '../helpers/formatDate';
-import { getToken, getCurrentUserId, getAuthorizationHeaders } from '../helpers/token';
+import { Token } from '../helpers/token';
 
 interface HomeState {
     tournaments: ITournament[];
@@ -20,9 +20,9 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
     }
 
     public componentDidMount() {
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
-        fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Tournament/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => response.json() as Promise<ITournament[]>)
             .then(tournaments => {
                 tournaments.map(tournament => {
@@ -55,7 +55,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                         </thead>
                         <tbody>
                             {tournaments.map(tournament =>
-                                <tr key={tournament.id} onClick={() => this.onClick_trTournament(tournament.id)} >
+                                <tr key={ tournament.id } onClick={() => this.onClick_trTournament(tournament.id)} >
                                     <td>{ tournament.name }</td>
                                     <td>{ tournament.date }</td>
                                     <td>{ tournament.myPlacing }</td>

@@ -20,11 +20,11 @@ import { NotFoundError } from './components/Errors/NotFoundError';
 import { UnauthorizedError } from './components/Errors/UnauthorizedError';
 import { ServerError } from './components/Errors/ServerError';
 import { UnhandledError } from './components/Errors/UnhandledError';
-import { isAuthenticated } from './helpers/token';
+import { Token } from './helpers/token';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
     <Route {...rest} render={(props) => (
-        isAuthenticated === true
+        Token.isUserAuthenticated() === true
             ? <Component {...props} />
             : <Redirect to='/login' />
      )}/>

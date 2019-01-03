@@ -2,7 +2,7 @@
 import { PlayerForm } from '../Player/PlayerForm';
 import { RouteComponentProps } from 'react-router';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
-import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddPlayerState { player: IPlayer; }
@@ -35,11 +35,11 @@ export class AddPlayer extends React.Component<RouteComponentProps<{}>, AddPlaye
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         let player = this.state.player;
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
         fetch(`api/Player/User/${userId}`, {
             method: 'POST',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
             .then(response => handleResponse(this.props.history, response))

@@ -4,7 +4,7 @@ import { PlayerForm } from '../Player/PlayerForm';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
-import { getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedPlayerState {
@@ -29,7 +29,7 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
     public componentDidMount() {
         let selectedPlayerId = parseInt(this.props.match.params.playerId) || 0;
 
-        fetch(`api/Player/${selectedPlayerId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Player/${selectedPlayerId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IPlayer>)
             .then(player => { this.setState({ player: player, isLoading: false }); })
@@ -66,7 +66,7 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
 
         fetch(`api/Player/${player.id}`, {
             method: 'PUT',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
             .then(response => handleResponse(this.props.history, response))
@@ -78,7 +78,7 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
 
         fetch(`api/Player/${player.id}`, {
             method: 'DELETE',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
             .then(response => handleResponse(this.props.history, response))

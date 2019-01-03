@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { formatDate } from '../../helpers/formatDate';
-import { getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedTournamentState {
@@ -32,7 +32,7 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
     public componentDidMount() {
         let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
-        fetch(`api/Tournament/${selectedTournamentId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Tournament/${selectedTournamentId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament>)
             .then(tournament => {
@@ -40,7 +40,7 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
                 this.setState({ tournament: tournament, isLoading: false });
 
                 tournament.sets.map(set => {
-                    fetch(`api/Player/${set.playerId}`, { headers: getAuthorizationHeaders() })
+                    fetch(`api/Player/${set.playerId}`, { headers: Token.getAuthorizationHeaders() })
                         .then(response => handleResponse(this.props.history, response))
                         .then(response => response.json() as Promise<ITournament>)
                         .then(player => this.setState(prevState => ({ playerTags: [...prevState.playerTags, player.tag] })))
@@ -114,7 +114,7 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
 
         fetch(`api/Tournament/${tournament.id}`, {
             method: 'PUT',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(tournament)
         })
             .then(response => handleResponse(this.props.history, response))
@@ -130,7 +130,7 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
 
         fetch(`api/Tournament/${tournament.id}`, {
             method: 'DELETE',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(tournament)
         })
             .then(response => handleResponse(this.props.history, response))

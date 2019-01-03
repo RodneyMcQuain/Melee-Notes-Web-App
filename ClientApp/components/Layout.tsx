@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavMenu } from './NavMenu';
-import { isAuthenticated } from '../helpers/token';
+import { Token } from '../helpers/token';
 
 export interface LayoutProps {
     children?: React.ReactNode;
@@ -9,7 +9,7 @@ export interface LayoutProps {
 export class Layout extends React.Component<LayoutProps, {}> {
     public render() {
         let body;
-        if (isAuthenticated) // Display NavMenu if user is authenticated.
+        if (Token.isUserAuthenticated()) // Display NavMenu if user is authenticated.
             body = (
                 <div>
                     <div className='col-sm-3'>

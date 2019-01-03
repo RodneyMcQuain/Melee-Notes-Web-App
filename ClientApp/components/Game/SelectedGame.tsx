@@ -4,7 +4,7 @@ import { GameForm } from '../Game/GameForm';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
-import { getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedGameState {
@@ -30,7 +30,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
     public componentDidMount() {
         let selectedGameId = parseInt(this.props.match.params.gameId) || 0;
 
-        fetch(`api/Game/${selectedGameId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Game/${selectedGameId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IGame>)
             .then(game => this.setState({ game: game, isLoading: false }))
@@ -67,7 +67,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
 
         fetch(`api/Game/${game.id}`, {
             method: 'PUT',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
             .then(response => handleResponse(this.props.history, response))

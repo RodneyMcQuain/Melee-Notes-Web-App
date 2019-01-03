@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { ITournament } from 'ClientApp/helpers/interfaces';
-import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { RouteComponentProps } from 'react-router';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
@@ -25,9 +25,9 @@ export class TournamentDropdown extends React.Component<TournamentDropdownProps 
     }
 
     public componentDidMount() {
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
-        fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Tournament/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament[]>)
             .then(tournaments => this.setState({ tournaments: tournaments }))

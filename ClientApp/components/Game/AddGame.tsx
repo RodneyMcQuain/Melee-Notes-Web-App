@@ -3,7 +3,7 @@ import { GameForm } from '../Game/GameForm';
 import { RouteComponentProps } from 'react-router';
 import { ISet, IGame } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
-import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddGameState {
@@ -33,9 +33,9 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         let game = {} as IGame;
 
         if (selectedSetId === 0) {
-            let userId = getCurrentUserId();
+            let userId = Token.getUserId();
 
-            fetch(`api/Set/User/${userId}`, { headers: getAuthorizationHeaders() })
+            fetch(`api/Set/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
                 .then(response => handleResponse(this.props.history, response))
                 .then(response => response.json() as Promise<ISet[]>)
                 .then(sets => {
@@ -88,11 +88,11 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         let game = this.state.game;
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
         fetch(`api/Game/User/${userId}`, {
             method: 'POST',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
             .then(response => handleResponse(this.props.history, response))

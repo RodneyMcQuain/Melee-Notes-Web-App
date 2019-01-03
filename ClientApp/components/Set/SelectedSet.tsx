@@ -4,7 +4,7 @@ import { SetForm } from '../Set/SetForm';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
-import { getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface SelectedSetState {
@@ -33,7 +33,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
     public componentDidMount() {
         let selectedSetId = parseInt(this.props.match.params.setId) || 0;
 
-        fetch(`api/Set/${selectedSetId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Set/${selectedSetId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ISet>)
             .then(set => this.setState({ set: set, isLoading: false }))
@@ -108,7 +108,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
 
         fetch(`api/Set/${set.id}`, {
             method: 'PUT',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(response => handleResponse(this.props.history, response))
@@ -120,7 +120,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
 
         fetch(`api/Set/${set.id}`, {
             method: 'DELETE',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(response => handleResponse(this.props.history, response))

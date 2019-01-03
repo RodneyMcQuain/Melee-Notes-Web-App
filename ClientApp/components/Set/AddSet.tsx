@@ -3,7 +3,7 @@ import { SetForm } from '../Set/SetForm';
 import { RouteComponentProps } from 'react-router';
 import { ITournament, ISet } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
-import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
 interface AddSetState {
@@ -29,10 +29,10 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
         let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
         let selectedPlayerId = 0;
         let set = {} as ISet;
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
         if (selectedTournamentId === 0) {
-            fetch(`api/Tournament/User/${userId}`, { headers: getAuthorizationHeaders() })
+            fetch(`api/Tournament/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
                 .then(response => handleResponse(this.props.history, response))
                 .then(response => response.json() as Promise<ITournament[]>)
                 .then(tournaments => {
@@ -53,7 +53,7 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
     }
 
     private fetchInitialPlayerId(userId: string): Promise<number> {
-        return fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
+        return fetch(`api/Player/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament[]>)
             .then(players => {
@@ -103,11 +103,11 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         let set = this.state.set;
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
         fetch(`api/Set/User/${userId}`, {
             method: 'POST',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(response => handleResponse(this.props.history, response))

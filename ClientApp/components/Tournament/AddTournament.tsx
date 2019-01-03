@@ -2,7 +2,7 @@
 import { TournamentForm } from '../Tournament/TournamentForm';
 import { RouteComponentProps } from 'react-router';
 import { ITournament } from 'ClientApp/helpers/interfaces';
-import { getCurrentUserId, getToken, getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { getTodaysFormattedDate } from '../../helpers/formatDate';
 
@@ -36,12 +36,11 @@ export class AddTournament extends React.Component<RouteComponentProps<{}>, AddT
 
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
         fetch(`api/Tournament/User/${userId}`, {
             method: 'POST',
-            headers: getAuthorizationHeaders(),
+            headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(this.state.tournament)
         })
             .then(response => handleResponse(this.props.history, response))

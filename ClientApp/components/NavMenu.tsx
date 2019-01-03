@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { isAuthenticated } from '../helpers/token';
 
 export class NavMenu extends React.Component<{}, {}> {
     public render() {

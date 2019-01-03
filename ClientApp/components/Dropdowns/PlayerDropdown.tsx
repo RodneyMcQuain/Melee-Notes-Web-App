@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
-import { getAuthorizationHeaders, getCurrentUserId } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { RouteComponentProps } from 'react-router';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
@@ -26,9 +26,9 @@ export class PlayerDropdown extends React.Component<PlayerDropdownProps & Option
     }
 
     public componentDidMount() {
-        let userId = getCurrentUserId();
+        let userId = Token.getUserId();
 
-        fetch(`api/Player/User/${userId}`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Player/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<IPlayer[]>)
             .then(players => { this.setState({ players: players }); })

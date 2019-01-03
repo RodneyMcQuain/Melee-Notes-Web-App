@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { ISet } from 'ClientApp/helpers/interfaces';
-import { getAuthorizationHeaders } from '../../helpers/token';
+import { Token } from '../../helpers/token';
 import { RouteComponentProps } from 'react-router';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 
@@ -26,7 +26,7 @@ export class SetDropdown extends React.Component<SetDropdownProps & OptionalRout
     }
 
     public componentDidMount() {
-        fetch(`api/Tournament/${this.props.tournamentId}/Set`, { headers: getAuthorizationHeaders() })
+        fetch(`api/Tournament/${this.props.tournamentId}/Set`, { headers: Token.getAuthorizationHeaders() })
             .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ISet[]>)
             .then(sets => this.setState({ sets: sets }))

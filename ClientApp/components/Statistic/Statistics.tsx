@@ -103,6 +103,13 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
                     <input type="submit" value="Get Statistics" className="btn" />
                 </form>
+
+                <img src={require('../../images/Battlefield.jpg')}></img>
+                <img src={require('../../images/Dreamland.jpg')}></img>
+                <img src={require('../../images/FinalDestination.jpg')}></img>
+                <img src={require('../../images/FountainOfDreams.jpg')}></img>
+                <img src={require('../../images/PokemonStadium.jpg')}></img>
+                <img src={require('../../images/YoshisIsland.jpg')}></img>
             </div>
         );
     }

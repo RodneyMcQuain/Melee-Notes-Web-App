@@ -34,13 +34,13 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
     public render() {
         const { user, isLoading, isServerError, isNotFoundError, isUnauthorizedError } = this.state;
 
-        let errorMessage = <div></div>;
+        let errorMessage = <p></p>;
         if (isServerError)
-            errorMessage = <div>Sorry, there was a server error</div>
+            errorMessage = <p className="invalid">Sorry, there was a server error</p>
         else if (isNotFoundError)
-            errorMessage = <div>That username or email does not exist</div>
+            errorMessage = <p className="invalid">That username or email does not exist</p>
         else if (isUnauthorizedError)
-            errorMessage = <div>Those credentials are invalid</div>
+            errorMessage = <p className="invalid">Those credentials are invalid</p>
 
         if (isLoading)
             return <Preloader />
@@ -113,13 +113,25 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
         let statusCode = response.status;
 
         if(statusCode >= 500) {
-            this.setState({ isServerError: true });
+            this.setState({
+                isUnauthorizedError: false,
+                isNotFoundError: false,
+                isServerError: true
+            });
             throw new Error(statusCode.toString());
         } else if (statusCode == 404) {
-            this.setState({ isNotFoundError: true });
+            this.setState({
+                isUnauthorizedError: false,
+                isNotFoundError: true,
+                isServerError: false
+            });
             throw new Error("404");
         } else if (statusCode == 401) {
-            this.setState({ isUnauthorizedError: true });
+            this.setState({
+                isUnauthorizedError: true,
+                isNotFoundError: false,
+                isServerError: false
+            });
             throw new Error("401");
         } else {
             this.setState({

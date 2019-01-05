@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { formatDate } from '../helpers/formatDate';
 import { Token } from '../helpers/token';
+import { handleResponse } from '../helpers/handleResponseErrors';
 
 interface HomeState {
     tournaments: ITournament[];
@@ -23,6 +24,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
         let userId = Token.getUserId();
 
         fetch(`api/Tournament/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
+            .then(response => handleResponse(this.props.history, response))
             .then(response => response.json() as Promise<ITournament[]>)
             .then(tournaments => {
                 tournaments.map(tournament => {
@@ -31,7 +33,8 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
                 });
 
                 this.setState({ tournaments: tournaments, isLoading: false });
-            });
+            })
+            .catch(error => console.log(error));
     }
 
     public render() {

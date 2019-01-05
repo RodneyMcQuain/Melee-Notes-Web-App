@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2041f323f2f6993b0bcf"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7514915a7ebb2fe55a36"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -704,7 +704,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(241)(__webpack_require__.s = 241);
+/******/ 	return hotCreateRequire(247)(__webpack_require__.s = 247);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -754,66 +754,76 @@ module.exports = function(originalModule) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return isAuthenticated; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getCurrentUserId; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getAuthorizationHeaders; });
-/* unused harmony export getUser */
-/* unused harmony export getToken */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return setToken; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return logout; });
-var isAuthenticated = false;
-var getCurrentUserId = function () {
-    return userId;
-};
-var getAuthorizationHeaders = function () {
-    return {
-        'Authorization': "Bearer " + getToken(),
-        'Content-Type': 'application/json'
+/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Token; });
+var Token = (function () {
+    var isAuthenticated = false;
+    var userId = "";
+    var token = {};
+    var USER_LOCAL_STORAGE_NAME = "user";
+    var decodeToken = function (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var decodedToken = JSON.parse(window.atob(base64));
+        return decodedToken;
     };
-};
-var getUser = function () {
-    var user = localStorage.getItem("user");
-    if (user) {
-        var userJson = JSON.parse(user);
-        return userJson;
-    }
-    return null;
-};
-var getToken = function () {
-    var user = getUser();
-    if (user)
-        return user.token;
-    return null;
-};
-var setToken = function (token) {
-    var tokenString = token.token;
-    var decodedToken = decodeToken(tokenString);
-    decodedToken.token = tokenString;
-    isAuthenticated = true;
-    userId = decodedToken.userId;
-    localStorage.setItem("user", JSON.stringify(decodedToken));
-};
-var decodeToken = function (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var decodedToken = JSON.parse(window.atob(base64));
-    return decodedToken;
-};
-var logout = function () {
-    isAuthenticated = false;
-    localStorage.removeItem("user");
-};
-var user = getUser();
-var userId = "";
-// Initialize userId if user token hasn't expired since last run of app
-if (user) {
-    if (decodeToken(user.token).exp < Date.now() / 1000)
-        localStorage.clear();
-    else {
-        userId = user.userId.toString();
-        isAuthenticated = true;
-    }
-}
+    var getUser = function () {
+        var user = localStorage.getItem("user");
+        if (user) {
+            var userJson = JSON.parse(user);
+            return userJson;
+        }
+        return null;
+    };
+    var getToken = function () {
+        var user = getUser();
+        if (user)
+            return user.token;
+        return null;
+    };
+    var TokenObj = {
+        setToken: function (token) {
+            var tokenString = token.token;
+            var decodedToken = decodeToken(tokenString);
+            decodedToken.token = tokenString;
+            isAuthenticated = true;
+            userId = decodedToken.userId;
+            localStorage.setItem(USER_LOCAL_STORAGE_NAME, JSON.stringify(decodedToken));
+        },
+        isUserAuthenticated: function () {
+            var user = getUser();
+            isAuthenticated = false;
+            if (user) {
+                if (decodeToken(user.token).exp < Date.now() / 1000) {
+                    localStorage.removeItem(USER_LOCAL_STORAGE_NAME);
+                    isAuthenticated = false;
+                    userId = "0";
+                }
+                else {
+                    isAuthenticated = true;
+                }
+            }
+            return isAuthenticated;
+        },
+        getUserId: function () {
+            var user = getUser();
+            if (user) {
+                userId = user.userId.toString();
+            }
+            return userId;
+        },
+        getAuthorizationHeaders: function () {
+            return {
+                'Authorization': "Bearer " + getToken(),
+                'Content-Type': 'application/json'
+            };
+        },
+        logout: function () {
+            isAuthenticated = false;
+            localStorage.removeItem(USER_LOCAL_STORAGE_NAME);
+        }
+    };
+    return TokenObj;
+}());
 
 
  ;(function register() { /* react-hot-loader/webpack */ if (process.env.NODE_ENV !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\helpers\\token.ts"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "F:\\Users\\Rodney\\Documents\\Visual Studio Projects\\melee-notes\\melee-notes\\ClientApp\\helpers\\token.ts"); } } })();
@@ -1456,7 +1466,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 var PrivateRoute = function (_a) {
     var Component = _a.component, rest = __rest(_a, ["component"]);
-    return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], __assign({}, rest, { render: function (props) { return (__WEBPACK_IMPORTED_MODULE_22__helpers_token__["a" /* isAuthenticated */] === true
+    return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Route"], __assign({}, rest, { render: function (props) { return (__WEBPACK_IMPORTED_MODULE_22__helpers_token__["a" /* Token */].isUserAuthenticated() === true
             ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Component, __assign({}, props))
             : __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Redirect"], { to: '/login' })); } })));
 };
@@ -2901,8 +2911,8 @@ var PlayerDropdown = (function (_super) {
     }
     PlayerDropdown.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getCurrentUserId */])();
-        fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        var userId = __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getUserId();
+        fetch("api/Player/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (players) { _this.setState({ players: players }); })
@@ -3225,7 +3235,7 @@ module.exports = __webpack_require__(195);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_site_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -3404,7 +3414,7 @@ function createReporter() {
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(236);
+    overlay = __webpack_require__(242);
   }
 
   var styles = {
@@ -3457,7 +3467,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(237);
+var processUpdate = __webpack_require__(243);
 
 var customHandler;
 var subscribeAllHandler;
@@ -8469,7 +8479,7 @@ var SetDropdown = (function (_super) {
     }
     SetDropdown.prototype.componentDidMount = function () {
         var _this = this;
-        fetch("api/Tournament/" + this.props.tournamentId + "/Set", { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        fetch("api/Tournament/" + this.props.tournamentId + "/Set", { headers: __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (sets) { return _this.setState({ sets: sets }); })
@@ -8559,8 +8569,8 @@ var TournamentDropdown = (function (_super) {
     }
     TournamentDropdown.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getCurrentUserId */])();
-        fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        var userId = __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getUserId();
+        fetch("api/Tournament/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (tournaments) { return _this.setState({ tournaments: tournaments }); })
@@ -8699,8 +8709,8 @@ var AddGame = (function (_super) {
         var selectedSetId = parseInt(this.props.match.params.setId) || 0;
         var game = {};
         if (selectedSetId === 0) {
-            var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
-            fetch("api/Set/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])() })
+            var userId = __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getUserId();
+            fetch("api/Set/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
                 .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
                 .then(function (response) { return response.json(); })
                 .then(function (sets) {
@@ -8744,10 +8754,10 @@ var AddGame = (function (_super) {
         var _this = this;
         event.preventDefault();
         var game = this.state.game;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
+        var userId = __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getUserId();
         fetch("api/Game/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -8807,7 +8817,7 @@ var SelectedGame = (function (_super) {
     SelectedGame.prototype.componentDidMount = function () {
         var _this = this;
         var selectedGameId = parseInt(this.props.match.params.gameId) || 0;
-        fetch("api/Game/" + selectedGameId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        fetch("api/Game/" + selectedGameId, { headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (game) { return _this.setState({ game: game, isLoading: false }); })
@@ -8836,7 +8846,7 @@ var SelectedGame = (function (_super) {
         var game = this.state.game;
         fetch("api/Game/" + game.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -8888,8 +8898,8 @@ var Home = (function (_super) {
     }
     Home.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["b" /* getCurrentUserId */])();
-        fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        var userId = __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getUserId();
+        fetch("api/Tournament/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return response.json(); })
             .then(function (tournaments) {
             tournaments.map(function (tournament) {
@@ -8963,7 +8973,7 @@ var Layout = (function (_super) {
     }
     Layout.prototype.render = function () {
         var body;
-        if (__WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* isAuthenticated */])
+        if (__WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].isUserAuthenticated())
             body = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-3' },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__NavMenu__["a" /* NavMenu */], null)),
@@ -9102,10 +9112,10 @@ var AddPlayer = (function (_super) {
         var _this = this;
         event.preventDefault();
         var player = this.state.player;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getCurrentUserId */])();
+        var userId = __WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].getUserId();
         fetch("api/Player/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9157,8 +9167,8 @@ var Players = (function (_super) {
     }
     Players.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getCurrentUserId */])();
-        fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        var userId = __WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].getUserId();
+        fetch("api/Player/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (players) { _this.setState({ players: players, isLoading: false }); })
@@ -9242,7 +9252,7 @@ var SelectedPlayer = (function (_super) {
     SelectedPlayer.prototype.componentDidMount = function () {
         var _this = this;
         var selectedPlayerId = parseInt(this.props.match.params.playerId) || 0;
-        fetch("api/Player/" + selectedPlayerId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        fetch("api/Player/" + selectedPlayerId, { headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (player) { _this.setState({ player: player, isLoading: false }); })
@@ -9275,7 +9285,7 @@ var SelectedPlayer = (function (_super) {
         var player = this.state.player;
         fetch("api/Player/" + player.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9286,7 +9296,7 @@ var SelectedPlayer = (function (_super) {
         var player = this.state.player;
         fetch("api/Player/" + player.id, {
             method: 'DELETE',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(player)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9345,9 +9355,9 @@ var AddSet = (function (_super) {
         var selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
         var selectedPlayerId = 0;
         var set = {};
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
+        var userId = __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getUserId();
         if (selectedTournamentId === 0) {
-            fetch("api/Tournament/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])() })
+            fetch("api/Tournament/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
                 .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
                 .then(function (response) { return response.json(); })
                 .then(function (tournaments) {
@@ -9368,7 +9378,7 @@ var AddSet = (function (_super) {
     };
     AddSet.prototype.fetchInitialPlayerId = function (userId) {
         var _this = this;
-        return fetch("api/Player/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        return fetch("api/Player/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (players) {
@@ -9407,10 +9417,10 @@ var AddSet = (function (_super) {
         var _this = this;
         event.preventDefault();
         var set = this.state.set;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["b" /* getCurrentUserId */])();
+        var userId = __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getUserId();
         fetch("api/Set/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_3__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9470,7 +9480,7 @@ var SelectedSet = (function (_super) {
     SelectedSet.prototype.componentDidMount = function () {
         var _this = this;
         var selectedSetId = parseInt(this.props.match.params.setId) || 0;
-        fetch("api/Set/" + selectedSetId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        fetch("api/Set/" + selectedSetId, { headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (set) { return _this.setState({ set: set, isLoading: false }); })
@@ -9526,7 +9536,7 @@ var SelectedSet = (function (_super) {
         var set = this.state.set;
         fetch("api/Set/" + set.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9537,7 +9547,7 @@ var SelectedSet = (function (_super) {
         var set = this.state.set;
         fetch("api/Set/" + set.id, {
             method: 'DELETE',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(set)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9641,7 +9651,13 @@ var Statistics = (function (_super) {
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: "All Time" }, "All Time"),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: "Specify Date" }, "Specify Date")),
                 date,
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Get Statistics", className: "btn" }))));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Get Statistics", className: "btn" })),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(236) }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(237) }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(238) }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(239) }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(240) }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(241) })));
     };
     Statistics.prototype.handleFieldChange = function (event) {
         var key = event.target.name;
@@ -9717,10 +9733,10 @@ var AddTournament = (function (_super) {
     AddTournament.prototype.handleSubmit = function (event) {
         var _this = this;
         event.preventDefault();
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["b" /* getCurrentUserId */])();
+        var userId = __WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].getUserId();
         fetch("api/Tournament/User/" + userId, {
             method: 'POST',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_2__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(this.state.tournament)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9783,14 +9799,14 @@ var SelectedTournament = (function (_super) {
     SelectedTournament.prototype.componentDidMount = function () {
         var _this = this;
         var selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
-        fetch("api/Tournament/" + selectedTournamentId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        fetch("api/Tournament/" + selectedTournamentId, { headers: __WEBPACK_IMPORTED_MODULE_5__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (tournament) {
             tournament.date = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_formatDate__["a" /* formatDate */])(tournament.date);
             _this.setState({ tournament: tournament, isLoading: false });
             tournament.sets.map(function (set) {
-                fetch("api/Player/" + set.playerId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])() })
+                fetch("api/Player/" + set.playerId, { headers: __WEBPACK_IMPORTED_MODULE_5__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
                     .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
                     .then(function (response) { return response.json(); })
                     .then(function (player) { return _this.setState(function (prevState) { return ({ playerTags: prevState.playerTags.concat([player.tag]) }); }); })
@@ -9846,7 +9862,7 @@ var SelectedTournament = (function (_super) {
         var tournament = this.state.tournament;
         fetch("api/Tournament/" + tournament.id, {
             method: 'PUT',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_5__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(tournament)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9860,7 +9876,7 @@ var SelectedTournament = (function (_super) {
         var tournament = this.state.tournament;
         fetch("api/Tournament/" + tournament.id, {
             method: 'DELETE',
-            headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_token__["c" /* getAuthorizationHeaders */])(),
+            headers: __WEBPACK_IMPORTED_MODULE_5__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(tournament)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
@@ -9916,13 +9932,13 @@ var Login = (function (_super) {
     Login.prototype.render = function () {
         var _this = this;
         var _a = this.state, user = _a.user, isLoading = _a.isLoading, isServerError = _a.isServerError, isNotFoundError = _a.isNotFoundError, isUnauthorizedError = _a.isUnauthorizedError;
-        var errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null);
+        var errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("p", null);
         if (isServerError)
-            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, "Sorry, there was a server error");
+            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("p", { className: "invalid" }, "Sorry, there was a server error");
         else if (isNotFoundError)
-            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, "That username or email does not exist");
+            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("p", { className: "invalid" }, "That username or email does not exist");
         else if (isUnauthorizedError)
-            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, "Those credentials are invalid");
+            errorMessage = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("p", { className: "invalid" }, "Those credentials are invalid");
         if (isLoading)
             return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__General_Preloader__["a" /* Preloader */], null);
         else
@@ -9963,9 +9979,9 @@ var Login = (function (_super) {
             .then(function (response) { return _this.handleLoginResponse(response); })
             .then(function (response) { return response.json(); })
             .then(function (token) {
-            __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["e" /* setToken */])(token);
+            __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].setToken(token);
             _this.setState({ isLoading: false });
-            if (__WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* isAuthenticated */])
+            if (__WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].isUserAuthenticated())
                 _this.props.history.push('/');
         })
             .catch(function (error) {
@@ -9976,15 +9992,27 @@ var Login = (function (_super) {
     Login.prototype.handleLoginResponse = function (response) {
         var statusCode = response.status;
         if (statusCode >= 500) {
-            this.setState({ isServerError: true });
+            this.setState({
+                isUnauthorizedError: false,
+                isNotFoundError: false,
+                isServerError: true
+            });
             throw new Error(statusCode.toString());
         }
         else if (statusCode == 404) {
-            this.setState({ isNotFoundError: true });
+            this.setState({
+                isUnauthorizedError: false,
+                isNotFoundError: true,
+                isServerError: false
+            });
             throw new Error("404");
         }
         else if (statusCode == 401) {
-            this.setState({ isUnauthorizedError: true });
+            this.setState({
+                isUnauthorizedError: true,
+                isNotFoundError: false,
+                isServerError: false
+            });
             throw new Error("401");
         }
         else {
@@ -10045,8 +10073,8 @@ var MyAccount = (function (_super) {
     }
     MyAccount.prototype.componentDidMount = function () {
         var _this = this;
-        var userId = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["b" /* getCurrentUserId */])();
-        fetch("api/User/" + userId, { headers: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["c" /* getAuthorizationHeaders */])() })
+        var userId = __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getUserId();
+        fetch("api/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (user) { return _this.setState({
@@ -10072,7 +10100,7 @@ var MyAccount = (function (_super) {
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btLogout(); } }, "Logout")));
     };
     MyAccount.prototype.onClick_btLogout = function () {
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_token__["d" /* logout */])();
+        __WEBPACK_IMPORTED_MODULE_1__helpers_token__["a" /* Token */].logout();
         this.props.history.push("/login");
     };
     return MyAccount;
@@ -11165,7 +11193,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _propTypes = __webpack_require__(239);
+var _propTypes = __webpack_require__(245);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -11185,7 +11213,7 @@ var _errorStackParser = __webpack_require__(81);
 
 var _errorStackParser2 = _interopRequireDefault(_errorStackParser);
 
-var _objectAssign = __webpack_require__(238);
+var _objectAssign = __webpack_require__(244);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
@@ -15105,6 +15133,42 @@ module.exports = function (css) {
 /* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "44d103e00608f324b5b27a21ab733801.jpg";
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "109d940b0c39c2ae3b8b6d643ce93241.jpg";
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "29f7cbc7fa1ac28f59fb6a613cfa04ad.jpg";
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ec70738ff7b976d7de8fb868e7043292.jpg";
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "9f43efcd92df9c3c4ef1572f15420f05.jpg";
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "3082532239b960c106b6e93fd9bf5718.jpg";
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*eslint-env browser*/
 
 var clientOverlay = document.createElement('div');
@@ -15187,7 +15251,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 237 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -15325,25 +15389,25 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 238 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(8))(3);
 
 /***/ }),
-/* 239 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(8))(9);
 
 /***/ }),
-/* 240 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(8))(96);
 
 /***/ }),
-/* 241 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(74);

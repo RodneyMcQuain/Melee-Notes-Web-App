@@ -15,14 +15,14 @@ export class Layout extends React.Component<LayoutProps, {}> {
                     <div className='col-sm-3'>
                         <NavMenu />
                     </div>
-                    <div className='col-sm-9'>
+                    <div className='col-sm-9 -top-margin-container'>
                         { this.props.children }
                     </div>
                 </div>
             );
         else // Display nothing if user is not authenticated.
             body = (
-                <div className='col-sm-12'>
+                <div className='col-sm-12 -top-margin-container'>
                     { this.props.children }
                 </div>
             );

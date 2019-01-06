@@ -24,7 +24,6 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
             isServerError: false,
             isNotFoundError: false,
             isUnauthorizedError: false
-
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -46,7 +45,7 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
             return <Preloader />
         else
             return (
-                <div>
+                <div className="login-container -center-container -curved-border">
                     <h1>Login</h1>
 
                     <form onSubmit={ this.handleSubmit } >
@@ -56,10 +55,10 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
                         <label>Password</label>
                         <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handleFieldChange(e) } />
 
+                        { errorMessage }
+
                         <input type="submit" value="Login" className="btn" />
                     </form>
-
-                    { errorMessage }
 
                     <button className="btn" onClick={ () => this.onClick_btRegistration() } >Go To Registration</button>
                 </div>

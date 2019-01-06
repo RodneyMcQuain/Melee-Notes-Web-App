@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "43cef5df82fded65a66d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "201d3f76764306c9d87a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -9500,29 +9500,32 @@ var SelectedSet = (function (_super) {
             var games = set_1.games;
             var tournamentId_1 = parseInt(this.props.match.params.tournamentId) || 0;
             var incrementer_1 = 0;
-            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Set"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Set_SetForm__["a" /* SetForm */], { handleFieldChange: this.handleFieldChange, set: this.state.set, handleSubmit: this.handleSubmit, submitButtonName: "Update Set" }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btRemoveSet(); } }, "Remove Set"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btAddGame(tournamentId_1, set_1.id); } }, "Add Game"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h2", null, "Games"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("table", { className: 'table' },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", null,
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Game Number"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Outcome"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "My Character"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Opponent Character"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Stage"))),
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tbody", null, games.map(function (game) {
-                        incrementer_1++;
-                        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", { key: game.id, onClick: function () { return _this.onClick_trGame(tournamentId_1, set_1.id, game.id); } },
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, incrementer_1),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.outcome),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.myCharacter),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.opponentCharacter),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.stage)));
-                    })))));
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-parent-container" },
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-child-container" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Set"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Set_SetForm__["a" /* SetForm */], { handleFieldChange: this.handleFieldChange, set: this.state.set, handleSubmit: this.handleSubmit, submitButtonName: "Update Set" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btRemoveSet(); } }, "Remove Set")),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-child-container top-margin-less-than-medium-size" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-container" },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Games"),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btAddGame(tournamentId_1, set_1.id); } }, "Add Game")),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("table", { className: 'table' },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
+                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", null,
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Game Number"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Outcome"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "My Character"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Opponent Character"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Stage"))),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tbody", null, games.map(function (game) {
+                            incrementer_1++;
+                            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", { key: game.id, onClick: function () { return _this.onClick_trGame(tournamentId_1, set_1.id, game.id); } },
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, incrementer_1),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.outcome),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.myCharacter),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.opponentCharacter),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, game.stage)));
+                        }))))));
         }
     };
     SelectedSet.prototype.onClick_trGame = function (tournamentId, setId, gameId) {

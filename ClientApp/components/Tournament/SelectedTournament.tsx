@@ -61,39 +61,48 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
             let sets = tournament.sets;
             let increment = -1;
 
-            return <div>
-                <h1>{ tournament.name }</h1>
+            return (
+                <div className="-horizontal-table-form-parent-container" >
+                    <div className="-horizontal-table-form-child-container" >
+                        <h1>{ tournament.name }</h1>
 
-                <TournamentForm handleFieldChange={ this.handleFieldChange } tournament={ tournament } handleSubmit={ this.handleSubmit } submitButtonName={ "Update Tournament" } />
-                <button className="btn" onClick={ () => this.onClick_btRemoveTournament() } >Remove Tournament</button>
-                <button className="btn" onClick={ () => this.onClick_btAddSet(tournament.id) } >Add Set</button>
+                        <TournamentForm handleFieldChange={ this.handleFieldChange } tournament={ tournament } handleSubmit={ this.handleSubmit } submitButtonName={ "Update Tournament" } />
+                        <button className="btn" onClick={ () => this.onClick_btRemoveTournament() } >Remove Tournament</button>
+                    </div>
 
-                <h2>Sets</h2>
-                <table className='table'>
-                    <thead>
-                        <tr>
-                            <th>Tag</th>
-                            <th>Outcome</th>
-                            <th>Format</th>
-                            <th>Bracket Round</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sets.map(set => {
-                            increment++;
+                    <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
+                        <div className="-horizontal-container" >
+                            <h1>Sets</h1>
+                            <button className="btn" onClick={ () => this.onClick_btAddSet(tournament.id) } >Add Set</button>
+                        </div>
 
-                            return (
-                                <tr key={ set.id } onClick={ () => this.onClick_trSet(tournament.id, set.id) } >
-                                    <td>{ this.state.playerTags[increment] }</td>
-                                    <td>{ set.outcome }</td>
-                                    <td>{ set.format }</td>
-                                    <td>{ set.bracketRound }</td>
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th>Tag</th>
+                                    <th>Outcome</th>
+                                    <th>Format</th>
+                                    <th>Bracket Round</th>
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
+                            </thead>
+                            <tbody>
+                                {sets.map(set => {
+                                    increment++;
+
+                                    return (
+                                        <tr key={ set.id } onClick={ () => this.onClick_trSet(tournament.id, set.id) } >
+                                            <td>{ this.state.playerTags[increment] }</td>
+                                            <td>{ set.outcome }</td>
+                                            <td>{ set.format }</td>
+                                            <td>{ set.bracketRound }</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                            </table>
+                        </div>
+                </div>
+            );
         }
     }
 

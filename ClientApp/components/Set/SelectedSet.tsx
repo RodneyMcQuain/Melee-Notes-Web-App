@@ -53,39 +53,46 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
             
 
             return (
-                <div>
-                    <h1>Set</h1>
+                <div className="-horizontal-table-form-parent-container" >
+                    <div className="-horizontal-table-form-child-container" >
+                        <h1>Set</h1>
 
-                    <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" />
-                    <button className="btn" onClick={() => this.onClick_btRemoveSet()} >Remove Set</button>
-                    <button className="btn" onClick={() => this.onClick_btAddGame(tournamentId, set.id)} >Add Game</button>
+                        <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" />
+                        <button className="btn" onClick={ () => this.onClick_btRemoveSet() } >Remove Set</button>
+                    </div>
 
-                    <h2>Games</h2>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Game Number</th>
-                                <th>Outcome</th>
-                                <th>My Character</th>
-                                <th>Opponent Character</th>
-                                <th>Stage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {games.map(game => {
-                                incrementer++;
-                                return (
-                                    <tr key={game.id} onClick={ () => this.onClick_trGame(tournamentId, set.id, game.id) } >
-                                        <td>{ incrementer }</td>
-                                        <td>{ game.outcome }</td>
-                                        <td>{ game.myCharacter }</td>
-                                        <td>{ game.opponentCharacter }</td>
-                                        <td>{ game.stage }</td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                    <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
+                        <div className="-horizontal-container" >
+                            <h1>Games</h1>
+                            <button className="btn" onClick={ () => this.onClick_btAddGame(tournamentId, set.id) } >Add Game</button>
+                        </div>
+
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th>Game Number</th>
+                                    <th>Outcome</th>
+                                    <th>My Character</th>
+                                    <th>Opponent Character</th>
+                                    <th>Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {games.map(game => {
+                                    incrementer++;
+                                    return (
+                                        <tr key={game.id} onClick={ () => this.onClick_trGame(tournamentId, set.id, game.id) } >
+                                            <td>{ incrementer }</td>
+                                            <td>{ game.outcome }</td>
+                                            <td>{ game.myCharacter }</td>
+                                            <td>{ game.opponentCharacter }</td>
+                                            <td>{ game.stage }</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             );
         }

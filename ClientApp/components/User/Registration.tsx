@@ -73,7 +73,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             return <Preloader />
         else
             return (
-                <div>
+                <div className="registration-container -center-container -curved-border" >
                     <h1>Register</h1>
 
                     <form onSubmit={ this.handleSubmit } >

@@ -11,3 +11,5 @@ $hide-transition: all .5s ease-in-out; //transition for hiding
 $unhide-transition: opacity 1s ease-in-out; //transition for appearing
 
 $dark-gradient: linear-gradient(to bottom right, $darker-black, #333, $darker-black); //Gradient used in every other section
+
+$form-padding: 20px; //Padding for forms, used for Registration, Login, etc.

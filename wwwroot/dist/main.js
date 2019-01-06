@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7514915a7ebb2fe55a36"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d3a309efe3d64464bdf8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1534,7 +1534,7 @@ exports = module.exports = __webpack_require__(80)(undefined);
 
 
 // module
-exports.push([module.i, ".main-nav li .glyphicon {\r\n    margin-right: 10px;\r\n}\r\n\r\n/* Highlighting rules for nav menu items */\r\n.main-nav li a.active,\r\n.main-nav li a.active:hover,\r\n.main-nav li a.active:focus {\r\n    background-color: #4189C7;\r\n    color: white;\r\n}\r\n\r\n/* Keep the nav menu independent of scrolling and on top of other items */\r\n.main-nav {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 1;\r\n}\r\n\r\n@media (max-width: 767px) {\r\n    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\r\n    body {\r\n        padding-top: 50px;\r\n    }\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    /* On small screens, convert the nav menu to a vertical sidebar */\r\n    .main-nav {\r\n        height: 100%;\r\n        width: calc(25% - 20px);\r\n    }\r\n    .main-nav .navbar {\r\n        border-radius: 0px;\r\n        border-width: 0px;\r\n        height: 100%;\r\n    }\r\n    .main-nav .navbar-header {\r\n        float: none;\r\n    }\r\n    .main-nav .navbar-collapse {\r\n        border-top: 1px solid #444;\r\n        padding: 0px;\r\n    }\r\n    .main-nav .navbar ul {\r\n        float: none;\r\n    }\r\n    .main-nav .navbar li {\r\n        float: none;\r\n        font-size: 15px;\r\n        margin: 6px;\r\n    }\r\n    .main-nav .navbar li a {\r\n        padding: 10px 16px;\r\n        border-radius: 4px;\r\n    }\r\n    .main-nav .navbar a {\r\n        /* If a menu item's text is too long, truncate it */\r\n        width: 100%;\r\n        white-space: nowrap;\r\n        overflow: hidden;\r\n        text-overflow: ellipsis;\r\n    }\r\n}\r\n\r\n#preloader-overlay {\r\n    z-index: 9999;\r\n    height: 275px;\r\n    width: 100%;\r\n    position: fixed;\r\n    left: 0;\r\n    top: 0;\r\n    opacity: .95;\r\n}\r\n\r\n#preloader-spinner {\r\n    width: 50px;\r\n    height: 50px;\r\n    border: 3px solid #f2f2f2;\r\n    border-top: 4px solid #444;\r\n    border-radius: 100%;\r\n    position: absolute;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    margin: auto;\r\n    animation: spin 1s infinite linear;\r\n}\r\n\r\n@keyframes spin {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n.invalid {\r\n    color: red;\r\n}\r\n\r\n.invalid:before {\r\n    content: \"\\2718   \";\r\n}\r\n\r\n.valid {\r\n    color: green;\r\n}\r\n\r\n.valid:before {\r\n    content: \"\\2713   \";\r\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.invalid {\n  color: red; }\n  .invalid:before {\n    content: \"\\2718   \"; }\n\n.valid {\n  color: green; }\n  .valid:before {\n    content: \"\\2713   \"; }\n\n.form-control {\n  margin-bottom: 10px; }\n\n.btn {\n  margin: 5px 5px 5px 0;\n  background: #222;\n  color: #f2f2f2;\n  box-shadow: 2px 2px 5px #ccc;\n  transition: all .5s ease-in-out; }\n  .btn a, .btn span {\n    font-size: 16px;\n    color: #f2f2f2; }\n  .btn:hover {\n    border: 1px solid #222;\n    background: #f2f2f2;\n    color: #222;\n    -webkit-transform: translate3D(0, 0, 0);\n    -webkit-transform: scale(1.02);\n    -ms-transform: scale(1.02);\n    transform: scale(1.02); }\n    .btn:hover a, .btn:hover span {\n      color: #222; }\n  .btn:focus {\n    color: #f2f2f2; }\n    .btn:focus:hover {\n      color: #222; }\n\nlabel {\n  font-size: 16px;\n  float: left;\n  margin-bottom: 4px; }\n\n.-curved-border {\n  border-radius: 2.5%;\n  box-shadow: 4px 4px 10px #ccc; }\n\n.-center-container {\n  margin: 0 auto;\n  padding: 10px; }\n\n#preloader-overlay {\n  z-index: 9999;\n  height: 275px;\n  width: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  opacity: .95; }\n\n#preloader-spinner {\n  width: 50px;\n  height: 50px;\n  border: 3px solid #f2f2f2;\n  border-top: 4px solid #444;\n  border-radius: 100%;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  animation: spin 1s infinite linear; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.main-nav li .glyphicon {\n  margin-right: 10px; }\n\n/* Highlighting rules for nav menu items */\n.main-nav li a.active,\n.main-nav li a.active:hover,\n.main-nav li a.active:focus {\n  background-color: #4189C7;\n  color: white; }\n\n/* Keep the nav menu independent of scrolling and on top of other items */\n.main-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n\n@media (max-width: 767px) {\n  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\n  body {\n    padding-top: 50px; } }\n\n@media (min-width: 768px) {\n  /* On small screens, convert the nav menu to a vertical sidebar */\n  .main-nav {\n    height: 100%;\n    width: calc(25% - 20px); }\n  .main-nav .navbar {\n    border-radius: 0px;\n    border-width: 0px;\n    height: 100%; }\n  .main-nav .navbar-header {\n    float: none; }\n  .main-nav .navbar-collapse {\n    border-top: 1px solid #444;\n    padding: 0px; }\n  .main-nav .navbar ul {\n    float: none; }\n  .main-nav .navbar li {\n    float: none;\n    font-size: 15px;\n    margin: 6px; }\n  .main-nav .navbar li a {\n    padding: 10px 16px;\n    border-radius: 4px; }\n  .main-nav .navbar a {\n    /* If a menu item's text is too long, truncate it */\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; } }\n\n@media (min-width: 520px) {\n  div.login-container {\n    width: 500px; } }\n\n@media (max-width: 519px) {\n  div.login-container {\n    width: 85vw; } }\n\n.login-container {\n  margin-top: 5vh;\n  padding: 20px; }\n  .login-container .input-md {\n    box-shadow: 2px 2px 5px #ccc; }\n", ""]);
 
 // exports
 
@@ -3233,8 +3233,8 @@ module.exports = __webpack_require__(195);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_site_css__);
+/* WEBPACK VAR INJECTION */(function(process, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_scss__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_site_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_site_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(1);
@@ -8873,6 +8873,7 @@ var SelectedGame = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_formatDate__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_token__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -8883,6 +8884,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 
 
 
@@ -8900,6 +8902,7 @@ var Home = (function (_super) {
         var _this = this;
         var userId = __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getUserId();
         fetch("api/Tournament/User/" + userId, { headers: __WEBPACK_IMPORTED_MODULE_4__helpers_token__["a" /* Token */].getAuthorizationHeaders() })
+            .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
             .then(function (response) { return response.json(); })
             .then(function (tournaments) {
             tournaments.map(function (tournament) {
@@ -8907,7 +8910,8 @@ var Home = (function (_super) {
                 return tournament;
             });
             _this.setState({ tournaments: tournaments, isLoading: false });
-        });
+        })
+            .catch(function (error) { return console.log(error); });
     };
     Home.prototype.render = function () {
         var _this = this;
@@ -9579,6 +9583,8 @@ var SelectedSet = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Dropdowns_CharacterDropdown__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Dropdowns_PlayerDropdown__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Dropdowns_TypeDropdown__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__helpers_token__ = __webpack_require__(3);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -9589,6 +9595,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
+
 
 
 
@@ -9669,11 +9677,55 @@ var Statistics = (function (_super) {
         this.setState({ dateDropdown: event.target.value });
     };
     Statistics.prototype.handleSubmit = function (event) {
+        var _this = this;
         event.preventDefault();
-        var statistic = this.state.statistic;
+        var statistic = this.modifyStatisticBeforeSubmit(this.state.statistic);
         console.log(statistic);
-        //fetch
-        //catch
+        var userId = __WEBPACK_IMPORTED_MODULE_7__helpers_token__["a" /* Token */].getUserId();
+        fetch("api/Statistic/GetSetsWon/User/" + userId, {
+            method: 'POST',
+            headers: __WEBPACK_IMPORTED_MODULE_7__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
+            body: JSON.stringify(statistic)
+        })
+            .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
+            .then(function (response) { return response.json(); })
+            .then(function (setsWon) {
+            console.log(setsWon);
+        })
+            .catch(function (error) { return console.log(error); });
+    };
+    Statistics.prototype.modifyStatisticBeforeSubmit = function (statistic) {
+        if (statistic.playerId === 0) {
+            statistic.playerSql = "LIKE '%' OR Players.Tag IS NULL OR Players.Tag = ' '";
+        }
+        else {
+            statistic.playerSql = "= " + statistic.playerId;
+        }
+        if (statistic.myCharacter === "All Characters") {
+            statistic.myCharacterSql = "LIKE '%' OR Games.MyCharacter IS NULL OR Games.MyCharacter = ' '";
+        }
+        else {
+            statistic.myCharacterSql = "= " + statistic.myCharacter;
+        }
+        if (statistic.opponentCharacter === "All Characters") {
+            statistic.opponentCharacterSql = "LIKE '%' OR Games.OpponentCharacter IS NULL OR Games.OpponentCharacter = ' '";
+        }
+        else {
+            statistic.opponentCharacterSql = "= " + statistic.opponentCharacter;
+        }
+        if (statistic.format === "All Formats") {
+            statistic.formatSql = "LIKE '%' OR Sets.Format IS NULL OR Sets.Format = ' '";
+        }
+        else {
+            statistic.formatSql = "= " + statistic.format;
+        }
+        if (statistic.type === "All Types") {
+            statistic.typeSql = "LIKE '%' OR Sets.Type IS NULL OR Sets.Type = ' '";
+        }
+        else {
+            statistic.typeSql = "= " + statistic.type;
+        }
+        return statistic;
     };
     return Statistics;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -9942,15 +9994,15 @@ var Login = (function (_super) {
         if (isLoading)
             return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__General_Preloader__["a" /* Preloader */], null);
         else
-            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "login-container -center-container -curved-border" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Login"),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("form", { onSubmit: this.handleSubmit },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Username or Email"),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "text", name: "username", className: "form-control input-md", placeholder: "Username or Email", value: user.username, onChange: function (e) { return _this.handleFieldChange(e); } }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Password"),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "password", name: "password", className: "form-control input-md", placeholder: "Password", value: user.password, onChange: function (e) { return _this.handleFieldChange(e); } }),
+                    errorMessage,
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Login", className: "btn" })),
-                errorMessage,
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btRegistration(); } }, "Go To Registration")));
     };
     Login.prototype.onClick_btRegistration = function () {

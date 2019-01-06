@@ -1,0 +1,20 @@
+﻿@media (min-width: 520px) {
+    div.login-container {
+        width: 500px;
+    }
+}
+
+@media (max-width: 519px) {
+    div.login-container {
+        width: 85vw;
+    }
+}
+
+.login-container {
+    margin-top: 5vh;
+    padding: 20px;
+
+    .input-md {
+        box-shadow: 2px 2px 5px #ccc;
+    }
+}

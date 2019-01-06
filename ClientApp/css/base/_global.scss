@@ -1,0 +1,68 @@
+﻿.invalid {
+    color: red;
+    
+    &:before {
+        content: "✘ ";
+    }
+}
+
+.valid {
+    color: green;
+    
+    &:before {
+        content: "✓ ";
+    }
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin: 5px 5px 5px 0;
+    background: $black;
+    color: $white;
+    box-shadow: 2px 2px 5px #ccc;
+    transition: all .5s ease-in-out;
+
+    a, span {
+        font-size: 16px;
+        color: $white;
+    }
+
+    &:hover {
+        border: 1px solid $black;
+        background: $white;
+        color: $black;
+        -webkit-transform: translate3D(0, 0, 0);
+        @include transform($minor-scale);
+
+        a, span {
+            color: $black;
+        }
+    }
+
+    &:focus {
+        color: $white;
+
+        &:hover {
+            color: $black;
+        }
+    }
+}
+
+label {
+    font-size: 16px;
+    float: left;
+    margin-bottom: 4px;
+}
+
+.-curved-border {
+    border-radius: 2.5%;
+    box-shadow: 4px 4px 10px #ccc;
+}
+
+.-center-container {
+    margin: 0 auto;
+    padding: 10px;
+}

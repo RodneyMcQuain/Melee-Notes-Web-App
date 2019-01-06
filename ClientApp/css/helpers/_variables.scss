@@ -1,0 +1,13 @@
+﻿$white: #f2f2f2; //white color typically used for typography and borders
+$darker-white: #D3D3D3; //Slightly darker than $white used for borders where appropriate
+$black: #222; //Black color used for navbar, footer, and more
+$darker-black: #111; //Slightly darker than $black
+$lighter-black: #444; //Used for dark section borders
+
+$minor-scale: scale(1.02); //minor transform scale
+$major-scale: scale(1.2); //major transform scale
+
+$hide-transition: all .5s ease-in-out; //transition for hiding
+$unhide-transition: opacity 1s ease-in-out; //transition for appearing
+
+$dark-gradient: linear-gradient(to bottom right, $darker-black, #333, $darker-black); //Gradient used in every other section

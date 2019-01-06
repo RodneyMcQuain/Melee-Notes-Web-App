@@ -41,6 +41,15 @@ label {
   float: left;
   margin-bottom: 4px; }
 
+-horizontal-container {
+  width: 100px;
+  max-width: 100px;
+  display: flex;
+  flex-direction: row; }
+
+.-horizontal-child-container {
+  width: 50px; }
+
 .-curved-border {
   border-radius: 2.5%;
   box-shadow: 4px 4px 10px #ccc; }

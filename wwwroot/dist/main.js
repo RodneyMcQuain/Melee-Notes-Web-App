@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d3a309efe3d64464bdf8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "43cef5df82fded65a66d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1534,7 +1534,7 @@ exports = module.exports = __webpack_require__(80)(undefined);
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.invalid {\n  color: red; }\n  .invalid:before {\n    content: \"\\2718   \"; }\n\n.valid {\n  color: green; }\n  .valid:before {\n    content: \"\\2713   \"; }\n\n.form-control {\n  margin-bottom: 10px; }\n\n.btn {\n  margin: 5px 5px 5px 0;\n  background: #222;\n  color: #f2f2f2;\n  box-shadow: 2px 2px 5px #ccc;\n  transition: all .5s ease-in-out; }\n  .btn a, .btn span {\n    font-size: 16px;\n    color: #f2f2f2; }\n  .btn:hover {\n    border: 1px solid #222;\n    background: #f2f2f2;\n    color: #222;\n    -webkit-transform: translate3D(0, 0, 0);\n    -webkit-transform: scale(1.02);\n    -ms-transform: scale(1.02);\n    transform: scale(1.02); }\n    .btn:hover a, .btn:hover span {\n      color: #222; }\n  .btn:focus {\n    color: #f2f2f2; }\n    .btn:focus:hover {\n      color: #222; }\n\nlabel {\n  font-size: 16px;\n  float: left;\n  margin-bottom: 4px; }\n\n.-curved-border {\n  border-radius: 2.5%;\n  box-shadow: 4px 4px 10px #ccc; }\n\n.-center-container {\n  margin: 0 auto;\n  padding: 10px; }\n\n#preloader-overlay {\n  z-index: 9999;\n  height: 275px;\n  width: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  opacity: .95; }\n\n#preloader-spinner {\n  width: 50px;\n  height: 50px;\n  border: 3px solid #f2f2f2;\n  border-top: 4px solid #444;\n  border-radius: 100%;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  animation: spin 1s infinite linear; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.main-nav li .glyphicon {\n  margin-right: 10px; }\n\n/* Highlighting rules for nav menu items */\n.main-nav li a.active,\n.main-nav li a.active:hover,\n.main-nav li a.active:focus {\n  background-color: #4189C7;\n  color: white; }\n\n/* Keep the nav menu independent of scrolling and on top of other items */\n.main-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n\n@media (max-width: 767px) {\n  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\n  body {\n    padding-top: 50px; } }\n\n@media (min-width: 768px) {\n  /* On small screens, convert the nav menu to a vertical sidebar */\n  .main-nav {\n    height: 100%;\n    width: calc(25% - 20px); }\n  .main-nav .navbar {\n    border-radius: 0px;\n    border-width: 0px;\n    height: 100%; }\n  .main-nav .navbar-header {\n    float: none; }\n  .main-nav .navbar-collapse {\n    border-top: 1px solid #444;\n    padding: 0px; }\n  .main-nav .navbar ul {\n    float: none; }\n  .main-nav .navbar li {\n    float: none;\n    font-size: 15px;\n    margin: 6px; }\n  .main-nav .navbar li a {\n    padding: 10px 16px;\n    border-radius: 4px; }\n  .main-nav .navbar a {\n    /* If a menu item's text is too long, truncate it */\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; } }\n\n@media (min-width: 520px) {\n  div.login-container {\n    width: 500px; } }\n\n@media (max-width: 519px) {\n  div.login-container {\n    width: 85vw; } }\n\n.login-container {\n  margin-top: 5vh;\n  padding: 20px; }\n  .login-container .input-md {\n    box-shadow: 2px 2px 5px #ccc; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.invalid {\n  color: red; }\n  .invalid:before {\n    content: \"\\2718   \"; }\n\n.valid {\n  color: green; }\n  .valid:before {\n    content: \"\\2713   \"; }\n\n.form-control {\n  margin-bottom: 10px; }\n\n.btn {\n  margin: 5px 5px 5px 0;\n  background: #222;\n  color: #f2f2f2;\n  box-shadow: 2px 2px 5px #ccc;\n  transition: all .5s ease-in-out; }\n  .btn a, .btn span {\n    font-size: 16px;\n    color: #f2f2f2; }\n  .btn:hover {\n    border: 1px solid #222;\n    background: #f2f2f2;\n    color: #222;\n    -webkit-transform: translate3D(0, 0, 0);\n    -webkit-transform: scale(1.02);\n    -ms-transform: scale(1.02);\n    transform: scale(1.02); }\n    .btn:hover a, .btn:hover span {\n      color: #222; }\n  .btn:focus {\n    color: #f2f2f2; }\n    .btn:focus:hover {\n      color: #222; }\n\nlabel {\n  font-size: 16px;\n  float: left;\n  margin-bottom: 4px; }\n\n.-top-margin-container {\n  margin-top: 20px; }\n\n@media (max-width: 980px) {\n  /* Adds a margin above element on medium sized screens. \r\n       Typically used for table/form layouts where the table\r\n       needs a top margin to not overlap with the form. */\n  .top-margin-less-than-medium-size {\n    margin-top: 10px; } }\n\n@media (min-width: 980px) {\n  /* Used when there is a form and a related table on the same page at >980px */\n  .-horizontal-table-form-parent-container {\n    display: flex;\n    flex-flow: row wrap;\n    align-items: flex-start; }\n  .-horizontal-table-form-child-container {\n    width: 50%;\n    padding: 10px 20px 10px 0; } }\n\n.-horizontal-container {\n  display: flex;\n  flex-flow: row wrap;\n  align-items: flex-start; }\n\n.-curved-border {\n  border-radius: 2.5%;\n  box-shadow: 4px 4px 10px #ccc; }\n\n.-center-container {\n  margin: 0 auto;\n  padding: 10px; }\n\nh1 {\n  margin-top: 0;\n  margin-right: 10px; }\n\n#preloader-overlay {\n  z-index: 9999;\n  height: 275px;\n  width: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  opacity: .95; }\n\n#preloader-spinner {\n  width: 50px;\n  height: 50px;\n  border: 3px solid #f2f2f2;\n  border-top: 4px solid #444;\n  border-radius: 100%;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  animation: spin 1s infinite linear; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.main-nav li .glyphicon {\n  margin-right: 10px; }\n\n/* Highlighting rules for nav menu items */\n.main-nav li a.active,\n.main-nav li a.active:hover,\n.main-nav li a.active:focus {\n  background-color: #4189C7;\n  color: white; }\n\n/* Keep the nav menu independent of scrolling and on top of other items */\n.main-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n\n@media (max-width: 767px) {\n  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\n  body {\n    padding-top: 50px; } }\n\n@media (min-width: 768px) {\n  /* On small screens, convert the nav menu to a vertical sidebar */\n  .main-nav {\n    height: 100%;\n    width: calc(25% - 20px); }\n  .main-nav .navbar {\n    border-radius: 0px;\n    border-width: 0px;\n    height: 100%; }\n  .main-nav .navbar-header {\n    float: none; }\n  .main-nav .navbar-collapse {\n    border-top: 1px solid #444;\n    padding: 0px; }\n  .main-nav .navbar ul {\n    float: none; }\n  .main-nav .navbar li {\n    float: none;\n    font-size: 15px;\n    margin: 6px; }\n  .main-nav .navbar li a {\n    padding: 10px 16px;\n    border-radius: 4px; }\n  .main-nav .navbar a {\n    /* If a menu item's text is too long, truncate it */\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; } }\n\n@media (min-width: 520px) {\n  div.login-container {\n    width: 500px; } }\n\n@media (max-width: 519px) {\n  div.login-container {\n    width: 85vw; } }\n\n.login-container {\n  margin-top: 5vh;\n  padding: 20px; }\n  .login-container .input-md {\n    box-shadow: 2px 2px 5px #ccc; }\n\n@media (min-width: 768px) {\n  div.registration-container {\n    width: 750px; } }\n\n@media (max-width: 767px) {\n  div.registration-container {\n    width: 85vw; } }\n\n.registration-container {\n  margin-top: 5vh;\n  padding: 20px; }\n", ""]);
 
 // exports
 
@@ -8981,9 +8981,9 @@ var Layout = (function (_super) {
             body = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-3' },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__NavMenu__["a" /* NavMenu */], null)),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-9' }, this.props.children)));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-9 -top-margin-container' }, this.props.children)));
         else
-            body = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-12' }, this.props.children));
+            body = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'col-sm-12 -top-margin-container' }, this.props.children));
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'container-fluid' },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: 'row' }, body)));
     };
@@ -9876,27 +9876,30 @@ var SelectedTournament = (function (_super) {
             var tournament_1 = this.state.tournament;
             var sets = tournament_1.sets;
             var increment_1 = -1;
-            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, tournament_1.name),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Tournament_TournamentForm__["a" /* TournamentForm */], { handleFieldChange: this.handleFieldChange, tournament: tournament_1, handleSubmit: this.handleSubmit, submitButtonName: "Update Tournament" }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btRemoveTournament(); } }, "Remove Tournament"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btAddSet(tournament_1.id); } }, "Add Set"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h2", null, "Sets"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("table", { className: 'table' },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", null,
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Tag"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Outcome"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Format"),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Bracket Round"))),
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tbody", null, sets.map(function (set) {
-                        increment_1++;
-                        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", { key: set.id, onClick: function () { return _this.onClick_trSet(tournament_1.id, set.id); } },
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, _this.state.playerTags[increment_1]),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, set.outcome),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, set.format),
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, set.bracketRound)));
-                    }))));
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-parent-container" },
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-child-container" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, tournament_1.name),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Tournament_TournamentForm__["a" /* TournamentForm */], { handleFieldChange: this.handleFieldChange, tournament: tournament_1, handleSubmit: this.handleSubmit, submitButtonName: "Update Tournament" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btRemoveTournament(); } }, "Remove Tournament")),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-child-container top-margin-less-than-medium-size" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-container" },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Sets"),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btAddSet(tournament_1.id); } }, "Add Set")),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("table", { className: 'table' },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
+                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", null,
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Tag"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Outcome"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Format"),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("th", null, "Bracket Round"))),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tbody", null, sets.map(function (set) {
+                            increment_1++;
+                            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tr", { key: set.id, onClick: function () { return _this.onClick_trSet(tournament_1.id, set.id); } },
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, _this.state.playerTags[increment_1]),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, set.outcome),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, set.format),
+                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("td", null, set.bracketRound)));
+                        }))))));
         }
     };
     SelectedTournament.prototype.onClick_trSet = function (tournamentId, setId) {
@@ -10281,7 +10284,7 @@ var Registration = (function (_super) {
         if (isLoading)
             return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__General_Preloader__["a" /* Preloader */], null);
         else
-            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "registration-container -center-container -curved-border" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Register"),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("form", { onSubmit: this.handleSubmit },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Username"),

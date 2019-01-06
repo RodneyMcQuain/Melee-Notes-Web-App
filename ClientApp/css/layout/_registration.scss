@@ -1,0 +1,16 @@
+﻿@media (min-width: 768px) {
+    div.registration-container {
+        width: 750px;
+    }
+}
+
+@media (max-width: 767px) {
+    div.registration-container {
+        width: 85vw;
+    }
+}
+
+.registration-container {
+    margin-top: 5vh;
+    padding: $form-padding;
+}

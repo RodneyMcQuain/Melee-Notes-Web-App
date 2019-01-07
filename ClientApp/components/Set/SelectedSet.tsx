@@ -59,6 +59,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
 
                         <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" />
                         <button className="btn" onClick={ () => this.onClick_btRemoveSet() } >Remove Set</button>
+                        <button className="btn" onClick={ () => this.onClick_btGoToTournament(tournamentId) } >Go Back to Tournament</button>
                     </div>
 
                     <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
@@ -137,5 +138,9 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
 
     private onClick_btAddGame(tournamentId: number, setId: number) {
         this.props.history.push(`/addGame/tournament/${tournamentId}/set/${setId}`);
+    }
+
+    private onClick_btGoToTournament(tournamentId: number) {
+        this.props.history.push(`/tournament/${tournamentId}`);
     }
 }

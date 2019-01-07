@@ -58,7 +58,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
                         <h1>Set</h1>
 
                         <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" />
-                        <button className="btn" onClick={ () => this.onClick_btRemoveSet() } >Remove Set</button>
+                        <button className="btn" onClick={ () => this.onClick_btRemoveSet(set) } >Remove Set</button>
                         <button className="btn" onClick={ () => this.onClick_btGoToTournament(tournamentId) } >Go Back to Tournament</button>
                     </div>
 
@@ -123,9 +123,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
             .catch(error => console.log(error));
     }
 
-    private onClick_btRemoveSet() {
-        let set = this.state.set;
-
+    private onClick_btRemoveSet(set: ISet) {
         fetch(`api/Set/${set.id}`, {
             method: 'DELETE',
             headers: Token.getAuthorizationHeaders(),

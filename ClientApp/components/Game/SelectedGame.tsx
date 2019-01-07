@@ -39,6 +39,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
 
     public render() {
         let isLoading = this.state.isLoading;
+        let game = this.state.game;
 
         if (isLoading)
             return <Preloader />
@@ -50,7 +51,8 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
                     <h2>Game</h2>
 
                     <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Update Game" tournamentId={ tournamentId } />
-                    <button className="btn" onClick={ () => this.onClick_btRemoveGame() } >Remove Game</button>
+                    <button className="btn" onClick={ () => this.onClick_btRemoveGame(game, tournamentId) } >Remove Game</button>
+                    <button className="btn" onClick={ () => this.onClick_btGoToSet(tournamentId, game.setId) } >Go Back to Set</button>
                 </div>
             );
         }
@@ -76,17 +78,18 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
             .catch(error => console.log(error));
     }
 
-    private onClick_btRemoveGame() {
-        let game = this.state.game;
-        let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
-
+    private onClick_btRemoveGame(game: IGame, tournamentId: number) {
         fetch(`api/Game/${game.id}`, {
             method: 'DELETE',
             headers: Token.getAuthorizationHeaders(),
             body: JSON.stringify(game)
         })
             .then(response => handleResponse(this.props.history, response))
-            .then(() => this.props.history.push(`/tournament/${selectedTournamentId}/set/${game.setId}`))
+            .then(() => this.props.history.push(`/tournament/${tournamentId}/set/${game.setId}`))
             .catch(error => console.log(error));
+    }
+
+    private onClick_btGoToSet(tournamentId: number, setId: number) {
+        this.props.history.push(`/tournament/${tournamentId}/set/${setId}`);
     }
 }

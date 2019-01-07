@@ -104,3 +104,12 @@ h1 {
     margin-top: 0;
     margin-right: 10px;
 }
+
+.input-md {
+    box-shadow: 2px 2px 5px #ccc;
+}
+
+textarea {
+    resize: none;
+    height: 200px !important;
+}

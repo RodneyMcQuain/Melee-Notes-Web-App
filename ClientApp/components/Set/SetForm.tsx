@@ -5,12 +5,15 @@ import { PlayerDropdown } from '../Dropdowns/PlayerDropdown';
 import { OutcomeDropdown } from '../Dropdowns/OutcomeDropdown';
 import { FormatDropdown } from '../Dropdowns/FormatDropdown';
 import { TypeDropdown } from '../Dropdowns/TypeDropdown';
+import { RouteComponentProps } from 'react-router-dom';
+import { History } from 'history';
 
 interface SetFormProps {
     handleFieldChange: Function;
     set: ISet;
     handleSubmit: Function;
     submitButtonName: string;
+    history: History;
 }
 
 export class SetForm extends React.Component<SetFormProps, {}> {
@@ -24,7 +27,10 @@ export class SetForm extends React.Component<SetFormProps, {}> {
                 <TournamentDropdown handleFieldChange={ this.props.handleFieldChange } tournamentId={ this.props.set.tournamentId } />
 
                 <label>Player</label>
-                <PlayerDropdown handleFieldChange={ this.props.handleFieldChange } playerId={ this.props.set.playerId } />
+                <div>
+                    <PlayerDropdown handleFieldChange={ this.props.handleFieldChange } playerId={ this.props.set.playerId } />
+                    <button className="btn" onClick={ () => this.onClick_btAddPlayer() } >Add Player</button>
+                </div>
 
                 <label>Outcome</label>
                 <OutcomeDropdown handleFieldChange={ this.props.handleFieldChange } outcome={ this.props.set.outcome } />
@@ -44,5 +50,9 @@ export class SetForm extends React.Component<SetFormProps, {}> {
                 <input type="submit" value={ this.props.submitButtonName } className="btn" />
             </form>
         );
+    }
+
+    private onClick_btAddPlayer() {
+        this.props.history.push(`/addPlayer`);
     }
 }

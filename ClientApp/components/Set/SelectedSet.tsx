@@ -56,7 +56,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
                     <div className="-horizontal-table-form-child-container" >
                         <h1>Set</h1>
 
-                        <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" />
+                        <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" history={ this.props.history } />
                         <button className="btn" onClick={ () => this.onClick_btRemoveSet(set) } >Remove Set</button>
                         <button className="btn" onClick={ () => this.onClick_btGoToTournament(tournamentId) } >Go Back to Tournament</button>
                     </div>

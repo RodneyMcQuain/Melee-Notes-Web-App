@@ -48,7 +48,9 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
             return (
                 <div>
                     <h2>Game</h2>
+
                     <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Update Game" tournamentId={ tournamentId } />
+                    <button className="btn" onClick={ () => this.onClick_btRemoveGame() } >Remove Game</button>
                 </div>
             );
         }
@@ -71,6 +73,20 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
             body: JSON.stringify(game)
         })
             .then(response => handleResponse(this.props.history, response))
+            .catch(error => console.log(error));
+    }
+
+    private onClick_btRemoveGame() {
+        let game = this.state.game;
+        let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
+
+        fetch(`api/Game/${game.id}`, {
+            method: 'DELETE',
+            headers: Token.getAuthorizationHeaders(),
+            body: JSON.stringify(game)
+        })
+            .then(response => handleResponse(this.props.history, response))
+            .then(() => this.props.history.push(`/tournament/${selectedTournamentId}/set/${game.setId}`))
             .catch(error => console.log(error));
     }
 }

@@ -50,7 +50,6 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
             let games = set.games;
             let tournamentId = parseInt(this.props.match.params.tournamentId) || 0;
             let incrementer = 0;
-            
 
             return (
                 <div className="-horizontal-table-form-parent-container" >

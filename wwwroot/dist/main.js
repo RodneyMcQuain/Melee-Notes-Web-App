@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "01fc66607c296575bb4a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d14b7ddf386916822236"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -2924,7 +2924,11 @@ var PlayerDropdown = (function (_super) {
         var playerHasAll;
         if (this.props.hasAll)
             playerHasAll = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: "0", value: "0" }, "All Players");
-        var playerOptions = players.map(function (player) { return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: player.id, value: player.id }, player.tag); });
+        var playerOptions;
+        if (players.length === 0)
+            playerOptions = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: "No Players", value: "No Players" }, "No Players Added");
+        else
+            playerOptions = players.map(function (player) { return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: player.id, value: player.id }, player.tag); });
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("select", { name: "playerId", className: "form-control", onChange: handleFieldChange, value: this.props.playerId },
             playerHasAll,
             playerOptions));
@@ -3121,7 +3125,9 @@ var SetForm = (function (_super) {
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Tournament"),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Dropdowns_TournamentDropdown__["a" /* TournamentDropdown */], { handleFieldChange: this.props.handleFieldChange, tournamentId: this.props.set.tournamentId }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Player"),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__Dropdowns_PlayerDropdown__["a" /* PlayerDropdown */], { handleFieldChange: this.props.handleFieldChange, playerId: this.props.set.playerId }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__Dropdowns_PlayerDropdown__["a" /* PlayerDropdown */], { handleFieldChange: this.props.handleFieldChange, playerId: this.props.set.playerId }),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btAddPlayer(); } }, "Add Player")),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Outcome"),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__Dropdowns_OutcomeDropdown__["a" /* OutcomeDropdown */], { handleFieldChange: this.props.handleFieldChange, outcome: this.props.set.outcome }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Format"),
@@ -3133,6 +3139,9 @@ var SetForm = (function (_super) {
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Notes"),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("textarea", { name: "notes", className: "form-control input-md", placeholder: "Notes", value: set.notes, onChange: function (e) { return _this.props.handleFieldChange(e); } }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: this.props.submitButtonName, className: "btn" })));
+    };
+    SetForm.prototype.onClick_btAddPlayer = function () {
+        this.props.history.push("/addPlayer");
     };
     return SetForm;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -8488,7 +8497,11 @@ var SetDropdown = (function (_super) {
     SetDropdown.prototype.render = function () {
         var sets = this.state.sets;
         var handleFieldChange = this.props.handleFieldChange.bind(this);
-        var setOptions = sets.map(function (set) { return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: set.id, value: set.id }, set.bracketRound); });
+        var setOptions;
+        if (sets.length === 0)
+            setOptions = __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: "No Sets", value: "No Sets" }, "No Sets Added");
+        else
+            setOptions = sets.map(function (set) { return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { key: set.id, value: set.id }, set.bracketRound); });
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("select", { name: "tournamentId", className: "form-control", onChange: handleFieldChange, value: this.props.setId }, setOptions));
     };
     return SetDropdown;
@@ -9427,7 +9440,7 @@ var AddSet = (function (_super) {
         else
             return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Add Set"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Set_SetForm__["a" /* SetForm */], { handleFieldChange: this.handleFieldChange, set: this.state.set, handleSubmit: this.handleSubmit, submitButtonName: "Add Set" })));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Set_SetForm__["a" /* SetForm */], { handleFieldChange: this.handleFieldChange, set: this.state.set, handleSubmit: this.handleSubmit, submitButtonName: "Add Set", history: this.props.history })));
     };
     AddSet.prototype.handleFieldChange = function (event) {
         var key = event.target.name;
@@ -9521,7 +9534,7 @@ var SelectedSet = (function (_super) {
             return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-parent-container" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-child-container" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Set"),
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Set_SetForm__["a" /* SetForm */], { handleFieldChange: this.handleFieldChange, set: this.state.set, handleSubmit: this.handleSubmit, submitButtonName: "Update Set" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__Set_SetForm__["a" /* SetForm */], { handleFieldChange: this.handleFieldChange, set: this.state.set, handleSubmit: this.handleSubmit, submitButtonName: "Update Set", history: this.props.history }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btRemoveSet(set_1); } }, "Remove Set"),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", { className: "btn", onClick: function () { return _this.onClick_btGoToTournament(tournamentId_1); } }, "Go Back to Tournament")),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-horizontal-table-form-child-container top-margin-less-than-medium-size" },

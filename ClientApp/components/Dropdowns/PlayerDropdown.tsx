@@ -43,7 +43,11 @@ export class PlayerDropdown extends React.Component<PlayerDropdownProps & Option
         if (this.props.hasAll)
             playerHasAll = <option key="0" value="0">All Players</option>
 
-        let playerOptions = players.map(player => <option key={ player.id } value={ player.id } >{ player.tag }</option>);
+        let playerOptions;
+        if (players.length === 0)
+            playerOptions = <option key="No Players" value="No Players" >No Players Added</option>;
+        else
+            playerOptions = players.map(player => <option key={ player.id } value={ player.id } >{ player.tag }</option>);
 
         return (
             <select name="playerId" className="form-control" onChange={ handleFieldChange } value={ this.props.playerId } >

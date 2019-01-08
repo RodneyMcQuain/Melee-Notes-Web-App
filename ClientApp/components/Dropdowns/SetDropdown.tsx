@@ -37,7 +37,11 @@ export class SetDropdown extends React.Component<SetDropdownProps & OptionalRout
         let sets = this.state.sets;
         let handleFieldChange = this.props.handleFieldChange.bind(this);
 
-        let setOptions = sets.map(set => <option key={set.id} value={set.id} >{set.bracketRound}</option>);
+        let setOptions
+        if (sets.length === 0)
+            setOptions = <option key="No Sets" value="No Sets" >No Sets Added</option>;
+        else
+            setOptions = sets.map(set => <option key={ set.id } value={ set.id } >{ set.bracketRound }</option>);
 
         return (
             <select name="tournamentId" className="form-control" onChange={ handleFieldChange } value={ this.props.setId } >

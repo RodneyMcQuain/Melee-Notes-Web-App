@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d14b7ddf386916822236"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f2ad39bcc66ebe883182"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -9733,35 +9733,37 @@ var Statistics = (function (_super) {
     };
     Statistics.prototype.modifyStatisticBeforeSubmit = function (statistic) {
         if (statistic.playerId === 0) {
-            statistic.playerSql = "LIKE '%' OR Players.Tag IS NULL OR Players.Tag = ' '";
+            statistic.playerSql = "0";
         }
         else {
-            statistic.playerSql = "= " + statistic.playerId;
+            statistic.playerSql = statistic.playerId;
         }
         if (statistic.myCharacter === "All Characters") {
-            statistic.myCharacterSql = "LIKE '%' OR Games.MyCharacter IS NULL OR Games.MyCharacter = ' '";
+            statistic.myCharacterSql = "LIKE '%' OR \"Games\".\"MyCharacter\" IS NULL OR \"Games\".\"MyCharacter\" = ' '";
         }
         else {
-            statistic.myCharacterSql = "= " + statistic.myCharacter;
+            statistic.myCharacterSql = "LIKE '" + statistic.myCharacter + "'";
         }
         if (statistic.opponentCharacter === "All Characters") {
-            statistic.opponentCharacterSql = "LIKE '%' OR Games.OpponentCharacter IS NULL OR Games.OpponentCharacter = ' '";
+            statistic.opponentCharacterSql = "LIKE '%' OR \"Games\".\"OpponentCharacter\" IS NULL OR \"Games\".\"OpponentCharacter\" = ' '";
         }
         else {
-            statistic.opponentCharacterSql = "= " + statistic.opponentCharacter;
+            statistic.opponentCharacterSql = "LIKE '" + statistic.opponentCharacter + "'";
         }
         if (statistic.format === "All Formats") {
-            statistic.formatSql = "LIKE '%' OR Sets.Format IS NULL OR Sets.Format = ' '";
+            statistic.formatSql = "'%'";
         }
         else {
-            statistic.formatSql = "= " + statistic.format;
+            statistic.formatSql = "'" + statistic.format + "'";
         }
         if (statistic.type === "All Types") {
-            statistic.typeSql = "LIKE '%' OR Sets.Type IS NULL OR Sets.Type = ' '";
+            statistic.typeSql = "'%'";
         }
         else {
-            statistic.typeSql = "= " + statistic.type;
+            statistic.typeSql = "'" + statistic.type + "'";
         }
+        statistic.startDate = "'" + statistic.startDate + "'";
+        statistic.endDate = "'" + statistic.endDate + "'";
         return statistic;
     };
     return Statistics;

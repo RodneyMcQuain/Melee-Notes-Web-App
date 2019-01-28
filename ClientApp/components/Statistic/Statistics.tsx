@@ -7,6 +7,9 @@ import { StageDropdown } from '../Dropdowns/StageDropdown';
 import { PlayerDropdown } from '../Dropdowns/PlayerDropdown';
 import { TypeDropdown } from '../Dropdowns/TypeDropdown';
 import { ISet, IGame } from '../../helpers/interfaces';
+import { handleResponse } from '../../helpers/handleResponseErrors';
+import { Token } from '../../helpers/token';
+import { Preloader } from '../General/Preloader';
 
 interface IStatistic {
     myCharacter: string;
@@ -23,6 +26,10 @@ interface IStatistic {
 interface StatisticsState {
     statistic: IStatistic;
     dateDropdown: string;
+    setsWon: number;
+    setsLost: number;
+    isSetCountLoading: boolean;
+    isAfterFirstSubmit: boolean;
     isLoading: boolean;
 }
 
@@ -35,7 +42,11 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         this.state = {
             statistic: {} as IStatistic,
             isLoading: true,
+            isSetCountLoading: false,
+            isAfterFirstSubmit: false,
             dateDropdown: "All Time",
+            setsWon: -1,
+            setsLost: -1
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -53,17 +64,17 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             stage: "All Stages",
             format: "All Formats",
             type: "All Types",
-            startDate: "2001-01-01",
-            endDate: today
+            startDate: "2001-01-01", //year the game was released in
+            endDate: today,
         }
 
         this.setState({ statistic: statistic })
     }
 
     public render() {
-        let statistic = this.state.statistic;
+        const { statistic, setsWon, setsLost, isSetCountLoading, isAfterFirstSubmit } = this.state;
 
-        let date = this.state.dateDropdown === "Specify Date"
+        const date = this.state.dateDropdown === "Specify Date"
             ? <div>
                 <label>Start Date</label>
                 <input type="date" name="startDate" className="form-control" value={ statistic.startDate } onChange={ this.handleFieldChange } />
@@ -72,6 +83,21 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 <input type="date" name="endDate" className="form-control" value={ statistic.endDate } onChange={ this.handleFieldChange } />
             </div>
             : <div></div>
+        
+        const setCount = isSetCountLoading ? <Preloader /> : <p>Set Count: {setsWon}-{setsLost} (excludes character in query)</p>
+
+        const afterFirstSubmit = isAfterFirstSubmit 
+            ? <div>
+                { setCount }
+
+                <img src={require('../../images/Battlefield.jpg')}></img>
+                <img src={require('../../images/Dreamland.jpg')}></img>
+                <img src={require('../../images/FinalDestination.jpg')}></img>
+                <img src={require('../../images/FountainOfDreams.jpg')}></img>
+                <img src={require('../../images/PokemonStadium.jpg')}></img>
+                <img src={require('../../images/YoshisIsland.jpg')}></img>
+            </div>
+           : <div></div>
 
         return (
             <div>
@@ -104,12 +130,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                     <input type="submit" value="Get Statistics" className="btn" />
                 </form>
 
-                <img src={require('../../images/Battlefield.jpg')}></img>
-                <img src={require('../../images/Dreamland.jpg')}></img>
-                <img src={require('../../images/FinalDestination.jpg')}></img>
-                <img src={require('../../images/FountainOfDreams.jpg')}></img>
-                <img src={require('../../images/PokemonStadium.jpg')}></img>
-                <img src={require('../../images/YoshisIsland.jpg')}></img>
+                { afterFirstSubmit }
             </div>
         );
     }
@@ -127,10 +148,60 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        let statistic = this.state.statistic;
-        console.log(statistic);
+        let statistic = this.modifyStatisticBeforeSubmit(this.state.statistic);
+        let userId = Token.getUserId();
+        this.setState({
+            isAfterFirstSubmit: true,
+            isSetCountLoading: true
+        });
 
-        //fetch
-        //catch
+        let setsWon = 0;
+        let setsLost = 0;
+        this.getSetsWon(userId, statistic)
+            .then(setsWonResult => setsWon = setsWonResult)
+            .then(() => this.getSetsLost(userId, statistic))
+            .then(setsLostResult => setsLost = setsLostResult)
+            .then(() => this.setState({
+                setsWon: setsWon,
+                setsLost: setsLost,
+                isSetCountLoading: false
+            }))
+            .catch(error => console.log(error));
+    }
+
+    private getSetsWon(userId: string, statistic: IStatistic) {
+        return fetch(`api/Statistic/GetSetsWon/User/${userId}`, {
+            method: 'POST',
+            headers: Token.getAuthorizationHeaders(),
+            body: JSON.stringify(statistic)
+        })
+            .then(response => handleResponse(this.props.history, response))
+            .then(response => response.json() as Promise<number>)
+    }
+
+    private getSetsLost(userId: string, statistic: IStatistic) {
+        return fetch(`api/Statistic/GetSetsLost/User/${userId}`, {
+            method: 'POST',
+            headers: Token.getAuthorizationHeaders(),
+            body: JSON.stringify(statistic)
+        })
+            .then(response => handleResponse(this.props.history, response))
+            .then(response => response.json() as Promise<number>)
+    }
+
+    private modifyStatisticBeforeSubmit(statistic: IStatistic) {
+        if (statistic.myCharacter === "All Characters")
+            statistic.myCharacter = "";
+
+        if (statistic.opponentCharacter === "All Characters")
+            statistic.opponentCharacter = "";
+
+        if (statistic.format === "All Formats")
+            statistic.format = "";
+
+        if (statistic.type === "All Types")
+            statistic.type = "";
+
+        return statistic;
     }
 }

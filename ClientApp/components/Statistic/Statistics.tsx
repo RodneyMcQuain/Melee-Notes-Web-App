@@ -90,12 +90,30 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             ? <div>
                 { setCount }
 
-                <img src={require('../../images/Battlefield.jpg')}></img>
-                <img src={require('../../images/Dreamland.jpg')}></img>
-                <img src={require('../../images/FinalDestination.jpg')}></img>
-                <img src={require('../../images/FountainOfDreams.jpg')}></img>
-                <img src={require('../../images/PokemonStadium.jpg')}></img>
-                <img src={require('../../images/YoshisIsland.jpg')}></img>
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img className="stage" src={require('../../images/Battlefield.jpg')}></img>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img className="stage" src={require('../../images/Dreamland.jpg')}></img>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img className="stage" src={require('../../images/FinalDestination.jpg')}></img>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img className="stage" src={require('../../images/FountainOfDreams.jpg')}></img>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img className="stage" src={require('../../images/PokemonStadium.jpg')}></img>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <img className="stage" src={require('../../images/YoshisIsland.jpg')}></img>
+                </div>
+                   
             </div>
            : <div></div>
 

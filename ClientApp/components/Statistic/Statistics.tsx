@@ -76,41 +76,45 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
         const date = this.state.dateDropdown === "Specify Date"
             ? <div>
-                <label>Start Date</label>
-                <input type="date" name="startDate" className="form-control" value={ statistic.startDate } onChange={ this.handleFieldChange } />
+                <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label htmlFor="startDate" >Start Date</label>
+                    <input type="date" name="startDate" className="form-control" value={statistic.startDate} onChange={this.handleFieldChange} />
+                </div>
 
-                <label>End Date</label>
-                <input type="date" name="endDate" className="form-control" value={ statistic.endDate } onChange={ this.handleFieldChange } />
+                <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label htmlFor="endDate" >End Date</label>
+                    <input type="date" name="endDate" className="form-control" value={statistic.endDate} onChange={this.handleFieldChange} />
+                </div>
             </div>
             : <div></div>
         
-        const setCount = isSetCountLoading ? <Preloader /> : <p>Set Count: {setsWon}-{setsLost} (excludes character in query)</p>
+        const setCount = isSetCountLoading ? <Preloader /> : <div className="col-xs-12" >Set Count: {setsWon}-{setsLost} (excludes character in query)</div>
 
-        const afterFirstSubmit = isAfterFirstSubmit 
-            ? <div>
+        const afterFirstSubmit = isAfterFirstSubmit
+            ? <div className="row statistic-negative-margin" >
                 { setCount }
 
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Battlefield.jpg')}></img>
                 </div>
 
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Dreamland.jpg')}></img>
                 </div>
 
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FinalDestination.jpg')}></img>
                 </div>
 
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FountainOfDreams.jpg')}></img>
                 </div>
 
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/PokemonStadium.jpg')}></img>
                 </div>
 
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/YoshisIsland.jpg')}></img>
                 </div>
                    
@@ -121,31 +125,45 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             <div>
                 <h1>Statistics</h1>
 
-                <form onSubmit={this.handleSubmit} >
-                    <label>My Character</label>
-                    <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.myCharacter} characterType="myCharacter" hasAll={true} />
+                <form className="form-horizontal" onSubmit={this.handleSubmit} >
+                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+                        <label htmlFor="myCharacter" >My Character</label>
+                        <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.myCharacter} characterType="myCharacter" hasAll={true} />
+                    </div>
 
-                    <label>Opponent Character</label>
-                    <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.opponentCharacter} characterType="opponentCharacter" hasAll={true} />
+                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+                        <label htmlFor="oppponentCharacter" >Opponent Character</label>
+                        <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.opponentCharacter} characterType="opponentCharacter" hasAll={true} />
+                    </div>
 
-                    <label>Player</label>
-                    <PlayerDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} playerId={statistic.playerId} hasAll={true} />
+                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+                        <label htmlFor="player" >Player</label>
+                        <PlayerDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} playerId={statistic.playerId} hasAll={true} />
+                    </div>
 
-                    <label>Format</label>
-                    <FormatDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} format={statistic.format} hasAll={true} />
+                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+                        <label htmlFor="format" >Format</label>
+                        <FormatDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} format={statistic.format} hasAll={true} />
+                    </div>
 
-                    <label>Type</label>
-                    <TypeDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} type={statistic.type} hasAll={true} />
+                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label htmlFor="type" >Type</label>
+                        <TypeDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} type={statistic.type} hasAll={true} />
+                    </div>
 
-                    <label>Date</label> 
-                    <select name="dateType" className="form-control" value={ this.state.dateDropdown } onChange={ this.handleDateDropdownChange } >
-                        <option value="All Time">All Time</option>
-                        <option value="Specify Date">Specify Date</option>
-                    </select>
+                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <label htmlFor="dateType" >Date</label> 
+                        <select name="dateType" className="form-control" value={this.state.dateDropdown} onChange={this.handleDateDropdownChange} >
+                            <option value="All Time">All Time</option>
+                            <option value="Specify Date">Specify Date</option>
+                        </select>
+                    </div>
 
                     { date }
 
-                    <input type="submit" value="Get Statistics" className="btn" />
+                    <div className="col-xs-12 statistic-submit-button" >
+                        <input type="submit" value="Get Statistics" className="btn" />
+                    </div>
                 </form>
 
                 { afterFirstSubmit }

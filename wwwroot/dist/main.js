@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f2ad39bcc66ebe883182"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "81fb9be00e40cee9edfa"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1534,7 +1534,7 @@ exports = module.exports = __webpack_require__(80)(undefined);
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.invalid {\n  color: red; }\n  .invalid:before {\n    content: \"\\2718   \"; }\n\n.valid {\n  color: green; }\n  .valid:before {\n    content: \"\\2713   \"; }\n\n.form-control {\n  margin-bottom: 10px; }\n\n.btn {\n  margin: 5px 5px 5px 0;\n  background: #222;\n  color: #f2f2f2;\n  box-shadow: 2px 2px 5px #ccc;\n  transition: all .5s ease-in-out; }\n  .btn a, .btn span {\n    font-size: 16px;\n    color: #f2f2f2; }\n  .btn:hover {\n    border: 1px solid #222;\n    background: #f2f2f2;\n    color: #222;\n    -webkit-transform: translate3D(0, 0, 0);\n    -webkit-transform: scale(1.02);\n    -ms-transform: scale(1.02);\n    transform: scale(1.02); }\n    .btn:hover a, .btn:hover span {\n      color: #222; }\n  .btn:focus {\n    color: #f2f2f2; }\n    .btn:focus:hover {\n      color: #222; }\n\nlabel {\n  font-size: 16px;\n  float: left;\n  margin-bottom: 4px; }\n\n.-top-margin-container {\n  margin-top: 20px; }\n\n@media (max-width: 980px) {\n  /* Adds a margin above element on medium sized screens. \r\n       Typically used for table/form layouts where the table\r\n       needs a top margin to not overlap with the form. */\n  .top-margin-less-than-medium-size {\n    margin-top: 10px; } }\n\n@media (min-width: 980px) {\n  /* Used when there is a form and a related table on the same page at >980px */\n  .-horizontal-table-form-parent-container {\n    display: flex;\n    flex-flow: row wrap;\n    align-items: flex-start; }\n  .-horizontal-table-form-child-container {\n    width: 50%;\n    padding: 10px 20px 10px 0; } }\n\n.-horizontal-container {\n  display: flex;\n  flex-flow: row wrap;\n  align-items: flex-start; }\n\n.-curved-border {\n  border-radius: 2.5%;\n  box-shadow: 4px 4px 10px #ccc; }\n\n.-center-container {\n  margin: 0 auto;\n  padding: 10px; }\n\nh1 {\n  margin-top: 0;\n  margin-right: 10px; }\n\n.input-md {\n  box-shadow: 2px 2px 5px #ccc; }\n\ntextarea {\n  resize: none;\n  height: 200px !important; }\n\n#preloader-overlay {\n  z-index: 9999;\n  height: 275px;\n  width: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  opacity: .95; }\n\n#preloader-spinner {\n  width: 50px;\n  height: 50px;\n  border: 3px solid #f2f2f2;\n  border-top: 4px solid #444;\n  border-radius: 100%;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  animation: spin 1s infinite linear; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.main-nav li .glyphicon {\n  margin-right: 10px; }\n\n/* Highlighting rules for nav menu items */\n.main-nav li a.active,\n.main-nav li a.active:hover,\n.main-nav li a.active:focus {\n  background-color: #4189C7;\n  color: white; }\n\n/* Keep the nav menu independent of scrolling and on top of other items */\n.main-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n\n@media (max-width: 767px) {\n  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\n  body {\n    padding-top: 50px; } }\n\n@media (min-width: 768px) {\n  /* On small screens, convert the nav menu to a vertical sidebar */\n  .main-nav {\n    height: 100%;\n    width: calc(25% - 20px); }\n  .main-nav .navbar {\n    border-radius: 0px;\n    border-width: 0px;\n    height: 100%; }\n  .main-nav .navbar-header {\n    float: none; }\n  .main-nav .navbar-collapse {\n    border-top: 1px solid #444;\n    padding: 0px; }\n  .main-nav .navbar ul {\n    float: none; }\n  .main-nav .navbar li {\n    float: none;\n    font-size: 15px;\n    margin: 6px; }\n  .main-nav .navbar li a {\n    padding: 10px 16px;\n    border-radius: 4px; }\n  .main-nav .navbar a {\n    /* If a menu item's text is too long, truncate it */\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; } }\n\n@media (min-width: 520px) {\n  div.login-container {\n    width: 500px; } }\n\n@media (max-width: 519px) {\n  div.login-container {\n    width: 85vw; } }\n\n.login-container {\n  margin-top: 5vh;\n  padding: 20px; }\n\n@media (min-width: 768px) {\n  div.registration-container {\n    width: 750px; } }\n\n@media (max-width: 767px) {\n  div.registration-container {\n    width: 85vw; } }\n\n.registration-container {\n  margin-top: 5vh;\n  padding: 20px; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.invalid {\n  color: red; }\n  .invalid:before {\n    content: \"\\2718   \"; }\n\n.valid {\n  color: green; }\n  .valid:before {\n    content: \"\\2713   \"; }\n\n.form-control {\n  margin-bottom: 10px; }\n\n.btn {\n  margin: 5px 5px 5px 0;\n  background: #222;\n  color: #f2f2f2;\n  box-shadow: 2px 2px 5px #ccc;\n  transition: all .5s ease-in-out; }\n  .btn a, .btn span {\n    font-size: 16px;\n    color: #f2f2f2; }\n  .btn:hover {\n    border: 1px solid #222;\n    background: #f2f2f2;\n    color: #222;\n    -webkit-transform: translate3D(0, 0, 0);\n    -webkit-transform: scale(1.02);\n    -ms-transform: scale(1.02);\n    transform: scale(1.02); }\n    .btn:hover a, .btn:hover span {\n      color: #222; }\n  .btn:focus {\n    color: #f2f2f2; }\n    .btn:focus:hover {\n      color: #222; }\n\nlabel {\n  font-size: 16px;\n  float: left;\n  margin-bottom: 4px; }\n\n.-top-margin-container {\n  margin-top: 20px; }\n\n@media (max-width: 980px) {\n  /* Adds a margin above element on medium sized screens. \r\n       Typically used for table/form layouts where the table\r\n       needs a top margin to not overlap with the form. */\n  .top-margin-less-than-medium-size {\n    margin-top: 10px; } }\n\n@media (min-width: 980px) {\n  /* Used when there is a form and a related table on the same page at >980px */\n  .-horizontal-table-form-parent-container {\n    display: flex;\n    flex-flow: row wrap;\n    align-items: flex-start; }\n  .-horizontal-table-form-child-container {\n    width: 50%;\n    padding: 10px 20px 10px 0; } }\n\n.-horizontal-container {\n  display: flex;\n  flex-flow: row wrap;\n  align-items: flex-start; }\n\n.-curved-border {\n  border-radius: 2.5%;\n  box-shadow: 4px 4px 10px #ccc; }\n\n.-center-container {\n  margin: 0 auto;\n  padding: 10px; }\n\nh1 {\n  margin-top: 0;\n  margin-right: 10px; }\n\n.input-md {\n  box-shadow: 2px 2px 5px #ccc; }\n\ntextarea {\n  resize: none;\n  height: 200px !important; }\n\n#preloader-overlay {\n  z-index: 9999;\n  height: 275px;\n  width: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  opacity: .95; }\n\n#preloader-spinner {\n  width: 50px;\n  height: 50px;\n  border: 3px solid #f2f2f2;\n  border-top: 4px solid #444;\n  border-radius: 100%;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  animation: spin 1s infinite linear; }\n\n@keyframes spin {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(360deg); } }\n\n.main-nav li .glyphicon {\n  margin-right: 10px; }\n\n/* Highlighting rules for nav menu items */\n.main-nav li a.active,\n.main-nav li a.active:hover,\n.main-nav li a.active:focus {\n  background-color: #4189C7;\n  color: white; }\n\n/* Keep the nav menu independent of scrolling and on top of other items */\n.main-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n\n@media (max-width: 767px) {\n  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\n  body {\n    padding-top: 50px; } }\n\n@media (min-width: 768px) {\n  /* On small screens, convert the nav menu to a vertical sidebar */\n  .main-nav {\n    height: 100%;\n    width: calc(25% - 20px); }\n  .main-nav .navbar {\n    border-radius: 0px;\n    border-width: 0px;\n    height: 100%; }\n  .main-nav .navbar-header {\n    float: none; }\n  .main-nav .navbar-collapse {\n    border-top: 1px solid #444;\n    padding: 0px; }\n  .main-nav .navbar ul {\n    float: none; }\n  .main-nav .navbar li {\n    float: none;\n    font-size: 15px;\n    margin: 6px; }\n  .main-nav .navbar li a {\n    padding: 10px 16px;\n    border-radius: 4px; }\n  .main-nav .navbar a {\n    /* If a menu item's text is too long, truncate it */\n    width: 100%;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis; } }\n\n@media (min-width: 520px) {\n  div.login-container {\n    width: 500px; } }\n\n@media (max-width: 519px) {\n  div.login-container {\n    width: 85vw; } }\n\n.login-container {\n  margin-top: 5vh;\n  padding: 20px; }\n\n@media (min-width: 768px) {\n  div.registration-container {\n    width: 750px; } }\n\n@media (max-width: 767px) {\n  div.registration-container {\n    width: 85vw; } }\n\n.registration-container {\n  margin-top: 5vh;\n  padding: 20px; }\n\n.stage {\n  width: 100%;\n  border-radius: 10px; }\n\n.statistic-form-margin {\n  margin: 0;\n  padding-right: 30px; }\n\n.statistic-submit-button {\n  margin-left: 0;\n  padding-left: 0; }\n\n.img-padding-margin {\n  margin: 0 !important;\n  padding: 10px !important; }\n\n.statistic-negative-margin {\n  padding-right: 25px; }\n", ""]);
 
 // exports
 
@@ -2789,7 +2789,7 @@ var CharacterDropdown = (function (_super) {
         if (this.props.hasAll)
             characters.unshift("All Characters");
         var characterOptions = characters.map(function (character) { return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: character }, character); });
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("select", { name: this.props.characterType, className: "form-control", onChange: function (e) { return _this.props.handleFieldChange(e); }, value: this.props.character }, characterOptions));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("select", { id: this.props.characterType, name: this.props.characterType, className: "form-control", onChange: function (e) { return _this.props.handleFieldChange(e); }, value: this.props.character }, characterOptions));
     };
     return CharacterDropdown;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -9622,6 +9622,7 @@ var SelectedSet = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Dropdowns_TypeDropdown__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__helpers_token__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__General_Preloader__ = __webpack_require__(5);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -9640,6 +9641,7 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
+
 var Statistics = (function (_super) {
     __extends(Statistics, _super);
     function Statistics() {
@@ -9647,7 +9649,11 @@ var Statistics = (function (_super) {
         _this.state = {
             statistic: {},
             isLoading: true,
+            isSetCountLoading: false,
+            isAfterFirstSubmit: false,
             dateDropdown: "All Time",
+            setsWon: -1,
+            setsLost: -1
         };
         _this.handleFieldChange = _this.handleFieldChange.bind(_this);
         _this.handleDateDropdownChange = _this.handleDateDropdownChange.bind(_this);
@@ -9664,45 +9670,71 @@ var Statistics = (function (_super) {
             format: "All Formats",
             type: "All Types",
             startDate: "2001-01-01",
-            endDate: today
+            endDate: today,
         };
         this.setState({ statistic: statistic });
     };
     Statistics.prototype.render = function () {
         var _this = this;
-        var statistic = this.state.statistic;
+        var _a = this.state, statistic = _a.statistic, setsWon = _a.setsWon, setsLost = _a.setsLost, isSetCountLoading = _a.isSetCountLoading, isAfterFirstSubmit = _a.isAfterFirstSubmit;
         var date = this.state.dateDropdown === "Specify Date"
             ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Start Date"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "date", name: "startDate", className: "form-control", value: statistic.startDate, onChange: this.handleFieldChange }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "End Date"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "date", name: "endDate", className: "form-control", value: statistic.endDate, onChange: this.handleFieldChange }))
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "startDate" }, "Start Date"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "date", name: "startDate", className: "form-control", value: statistic.startDate, onChange: this.handleFieldChange })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "endDate" }, "End Date"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "date", name: "endDate", className: "form-control", value: statistic.endDate, onChange: this.handleFieldChange })))
+            : __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null);
+        var setCount = isSetCountLoading ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__General_Preloader__["a" /* Preloader */], null) : __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "col-xs-12" },
+            "Set Count: ",
+            setsWon,
+            "-",
+            setsLost,
+            " (excludes character in query)");
+        var afterFirstSubmit = isAfterFirstSubmit
+            ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "row statistic-negative-margin" },
+                setCount,
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(236) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(237) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(238) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(239) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(240) })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(241) })))
             : __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null);
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Statistics"),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("form", { onSubmit: this.handleSubmit },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "My Character"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__Dropdowns_CharacterDropdown__["a" /* CharacterDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, character: statistic.myCharacter, characterType: "myCharacter", hasAll: true }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Opponent Character"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__Dropdowns_CharacterDropdown__["a" /* CharacterDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, character: statistic.opponentCharacter, characterType: "opponentCharacter", hasAll: true }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Player"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__Dropdowns_PlayerDropdown__["a" /* PlayerDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, playerId: statistic.playerId, hasAll: true }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Format"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__Dropdowns_FormatDropdown__["a" /* FormatDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, format: statistic.format, hasAll: true }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Type"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__Dropdowns_TypeDropdown__["a" /* TypeDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, type: statistic.type, hasAll: true }),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", null, "Date"),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("select", { name: "dateType", className: "form-control", value: this.state.dateDropdown, onChange: this.handleDateDropdownChange },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: "All Time" }, "All Time"),
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: "Specify Date" }, "Specify Date")),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("form", { className: "form-horizontal", onSubmit: this.handleSubmit },
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "myCharacter" }, "My Character"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__Dropdowns_CharacterDropdown__["a" /* CharacterDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, character: statistic.myCharacter, characterType: "myCharacter", hasAll: true })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "oppponentCharacter" }, "Opponent Character"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__Dropdowns_CharacterDropdown__["a" /* CharacterDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, character: statistic.opponentCharacter, characterType: "opponentCharacter", hasAll: true })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "player" }, "Player"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__Dropdowns_PlayerDropdown__["a" /* PlayerDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, playerId: statistic.playerId, hasAll: true })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "format" }, "Format"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__Dropdowns_FormatDropdown__["a" /* FormatDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, format: statistic.format, hasAll: true })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "type" }, "Type"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__Dropdowns_TypeDropdown__["a" /* TypeDropdown */], { handleFieldChange: function (e) { return _this.handleFieldChange(e); }, type: statistic.type, hasAll: true })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("label", { htmlFor: "dateType" }, "Date"),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("select", { name: "dateType", className: "form-control", value: this.state.dateDropdown, onChange: this.handleDateDropdownChange },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: "All Time" }, "All Time"),
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("option", { value: "Specify Date" }, "Specify Date"))),
                 date,
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Get Statistics", className: "btn" })),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(236) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(237) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(238) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(239) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(240) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { src: __webpack_require__(241) })));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "col-xs-12 statistic-submit-button" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Get Statistics", className: "btn" }))),
+            afterFirstSubmit));
     };
     Statistics.prototype.handleFieldChange = function (event) {
         var key = event.target.name;
@@ -9717,53 +9749,53 @@ var Statistics = (function (_super) {
         var _this = this;
         event.preventDefault();
         var statistic = this.modifyStatisticBeforeSubmit(this.state.statistic);
-        console.log(statistic);
         var userId = __WEBPACK_IMPORTED_MODULE_7__helpers_token__["a" /* Token */].getUserId();
-        fetch("api/Statistic/GetSetsWon/User/" + userId, {
+        this.setState({
+            isAfterFirstSubmit: true,
+            isSetCountLoading: true
+        });
+        var setsWon = 0;
+        var setsLost = 0;
+        this.getSetsWon(userId, statistic)
+            .then(function (setsWonResult) { return setsWon = setsWonResult; })
+            .then(function () { return _this.getSetsLost(userId, statistic); })
+            .then(function (setsLostResult) { return setsLost = setsLostResult; })
+            .then(function () { return _this.setState({
+            setsWon: setsWon,
+            setsLost: setsLost,
+            isSetCountLoading: false
+        }); })
+            .catch(function (error) { return console.log(error); });
+    };
+    Statistics.prototype.getSetsWon = function (userId, statistic) {
+        var _this = this;
+        return fetch("api/Statistic/GetSetsWon/User/" + userId, {
             method: 'POST',
             headers: __WEBPACK_IMPORTED_MODULE_7__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
             body: JSON.stringify(statistic)
         })
             .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
-            .then(function (response) { return response.json(); })
-            .then(function (setsWon) {
-            console.log(setsWon);
+            .then(function (response) { return response.json(); });
+    };
+    Statistics.prototype.getSetsLost = function (userId, statistic) {
+        var _this = this;
+        return fetch("api/Statistic/GetSetsLost/User/" + userId, {
+            method: 'POST',
+            headers: __WEBPACK_IMPORTED_MODULE_7__helpers_token__["a" /* Token */].getAuthorizationHeaders(),
+            body: JSON.stringify(statistic)
         })
-            .catch(function (error) { return console.log(error); });
+            .then(function (response) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_handleResponseErrors__["a" /* handleResponse */])(_this.props.history, response); })
+            .then(function (response) { return response.json(); });
     };
     Statistics.prototype.modifyStatisticBeforeSubmit = function (statistic) {
-        if (statistic.playerId === 0) {
-            statistic.playerSql = "0";
-        }
-        else {
-            statistic.playerSql = statistic.playerId;
-        }
-        if (statistic.myCharacter === "All Characters") {
-            statistic.myCharacterSql = "LIKE '%' OR \"Games\".\"MyCharacter\" IS NULL OR \"Games\".\"MyCharacter\" = ' '";
-        }
-        else {
-            statistic.myCharacterSql = "LIKE '" + statistic.myCharacter + "'";
-        }
-        if (statistic.opponentCharacter === "All Characters") {
-            statistic.opponentCharacterSql = "LIKE '%' OR \"Games\".\"OpponentCharacter\" IS NULL OR \"Games\".\"OpponentCharacter\" = ' '";
-        }
-        else {
-            statistic.opponentCharacterSql = "LIKE '" + statistic.opponentCharacter + "'";
-        }
-        if (statistic.format === "All Formats") {
-            statistic.formatSql = "'%'";
-        }
-        else {
-            statistic.formatSql = "'" + statistic.format + "'";
-        }
-        if (statistic.type === "All Types") {
-            statistic.typeSql = "'%'";
-        }
-        else {
-            statistic.typeSql = "'" + statistic.type + "'";
-        }
-        statistic.startDate = "'" + statistic.startDate + "'";
-        statistic.endDate = "'" + statistic.endDate + "'";
+        if (statistic.myCharacter === "All Characters")
+            statistic.myCharacter = "";
+        if (statistic.opponentCharacter === "All Characters")
+            statistic.opponentCharacter = "";
+        if (statistic.format === "All Formats")
+            statistic.format = "";
+        if (statistic.type === "All Types")
+            statistic.type = "";
         return statistic;
     };
     return Statistics;

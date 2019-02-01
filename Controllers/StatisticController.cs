@@ -35,8 +35,6 @@ namespace melee_notes.Controllers
 
             string sql = "SELECT * FROM \"Sets\" "
                      + "INNER JOIN \"Tournaments\" ON \"Sets\".\"TournamentId\" = \"Tournaments\".\"Id\" "
-                     + "INNER JOIN \"Players\" ON \"Sets\".\"PlayerId\" = \"Players\".\"Id\" "
-                     + "INNER JOIN \"Users\" ON \"Sets\".\"UserId\" = \"Users\".\"Id\" "
                      + "WHERE (\"Sets\".\"UserId\" = {0}::bigint) "
                      + "AND \"Sets\".\"Outcome\" = 'Won' "
                      + "AND \"Tournaments\".\"Date\" BETWEEN {1}::date AND {2}::date "
@@ -71,8 +69,6 @@ namespace melee_notes.Controllers
 
             string sql = "SELECT * FROM \"Sets\" "
                      + "INNER JOIN \"Tournaments\" ON \"Sets\".\"TournamentId\" = \"Tournaments\".\"Id\" "
-                     + "INNER JOIN \"Players\" ON \"Sets\".\"PlayerId\" = \"Players\".\"Id\" "
-                     + "INNER JOIN \"Users\" ON \"Sets\".\"UserId\" = \"Users\".\"Id\" "
                      + "WHERE (\"Sets\".\"UserId\" = {0}::bigint) "
                      + "AND \"Sets\".\"Outcome\" = 'Lost' "
                      + "AND \"Tournaments\".\"Date\" BETWEEN {1}::date AND {2}::date "

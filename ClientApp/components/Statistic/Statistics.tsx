@@ -10,6 +10,7 @@ import { ISet, IGame } from '../../helpers/interfaces';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { Token } from '../../helpers/token';
 import { Preloader } from '../General/Preloader';
+import { Promise } from 'es6-promise';
 
 interface IStatistic {
     myCharacter: string;
@@ -28,6 +29,8 @@ interface StatisticsState {
     dateDropdown: string;
     setsWon: number;
     setsLost: number;
+    gamesWon: number[];
+    gamesLost: number[];
     isSetCountLoading: boolean;
     isAfterFirstSubmit: boolean;
     isLoading: boolean;
@@ -46,7 +49,9 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             isAfterFirstSubmit: false,
             dateDropdown: "All Time",
             setsWon: -1,
-            setsLost: -1
+            setsLost: -1,
+            gamesWon: [],
+            gamesLost: []
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -72,7 +77,13 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     }
 
     public render() {
-        const { statistic, setsWon, setsLost, isSetCountLoading, isAfterFirstSubmit } = this.state;
+        const { statistic, setsWon, setsLost, gamesWon, gamesLost, isSetCountLoading, isAfterFirstSubmit } = this.state;
+        const BATTLEFIELD_ID = 0;
+        const DREAMLAND_ID = 1;
+        const YOSHIS_STORY_ID = 2;
+        const FOUNTAIN_OF_DREAMS_ID = 3;
+        const FINAL_DESTINATION_ID = 4;
+        const POKEMON_STADIUM_ID = 5;
 
         const date = this.state.dateDropdown === "Specify Date"
             ? <div>
@@ -96,26 +107,32 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Battlefield.jpg')}></img>
+                    <div className="-center-container">{ gamesWon[BATTLEFIELD_ID] } - { gamesLost[BATTLEFIELD_ID] }</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Dreamland.jpg')}></img>
+                    <div className="-center-container">{ gamesWon[DREAMLAND_ID] } - { gamesLost[DREAMLAND_ID] }</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FinalDestination.jpg')}></img>
+                    <div className="-center-container">{ gamesWon[FINAL_DESTINATION_ID] } - { gamesLost[FINAL_DESTINATION_ID] }</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FountainOfDreams.jpg')}></img>
+                    <div className="-center-container">{ gamesWon[FOUNTAIN_OF_DREAMS_ID] } - { gamesLost[FOUNTAIN_OF_DREAMS_ID] }</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/PokemonStadium.jpg')}></img>
+                    <div className="-center-container">{ gamesWon[POKEMON_STADIUM_ID] } - { gamesLost[POKEMON_STADIUM_ID] }</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/YoshisIsland.jpg')}></img>
+                    <div className="-center-container">{ gamesWon[YOSHIS_STORY_ID] } - { gamesLost[YOSHIS_STORY_ID] }</div>
                 </div>
                    
             </div>
@@ -193,16 +210,44 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
         let setsWon = 0;
         let setsLost = 0;
+        let gamesWon = [] as number[];
+        let gamesLost = [] as number[];
         this.getSetsWon(userId, statistic)
             .then(setsWonResult => setsWon = setsWonResult)
             .then(() => this.getSetsLost(userId, statistic))
             .then(setsLostResult => setsLost = setsLostResult)
+            .then(() => this.getGamesByOutcome(userId, statistic, "Won"))
+            .then(gamesWonResult => gamesWon = gamesWonResult)
+            .then(() => this.getGamesByOutcome(userId, statistic, "Lost"))
+            .then(gamesLostResult => gamesLost = gamesLostResult)
+            .then(() => console.log(gamesWon))
             .then(() => this.setState({
                 setsWon: setsWon,
                 setsLost: setsLost,
+                gamesWon: gamesWon,
+                gamesLost: gamesLost,
                 isSetCountLoading: false
             }))
             .catch(error => console.log(error));
+    }
+
+    private getGamesByOutcome(userId: string, statistic: IStatistic, outcome: string) {
+        let stages = ["Battlefield", "Dreamland", "Yoshis Story", "Fountain of Dreams", "Final Destination", "Pokemon Stadium"];
+        statistic.outcome = outcome;
+
+        let requests = stages.map(stage => {
+            statistic.stage = stage;
+
+            return fetch(`api/Statistic/GetGameOutcomeByStage/User/${userId}`, {
+                method: 'POST',
+                headers: Token.getAuthorizationHeaders(),
+                body: JSON.stringify(statistic)
+            });
+        });
+
+        return Promise.all(requests)
+            .then(responses => Promise.all(responses.map(response => handleResponse(this.props.history, response))))
+            .then(responses => Promise.all(responses.map(response => response.json() as Promise<number>)));
     }
 
     private getSetsWon(userId: string, statistic: IStatistic) {

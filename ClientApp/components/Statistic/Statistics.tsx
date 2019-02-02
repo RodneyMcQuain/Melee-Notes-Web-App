@@ -108,31 +108,37 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Battlefield.jpg')}></img>
                     <div className="-center-container">{ gamesWon[BATTLEFIELD_ID] } - { gamesLost[BATTLEFIELD_ID] }</div>
+                    <div className="-center-container">{ this.calculateWinRate(gamesWon[BATTLEFIELD_ID], gamesLost[BATTLEFIELD_ID]) }%</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Dreamland.jpg')}></img>
                     <div className="-center-container">{ gamesWon[DREAMLAND_ID] } - { gamesLost[DREAMLAND_ID] }</div>
+                    <div className="-center-container">{ this.calculateWinRate(gamesWon[DREAMLAND_ID], gamesLost[DREAMLAND_ID]) }%</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FinalDestination.jpg')}></img>
                     <div className="-center-container">{ gamesWon[FINAL_DESTINATION_ID] } - { gamesLost[FINAL_DESTINATION_ID] }</div>
+                    <div className="-center-container">{ this.calculateWinRate(gamesWon[FINAL_DESTINATION_ID], gamesLost[FINAL_DESTINATION_ID]) }%</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FountainOfDreams.jpg')}></img>
                     <div className="-center-container">{ gamesWon[FOUNTAIN_OF_DREAMS_ID] } - { gamesLost[FOUNTAIN_OF_DREAMS_ID] }</div>
+                    <div className="-center-container">{ this.calculateWinRate(gamesWon[FOUNTAIN_OF_DREAMS_ID], gamesLost[FOUNTAIN_OF_DREAMS_ID]) }%</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/PokemonStadium.jpg')}></img>
                     <div className="-center-container">{ gamesWon[POKEMON_STADIUM_ID] } - { gamesLost[POKEMON_STADIUM_ID] }</div>
+                    <div className="-center-container">{ this.calculateWinRate(gamesWon[POKEMON_STADIUM_ID], gamesLost[POKEMON_STADIUM_ID]) }%</div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/YoshisIsland.jpg')}></img>
                     <div className="-center-container">{ gamesWon[YOSHIS_STORY_ID] } - { gamesLost[YOSHIS_STORY_ID] }</div>
+                    <div className="-center-container">{ this.calculateWinRate(gamesWon[YOSHIS_STORY_ID], gamesLost[YOSHIS_STORY_ID]) }%</div>
                 </div>
                    
             </div>
@@ -186,6 +192,17 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 { afterFirstSubmit }
             </div>
         );
+    }
+
+    private calculateWinRate(wonCount: number, lostCount: number) {
+        let totalGames = wonCount + lostCount;
+
+        if (totalGames <= 0)
+            return 0;
+
+        let winRate = (wonCount / totalGames) * 100;
+
+        return winRate.toFixed(2);
     }
 
     private handleFieldChange(event: OnChangeSelectInputEvent) {

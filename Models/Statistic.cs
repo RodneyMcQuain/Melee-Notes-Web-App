@@ -14,8 +14,11 @@ namespace melee_notes.Models
         public string Type { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+        public string Outcome { get; set; }
+        public string Stage { get; set; }
 
-        public Statistic(string PlayerId, string MyCharacter, string OpponentCharacter, string Format, string Type, string StartDate, string EndDate)
+
+        public Statistic(string PlayerId, string MyCharacter, string OpponentCharacter, string Format, string Type, string StartDate, string EndDate, string Outcome, string Stage)
         {
             this.PlayerId = PlayerId;
             this.MyCharacter = MyCharacter;
@@ -24,6 +27,8 @@ namespace melee_notes.Models
             this.Type = Type;
             this.StartDate = StartDate;
             this.EndDate = EndDate;
+            this.Outcome = Outcome;
+            this.Stage = Stage;
         }
     }
 }

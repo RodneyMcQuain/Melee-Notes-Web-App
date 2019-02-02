@@ -91,5 +91,42 @@ namespace melee_notes.Controllers
 
             return new JsonResult(setsLost);
         }
+
+        [HttpPost("GetGameOutcomeByStage/User/{userId}")]
+        public ActionResult<int> GetGameOutcomeByStage(long userId, Statistic statistic)
+        {
+            var sql = "SELECT * FROM \"Games\" "
+               + "INNER JOIN \"Sets\" ON \"Games\".\"SetId\" = \"Sets\".\"Id\" "
+               + "INNER JOIN \"Players\" ON \"Players\".\"Id\" = \"Sets\".\"PlayerId\" "
+               + "INNER JOIN \"Tournaments\" ON \"Sets\".\"TournamentId\" = \"Tournaments\".\"Id\" "
+               + "WHERE (\"Sets\".\"UserId\" = {0}::bigint) "
+               + "AND \"Games\".\"Outcome\" = {1} "
+               + "AND \"Tournaments\".\"Date\" BETWEEN {2}::date AND {3}::date "
+               + "AND (\"Sets\".\"Format\" LIKE {4}) "
+               + "AND (\"Sets\".\"Type\" LIKE {5}) "
+               + "AND (\"Games\".\"MyCharacter\" LIKE {6}) "
+               + "AND (\"Games\".\"OpponentCharacter\" LIKE {7}) "
+               + "AND \"Games\".\"Stage\" LIKE {8} ";
+            if (statistic.PlayerId == "0")
+                sql += "AND (\"Sets\".\"PlayerId\" > '0') ";
+            else
+                sql += "AND (\"Sets\".\"PlayerId\" = {9}::bigint) ";
+
+            var gamesOutcome = _context.Sets.FromSql(
+                sql,
+                userId,
+                statistic.Outcome,
+                statistic.StartDate,
+                statistic.EndDate,
+                "%" + statistic.Format + "%",
+                "%" + statistic.Type + "%",
+                "%" + statistic.MyCharacter + "%",
+                "%" + statistic.OpponentCharacter + "%",
+                "%" + statistic.Stage + "%",
+                statistic.PlayerId
+            ).Count();
+
+            return new JsonResult(gamesOutcome);
+        }
     }
 }

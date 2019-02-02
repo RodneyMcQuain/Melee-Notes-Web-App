@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 .invalid {
   color: red; }
   .invalid:before {
@@ -82,7 +82,8 @@ h1 {
   box-shadow: 2px 2px 5px #ccc; }
 
 textarea {
-  height: 200px; }
+  resize: none;
+  height: 200px !important; }
 
 #preloader-overlay {
   z-index: 9999;
@@ -189,3 +190,10 @@ textarea {
 .registration-container {
   margin-top: 5vh;
   padding: 20px; }
+
+.stage {
+  width: 100%;
+  border-radius: 10px; }
+
+.statistic-form-margin {
+  margin-right: 10px; }

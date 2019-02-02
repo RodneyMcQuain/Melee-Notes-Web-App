@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b6a647e6a705bec9ef90"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9c6596dd90713c9942b2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10871,37 +10871,55 @@ var Statistics = (function (_super) {
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
                         gamesWon[BATTLEFIELD_ID],
                         " - ",
-                        gamesLost[BATTLEFIELD_ID])),
+                        gamesLost[BATTLEFIELD_ID]),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
+                        this.calculateWinRate(gamesWon[BATTLEFIELD_ID], gamesLost[BATTLEFIELD_ID]),
+                        "%")),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(238) }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
                         gamesWon[DREAMLAND_ID],
                         " - ",
-                        gamesLost[DREAMLAND_ID])),
+                        gamesLost[DREAMLAND_ID]),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
+                        this.calculateWinRate(gamesWon[DREAMLAND_ID], gamesLost[DREAMLAND_ID]),
+                        "%")),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(239) }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
                         gamesWon[FINAL_DESTINATION_ID],
                         " - ",
-                        gamesLost[FINAL_DESTINATION_ID])),
+                        gamesLost[FINAL_DESTINATION_ID]),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
+                        this.calculateWinRate(gamesWon[FINAL_DESTINATION_ID], gamesLost[FINAL_DESTINATION_ID]),
+                        "%")),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(240) }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
                         gamesWon[FOUNTAIN_OF_DREAMS_ID],
                         " - ",
-                        gamesLost[FOUNTAIN_OF_DREAMS_ID])),
+                        gamesLost[FOUNTAIN_OF_DREAMS_ID]),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
+                        this.calculateWinRate(gamesWon[FOUNTAIN_OF_DREAMS_ID], gamesLost[FOUNTAIN_OF_DREAMS_ID]),
+                        "%")),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(241) }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
                         gamesWon[POKEMON_STADIUM_ID],
                         " - ",
-                        gamesLost[POKEMON_STADIUM_ID])),
+                        gamesLost[POKEMON_STADIUM_ID]),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
+                        this.calculateWinRate(gamesWon[POKEMON_STADIUM_ID], gamesLost[POKEMON_STADIUM_ID]),
+                        "%")),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("img", { className: "stage", src: __webpack_require__(242) }),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
                         gamesWon[YOSHIS_STORY_ID],
                         " - ",
-                        gamesLost[YOSHIS_STORY_ID])))
+                        gamesLost[YOSHIS_STORY_ID]),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "-center-container" },
+                        this.calculateWinRate(gamesWon[YOSHIS_STORY_ID], gamesLost[YOSHIS_STORY_ID]),
+                        "%")))
             : __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null);
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null,
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Statistics"),
@@ -10930,6 +10948,13 @@ var Statistics = (function (_super) {
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: "col-xs-12 statistic-submit-button" },
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", { type: "submit", value: "Get Statistics", className: "btn" }))),
             afterFirstSubmit));
+    };
+    Statistics.prototype.calculateWinRate = function (wonCount, lostCount) {
+        var totalGames = wonCount + lostCount;
+        if (totalGames <= 0)
+            return 0;
+        var winRate = (wonCount / totalGames) * 100;
+        return winRate.toFixed(2);
     };
     Statistics.prototype.handleFieldChange = function (event) {
         var key = event.target.name;

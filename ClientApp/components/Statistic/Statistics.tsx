@@ -9,13 +9,12 @@ import { TypeDropdown } from '../Dropdowns/TypeDropdown';
 import { ISet, IGame } from '../../helpers/interfaces';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { Token } from '../../helpers/token';
-import { Preloader } from '../General/Preloader';
+import { ContentPreloader } from '../General/ContentPreloader';
 import { Promise } from 'es6-promise';
 
 interface IStatistic {
     myCharacter: string;
     opponentCharacter: string;
-    stage: string;
     playerId: number;
     format: string;
     type: string;
@@ -66,7 +65,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             myCharacter: "All Characters",
             opponentCharacter: "All Characters",
             playerId: 0, //this will indicate all players
-            stage: "All Stages",
             format: "All Formats",
             type: "All Types",
             startDate: "2001-01-01", //year the game was released in
@@ -99,7 +97,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             </div>
             : <div></div>
         
-        const setCount = isSetCountLoading ? <Preloader /> : <div className="col-xs-12" >Set Count: {setsWon}-{setsLost} (excludes character in query)</div>
+        const setCount = isSetCountLoading ? <ContentPreloader /> : <div className="col-xs-12" >Set Count: {setsWon}-{setsLost} (excludes character in query)</div>
 
         const afterFirstSubmit = isAfterFirstSubmit
             ? <div className="row statistic-negative-margin" >
@@ -237,7 +235,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             .then(gamesWonResult => gamesWon = gamesWonResult)
             .then(() => this.getGamesByOutcome(userId, statistic, "Lost"))
             .then(gamesLostResult => gamesLost = gamesLostResult)
-            .then(() => console.log(gamesWon))
             .then(() => this.setState({
                 setsWon: setsWon,
                 setsLost: setsLost,

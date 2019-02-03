@@ -91,12 +91,17 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             </div>
             : <div></div>
         
-        const setCount = isStatisticLoading ? <ContentPreloader /> : <div className="col-xs-12" >Set Count: {setsWon}-{setsLost} (excludes character in query)</div>
+        const statisticContent = isStatisticLoading
+            ? <ContentPreloader />
+            : <div>
+                <div className="col-xs-12" >Set Count: { setsWon }-{ setsLost } (excludes character in query)</div>
+
+                { this.renderStages(gamesWon, gamesLost) }
+            </div>
 
         const afterFirstSubmit = isAfterFirstSubmit
             ? <div className="row statistic-negative-margin" >
-                { setCount }
-                   
+                { statisticContent }
             </div>
            : <div></div>
 

@@ -1,0 +1,1 @@
+﻿export const POP_UP_MS = 5000;

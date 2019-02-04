@@ -6,10 +6,13 @@ import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { PopUp } from '../PopUps/PopUp';
+import { POP_UP_MS } from '../../helpers/constants';
 
 interface SelectedSetState {
     set: ISet;
     isLoading: boolean;
+    isPopUpVisible: boolean;
 }
 
 type SelectedSetProps = RouteComponentProps<{
@@ -24,6 +27,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
         this.state = {
             set: {} as ISet,
             isLoading: true,
+            isPopUpVisible: false
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -41,7 +45,11 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
     }
 
     public render() {
-        let isLoading = this.state.isLoading;
+        const { isLoading, isPopUpVisible } = this.state;
+        let popUp = <div></div>
+
+        if (isPopUpVisible)
+            popUp = <PopUp text="Set Updated" />  
 
         if (isLoading)
             return <Preloader />
@@ -52,46 +60,50 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
             let incrementer = 0;
 
             return (
-                <div className="-horizontal-table-form-parent-container" >
-                    <div className="-horizontal-table-form-child-container" >
-                        <h1>Set</h1>
+                <div>
+                    { popUp }
 
-                        <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" history={ this.props.history } />
-                        <button className="btn" onClick={ () => this.onClick_btRemoveSet(set) } >Remove Set</button>
-                        <button className="btn" onClick={ () => this.onClick_btGoToTournament(tournamentId) } >Go Back to Tournament</button>
-                    </div>
+                    <div className="-horizontal-table-form-parent-container" >
+                        <div className="-horizontal-table-form-child-container" >
+                            <h1>Set</h1>
 
-                    <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
-                        <div className="-horizontal-container" >
-                            <h1>Games</h1>
-                            <button className="btn" onClick={ () => this.onClick_btAddGame(tournamentId, set.id) } >Add Game</button>
+                            <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Update Set" history={ this.props.history } />
+                            <button className="btn" onClick={ () => this.onClick_btRemoveSet(set) } >Remove Set</button>
+                            <button className="btn" onClick={ () => this.onClick_btGoToTournament(tournamentId) } >Go Back to Tournament</button>
                         </div>
 
-                        <table className='table'>
-                            <thead>
-                                <tr>
-                                    <th>Game Number</th>
-                                    <th>Outcome</th>
-                                    <th>My Character</th>
-                                    <th>Opponent Character</th>
-                                    <th>Stage</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {games.map(game => {
-                                    incrementer++;
-                                    return (
-                                        <tr key={game.id} onClick={ () => this.onClick_trGame(tournamentId, set.id, game.id) } >
-                                            <td>{ incrementer }</td>
-                                            <td>{ game.outcome }</td>
-                                            <td>{ game.myCharacter }</td>
-                                            <td>{ game.opponentCharacter }</td>
-                                            <td>{ game.stage }</td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
+                        <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
+                            <div className="-horizontal-container" >
+                                <h1>Games</h1>
+                                <button className="btn" onClick={ () => this.onClick_btAddGame(tournamentId, set.id) } >Add Game</button>
+                            </div>
+
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Game Number</th>
+                                        <th>Outcome</th>
+                                        <th>My Character</th>
+                                        <th>Opponent Character</th>
+                                        <th>Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {games.map(game => {
+                                        incrementer++;
+                                        return (
+                                            <tr key={game.id} onClick={ () => this.onClick_trGame(tournamentId, set.id, game.id) } >
+                                                <td>{ incrementer }</td>
+                                                <td>{ game.outcome }</td>
+                                                <td>{ game.myCharacter }</td>
+                                                <td>{ game.opponentCharacter }</td>
+                                                <td>{ game.stage }</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             );
@@ -119,6 +131,8 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
             body: JSON.stringify(set)
         })
             .then(response => handleResponse(this.props.history, response))
+            .then(() => this.setState({ isPopUpVisible: true }))
+            .then(() => setTimeout(() => this.setState({ isPopUpVisible: false }), POP_UP_MS))
             .catch(error => console.log(error));
     }
 

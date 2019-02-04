@@ -6,10 +6,13 @@ import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { PopUp } from '../PopUps/PopUp';
+import { POP_UP_MS } from '../../helpers/constants';
 
 interface SelectedGameState {
     game: IGame,
     isLoading: boolean;
+    isPopUpVisible: boolean;
 }
 
 type SelectedGameProps = RouteComponentProps<{ tournamentId: string, gameId: string; }>;
@@ -21,6 +24,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
         this.state = {
             game: {} as IGame,
             isLoading: true,
+            isPopUpVisible: false
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -38,8 +42,11 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
     }
 
     public render() {
-        let isLoading = this.state.isLoading;
-        let game = this.state.game;
+        const { isLoading, isPopUpVisible, game} = this.state;
+        let popUp = <div></div>
+
+        if (isPopUpVisible)
+            popUp = <PopUp text="Game Updated" />  
 
         if (isLoading)
             return <Preloader />
@@ -48,6 +55,8 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
 
             return (
                 <div>
+                    { popUp }
+
                     <h2>Game</h2>
 
                     <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Update Game" tournamentId={ tournamentId } />
@@ -75,6 +84,8 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
             body: JSON.stringify(game)
         })
             .then(response => handleResponse(this.props.history, response))
+            .then(() => this.setState({ isPopUpVisible: true }))
+            .then(() => setTimeout(() => this.setState({ isPopUpVisible: false }), POP_UP_MS))
             .catch(error => console.log(error));
     }
 

@@ -7,11 +7,14 @@ import { Preloader } from '../General/Preloader';
 import { formatDate } from '../../helpers/formatDate';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { PopUp } from '../PopUps/PopUp';
+import { POP_UP_MS } from '../../helpers/constants';
 
 interface SelectedTournamentState {
     tournament: ITournament;
     playerTags: string[];
     isLoading: boolean;
+    isPopUpVisible: boolean;
 }
 
 type SelectedTournamentProps = RouteComponentProps<{ tournamentId: string }>;
@@ -22,7 +25,8 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
         this.state = {
             tournament: {} as ITournament,
             playerTags: [],
-            isLoading: true
+            isLoading: true,
+            isPopUpVisible: false
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -52,7 +56,11 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
     }
 
     public render() {
-        let isLoading = this.state.isLoading;
+        const { isLoading, isPopUpVisible } = this.state;
+        let popUp = <div></div>
+
+        if (isPopUpVisible)
+            popUp = <PopUp text="Tournament Updated" />    
 
         if (isLoading)
             return <Preloader />
@@ -62,45 +70,49 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
             let increment = -1;
 
             return (
-                <div className="-horizontal-table-form-parent-container" >
-                    <div className="-horizontal-table-form-child-container" >
-                        <h1>{ tournament.name }</h1>
+                <div>
+                    { popUp }
 
-                        <TournamentForm handleFieldChange={ this.handleFieldChange } tournament={ tournament } handleSubmit={ this.handleSubmit } submitButtonName={ "Update Tournament" } />
-                        <button className="btn" onClick={ () => this.onClick_btRemoveTournament() } >Remove Tournament</button>
+                    <div className="-horizontal-table-form-parent-container" >
+                        <div className="-horizontal-table-form-child-container" >
+                            <h1>{ tournament.name }</h1>
+
+                            <TournamentForm handleFieldChange={ this.handleFieldChange } tournament={ tournament } handleSubmit={ this.handleSubmit } submitButtonName={ "Update Tournament" } />
+                            <button className="btn" onClick={ () => this.onClick_btRemoveTournament() } >Remove Tournament</button>
+                        </div>
+
+                        <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
+                            <div className="-horizontal-container" >
+                                <h1>Sets</h1>
+                                <button className="btn" onClick={ () => this.onClick_btAddSet(tournament.id) } >Add Set</button>
+                            </div>
+
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Tag</th>
+                                        <th>Outcome</th>
+                                        <th>Format</th>
+                                        <th>Bracket Round</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {sets.map(set => {
+                                        increment++;
+
+                                        return (
+                                            <tr key={ set.id } onClick={ () => this.onClick_trSet(tournament.id, set.id) } >
+                                                <td>{ this.state.playerTags[increment] }</td>
+                                                <td>{ set.outcome }</td>
+                                                <td>{ set.format }</td>
+                                                <td>{ set.bracketRound }</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                                </table>
+                            </div>
                     </div>
-
-                    <div className="-horizontal-table-form-child-container top-margin-less-than-medium-size" >
-                        <div className="-horizontal-container" >
-                            <h1>Sets</h1>
-                            <button className="btn" onClick={ () => this.onClick_btAddSet(tournament.id) } >Add Set</button>
-                        </div>
-
-                        <table className='table'>
-                            <thead>
-                                <tr>
-                                    <th>Tag</th>
-                                    <th>Outcome</th>
-                                    <th>Format</th>
-                                    <th>Bracket Round</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {sets.map(set => {
-                                    increment++;
-
-                                    return (
-                                        <tr key={ set.id } onClick={ () => this.onClick_trSet(tournament.id, set.id) } >
-                                            <td>{ this.state.playerTags[increment] }</td>
-                                            <td>{ set.outcome }</td>
-                                            <td>{ set.format }</td>
-                                            <td>{ set.bracketRound }</td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                            </table>
-                        </div>
                 </div>
             );
         }
@@ -127,6 +139,8 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
             body: JSON.stringify(tournament)
         })
             .then(response => handleResponse(this.props.history, response))
+            .then(() => this.setState({ isPopUpVisible: true }))
+            .then(() => setTimeout(() => this.setState({ isPopUpVisible: false }), POP_UP_MS))
             .catch(error => console.log(error));
     }
 

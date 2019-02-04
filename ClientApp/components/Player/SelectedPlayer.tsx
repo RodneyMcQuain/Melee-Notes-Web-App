@@ -6,10 +6,13 @@ import 'isomorphic-fetch';
 import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { POP_UP_MS } from '../../helpers/constants';
+import { PopUp } from '../PopUps/PopUp';
 
 interface SelectedPlayerState {
     player: IPlayer;
     isLoading: boolean;
+    isPopUpVisible: boolean;
 }
 
 type SelectedTournamentProps = RouteComponentProps<{ playerId: string }>;
@@ -20,6 +23,7 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
         this.state = {
             player: {} as IPlayer,
             isLoading: true,
+            isPopUpVisible: false
         }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -37,7 +41,11 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
     }
 
     public render() {
-        let isLoading = this.state.isLoading;
+        const { isLoading, isPopUpVisible } = this.state;
+        let popUp = <div></div>
+
+        if (isPopUpVisible)
+            popUp = <PopUp text="Player Updated" />  
 
         if (isLoading)
             return <Preloader />
@@ -70,6 +78,8 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
             body: JSON.stringify(player)
         })
             .then(response => handleResponse(this.props.history, response))
+            .then(() => this.setState({ isPopUpVisible: true }))
+            .then(() => setTimeout(() => this.setState({ isPopUpVisible: false }), POP_UP_MS))
             .catch(error => console.log(error));
     }
 

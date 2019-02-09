@@ -5,6 +5,7 @@ import * as jwtDecode from 'jwt-decode';
 import { Token } from '../../helpers/token';
 import { Preloader } from '../General/Preloader';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface LoginState {
     user: IUser;
@@ -28,6 +29,10 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    public componentDidMount() {
+        document.title = TITLE_PREFIX + "Login";
     }
 
     public render() {

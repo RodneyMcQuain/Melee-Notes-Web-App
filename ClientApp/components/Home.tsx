@@ -6,6 +6,7 @@ import 'isomorphic-fetch';
 import { formatDate } from '../helpers/formatDate';
 import { Token } from '../helpers/token';
 import { handleResponse } from '../helpers/handleResponseErrors';
+import { TITLE_PREFIX } from '../helpers/constants';
 
 interface HomeState {
     tournaments: ITournament[];
@@ -21,6 +22,7 @@ export class Home extends React.Component<RouteComponentProps<{}>, HomeState> {
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Home";
         let userId = Token.getUserId();
 
         fetch(`api/Tournament/User/${userId}`, { headers: Token.getAuthorizationHeaders() })

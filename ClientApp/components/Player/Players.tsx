@@ -4,6 +4,7 @@ import { IPlayer } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface PlayersState {
     players: IPlayer[];
@@ -20,6 +21,7 @@ export class Players extends React.Component<RouteComponentProps<{}>, PlayersSta
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Players";
         let userId = Token.getUserId();
         
         fetch(`api/Player/User/${userId}`, { headers: Token.getAuthorizationHeaders() })

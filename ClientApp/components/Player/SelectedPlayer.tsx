@@ -8,6 +8,7 @@ import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { POP_UP_MS } from '../../helpers/constants';
 import { PopUp } from '../PopUps/PopUp';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface SelectedPlayerState {
     player: IPlayer;
@@ -31,6 +32,7 @@ export class SelectedPlayer extends React.Component<SelectedTournamentProps, Sel
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Player";
         let selectedPlayerId = parseInt(this.props.match.params.playerId) || 0;
 
         fetch(`api/Player/${selectedPlayerId}`, { headers: Token.getAuthorizationHeaders() })

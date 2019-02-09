@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { PasswordValidation } from './PasswordValidation';
 import { formatDate } from '../../helpers/formatDate';
 import { Preloader } from '../General/Preloader';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface RegistrationState {
     user: IUser;
@@ -47,6 +48,10 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         this.handlePasswordCheckChange = this.handlePasswordCheckChange.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    public componentDidMount() {
+        document.title = TITLE_PREFIX + "Registration";
     }
 
     public render() {

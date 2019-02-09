@@ -5,6 +5,7 @@ import { ITournament } from 'ClientApp/helpers/interfaces';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { getTodaysFormattedDate } from '../../helpers/formatDate';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface AddTournamentState { tournament: ITournament; }
 
@@ -15,6 +16,10 @@ export class AddTournament extends React.Component<RouteComponentProps<{}>, AddT
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    public componentDidMount() {
+        document.title = TITLE_PREFIX + "Add Tournament";
     }
 
     public render() {

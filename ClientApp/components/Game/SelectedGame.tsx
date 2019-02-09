@@ -8,6 +8,7 @@ import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { PopUp } from '../PopUps/PopUp';
 import { POP_UP_MS } from '../../helpers/constants';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface SelectedGameState {
     game: IGame,
@@ -32,6 +33,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Game";
         let selectedGameId = parseInt(this.props.match.params.gameId) || 0;
 
         fetch(`api/Game/${selectedGameId}`, { headers: Token.getAuthorizationHeaders() })

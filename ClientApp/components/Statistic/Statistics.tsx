@@ -11,6 +11,7 @@ import { handleResponse } from '../../helpers/handleResponseErrors';
 import { Token } from '../../helpers/token';
 import { ContentPreloader } from '../General/ContentPreloader';
 import { Promise } from 'es6-promise';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface IStatistic {
     myCharacter: string;
@@ -59,6 +60,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Statistics";
         let today = new Date().toISOString().slice(0, 10);
 
         let statistic = {

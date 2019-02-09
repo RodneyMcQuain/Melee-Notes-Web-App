@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { IPlayer } from 'ClientApp/helpers/interfaces';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface AddPlayerState { player: IPlayer; }
 
@@ -14,6 +15,10 @@ export class AddPlayer extends React.Component<RouteComponentProps<{}>, AddPlaye
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    public componentDidMount() {
+        document.title = TITLE_PREFIX + "Add Player";
     }
 
     public render() {

@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { IUser } from '../../helpers/interfaces';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { formatDate } from '../../helpers/formatDate';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface MyAccountState {
     user: IUser;
@@ -20,6 +21,7 @@ export class MyAccount extends React.Component<RouteComponentProps<{}>, MyAccoun
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "My Account";
         const userId = Token.getUserId();
 
         fetch(`api/User/${userId}`, { headers: Token.getAuthorizationHeaders() })

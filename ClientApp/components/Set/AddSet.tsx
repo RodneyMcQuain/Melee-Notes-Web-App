@@ -5,6 +5,7 @@ import { ITournament, ISet } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface AddSetState {
     set: ISet;
@@ -26,6 +27,7 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Add Set";
         let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
         let selectedPlayerId = 0;
         let set = {} as ISet;

@@ -8,7 +8,7 @@ import { formatDate } from '../../helpers/formatDate';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { PopUp } from '../PopUps/PopUp';
-import { POP_UP_MS } from '../../helpers/constants';
+import { POP_UP_MS, TITLE_PREFIX } from '../../helpers/constants';
 
 interface SelectedTournamentState {
     tournament: ITournament;
@@ -34,6 +34,7 @@ export class SelectedTournament extends React.Component<SelectedTournamentProps,
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Tournament";
         let selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
         fetch(`api/Tournament/${selectedTournamentId}`, { headers: Token.getAuthorizationHeaders() })

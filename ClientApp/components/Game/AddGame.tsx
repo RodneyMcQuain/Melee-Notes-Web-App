@@ -5,6 +5,7 @@ import { ISet, IGame } from 'ClientApp/helpers/interfaces';
 import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface AddGameState {
     game: IGame;
@@ -29,6 +30,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Add Game";
         let selectedSetId = parseInt(this.props.match.params.setId) || 0;
         let game = {} as IGame;
 

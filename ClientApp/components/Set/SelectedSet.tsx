@@ -8,6 +8,7 @@ import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { PopUp } from '../PopUps/PopUp';
 import { POP_UP_MS } from '../../helpers/constants';
+import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface SelectedSetState {
     set: ISet;
@@ -35,6 +36,7 @@ export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetSt
     }
 
     public componentDidMount() {
+        document.title = TITLE_PREFIX + "Set";
         let selectedSetId = parseInt(this.props.match.params.setId) || 0;
 
         fetch(`api/Set/${selectedSetId}`, { headers: Token.getAuthorizationHeaders() })

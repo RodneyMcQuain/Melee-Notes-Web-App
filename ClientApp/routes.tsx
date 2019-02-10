@@ -21,6 +21,7 @@ import { UnauthorizedError } from './components/Errors/UnauthorizedError';
 import { ServerError } from './components/Errors/ServerError';
 import { UnhandledError } from './components/Errors/UnhandledError';
 import { Token } from './helpers/token';
+import { Tournaments } from './components/Tournament/Tournaments';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
     <Route {...rest} render={(props) => (
@@ -34,7 +35,8 @@ export const routes = <Layout>
     <Switch>
         <PrivateRoute exact path='/' component={ Home } />
         <Route path='/login' component={ Login } />
-        <Route path='/registration' component={ Registration } />
+        <Route path='/registration' component={Registration} />
+        <PrivateRoute path='/tournaments' component={ Tournaments } />
         <PrivateRoute path='/addTournament' component={ AddTournament } />
         <PrivateRoute path='/addSet/:tournamentId' component={ AddSet } />
         <PrivateRoute path='/addGame/tournament/:tournamentId/set/:setId' component={ AddGame } />

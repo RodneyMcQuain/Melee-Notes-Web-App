@@ -25,9 +25,13 @@ export class AddTournament extends React.Component<RouteComponentProps<{}>, AddT
     public render() {
         return (
             <div>
-                <h1>Add Tournament</h1>
+                <div className="-horizontal-table-form-parent-container">
+                    <div className="-horizontal-table-form-child-container">
+                        <h1>Add Tournament</h1>
 
-                <TournamentForm handleFieldChange={ this.handleFieldChange } tournament={ this.state.tournament } handleSubmit={ this.handleSubmit } submitButtonName="Add Tournament" />
+                        <TournamentForm handleFieldChange={ this.handleFieldChange } tournament={ this.state.tournament } handleSubmit={ this.handleSubmit } submitButtonName="Add Tournament" />
+                    </div>
+                </div>
             </div>
         );
     }

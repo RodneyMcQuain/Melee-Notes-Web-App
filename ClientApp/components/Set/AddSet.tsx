@@ -88,9 +88,13 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
         else
             return (
                 <div>
-                    <h1>Add Set</h1>
+                    <div className="-horizontal-table-form-parent-container">
+                        <div className="-horizontal-table-form-child-container">
+                            <h1>Add Set</h1>
 
-                    <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Add Set" history={ this.props.history } />
+                            <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Add Set" history={ this.props.history } />
+                        </div>
+                    </div>
                 </div>
             );
     }

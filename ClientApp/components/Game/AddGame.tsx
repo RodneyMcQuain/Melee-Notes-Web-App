@@ -73,9 +73,13 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         else
             return (
                 <div>
-                    <h1>Add Game</h1>
+                    <div className="-horizontal-table-form-parent-container">
+                        <div className="-horizontal-table-form-child-container">
+                            <h1>Add Game</h1>
 
-                    <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Add Game" tournamentId={ tournamentId } />
+                            <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Add Game" tournamentId={ tournamentId } />
+                        </div>
+                    </div>
                 </div>
             )
     }

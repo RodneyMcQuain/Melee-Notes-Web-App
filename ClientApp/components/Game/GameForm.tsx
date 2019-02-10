@@ -11,7 +11,6 @@ interface GameProps {
     game: IGame;
     handleSubmit: Function;
     submitButtonName: string;
-    tournamentId: number;
 }
 
 export class GameForm extends React.Component<GameProps, {}> {
@@ -20,10 +19,7 @@ export class GameForm extends React.Component<GameProps, {}> {
         let handleSubmit = this.props.handleSubmit.bind(this);
 
         return (
-            <form onSubmit={handleSubmit} >
-                <label>Set</label>
-                <SetDropdown handleFieldChange={ this.props.handleFieldChange } tournamentId={ this.props.tournamentId } setId={ game.setId } />
-
+            <form onSubmit={ handleSubmit } >
                 <label>Outcome</label>
                 <OutcomeDropdown handleFieldChange={ this.props.handleFieldChange } outcome={ game.outcome } />
 

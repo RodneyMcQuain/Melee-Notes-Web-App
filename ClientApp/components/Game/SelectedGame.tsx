@@ -63,7 +63,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
                         <div className="-horizontal-table-form-child-container">
                             <h2>Game</h2>
 
-                            <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Update Game" tournamentId={ tournamentId } />
+                            <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Update Game" />
                             <button className="btn" onClick={ () => this.onClick_btRemoveGame(game, tournamentId) } >Remove Game</button>
                             <button className="btn" onClick={ () => this.onClick_btGoToSet(tournamentId, game.setId) } >Go Back to Set</button>
                         </div>

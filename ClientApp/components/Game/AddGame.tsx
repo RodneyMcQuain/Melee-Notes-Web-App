@@ -9,6 +9,7 @@ import { TITLE_PREFIX } from '../../helpers/constants';
 
 interface AddGameState {
     game: IGame;
+    tournamentId: number;
     isLoading: boolean;
 }
 
@@ -22,6 +23,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         super();
         this.state = {
             game: {} as IGame,
+            tournamentId: 0,
             isLoading: true
         }
 
@@ -52,6 +54,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
     private setDefaultGameValues(selectedSetId: number) {
         let game = JSON.parse(JSON.stringify(this.state.game));
+        const selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
         game = {
             setId: selectedSetId,
@@ -61,7 +64,11 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
             Stage: "Battlefield"
         }
 
-        this.setState({ game: game, isLoading: false });
+        this.setState({
+            game: game,
+            tournamentId: selectedTournamentId,
+            isLoading: false
+        });
     }
 
     public render() {
@@ -93,7 +100,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        let game = this.state.game;
+        const { game, tournamentId } = this.state;
         let userId = Token.getUserId();
 
         fetch(`api/Game/User/${userId}`, {
@@ -102,7 +109,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
             body: JSON.stringify(game)
         })
             .then(response => handleResponse(this.props.history, response))
-            .then(() => { this.props.history.push(`/set/${game.setId}`) })
+            .then(() => this.props.history.push(`/tournament/${tournamentId}/set/${game.setId}`))
             .catch (error => console.log(error));
     }
 }

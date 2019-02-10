@@ -73,7 +73,6 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
     public render() {
         let isLoading = this.state.isLoading;
-        let tournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
         if (isLoading)
             return <Preloader />
@@ -84,7 +83,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
                         <div className="-horizontal-table-form-child-container">
                             <h1>Add Game</h1>
 
-                            <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Add Game" tournamentId={ tournamentId } />
+                            <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Add Game" />
                         </div>
                     </div>
                 </div>

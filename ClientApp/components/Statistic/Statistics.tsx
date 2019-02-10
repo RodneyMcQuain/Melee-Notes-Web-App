@@ -169,38 +169,50 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             <div>
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Battlefield.jpg')}></img>
-                    <div className="-center-container">{ gamesWon[BATTLEFIELD_ID] } - { gamesLost[BATTLEFIELD_ID] }</div>
-                    <div className="-center-container">{ this.calculateWinRate(gamesWon[BATTLEFIELD_ID], gamesLost[BATTLEFIELD_ID]) }%</div>
+                    <div className="-center-container">
+                        <div>{ gamesWon[BATTLEFIELD_ID] } - { gamesLost[BATTLEFIELD_ID] }</div>
+                        <div>{ this.calculateWinRate(gamesWon[BATTLEFIELD_ID], gamesLost[BATTLEFIELD_ID]) }%</div>
+                    </div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/Dreamland.jpg')}></img>
-                    <div className="-center-container">{ gamesWon[DREAMLAND_ID] } - { gamesLost[DREAMLAND_ID] }</div>
-                    <div className="-center-container">{ this.calculateWinRate(gamesWon[DREAMLAND_ID], gamesLost[DREAMLAND_ID]) }%</div>
+                    <div className="-center-container">
+                        <div>{ gamesWon[DREAMLAND_ID] } - { gamesLost[DREAMLAND_ID] }</div>
+                        <div>{ this.calculateWinRate(gamesWon[DREAMLAND_ID], gamesLost[DREAMLAND_ID]) }%</div>
+                    </div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FinalDestination.jpg')}></img>
-                    <div className="-center-container">{ gamesWon[FINAL_DESTINATION_ID] } - { gamesLost[FINAL_DESTINATION_ID] }</div>
-                    <div className="-center-container">{ this.calculateWinRate(gamesWon[FINAL_DESTINATION_ID], gamesLost[FINAL_DESTINATION_ID]) }%</div>
+                    <div className="-center-container">
+                        <div>{ gamesWon[FINAL_DESTINATION_ID] } - { gamesLost[FINAL_DESTINATION_ID] }</div>
+                        <div>{ this.calculateWinRate(gamesWon[FINAL_DESTINATION_ID], gamesLost[FINAL_DESTINATION_ID]) }%</div>
+                    </div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/FountainOfDreams.jpg')}></img>
-                    <div className="-center-container">{ gamesWon[FOUNTAIN_OF_DREAMS_ID] } - { gamesLost[FOUNTAIN_OF_DREAMS_ID] }</div>
-                    <div className="-center-container">{ this.calculateWinRate(gamesWon[FOUNTAIN_OF_DREAMS_ID], gamesLost[FOUNTAIN_OF_DREAMS_ID]) }%</div>
+                    <div className="-center-container">
+                        <div>{ gamesWon[FOUNTAIN_OF_DREAMS_ID] } - { gamesLost[FOUNTAIN_OF_DREAMS_ID] }</div>
+                        <div>{ this.calculateWinRate(gamesWon[FOUNTAIN_OF_DREAMS_ID], gamesLost[FOUNTAIN_OF_DREAMS_ID]) }%</div>
+                    </div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/PokemonStadium.jpg')}></img>
-                    <div className="-center-container">{ gamesWon[POKEMON_STADIUM_ID] } - { gamesLost[POKEMON_STADIUM_ID] }</div>
-                    <div className="-center-container">{ this.calculateWinRate(gamesWon[POKEMON_STADIUM_ID], gamesLost[POKEMON_STADIUM_ID]) }%</div>
+                    <div className="-center-container">
+                        <div>{ gamesWon[POKEMON_STADIUM_ID] } - { gamesLost[POKEMON_STADIUM_ID] }</div>
+                        <div>{ this.calculateWinRate(gamesWon[POKEMON_STADIUM_ID], gamesLost[POKEMON_STADIUM_ID]) }%</div>
+                    </div>
                 </div>
 
                 <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <img className="stage" src={require('../../images/YoshisIsland.jpg')}></img>
-                    <div className="-center-container">{ gamesWon[YOSHIS_STORY_ID] } - { gamesLost[YOSHIS_STORY_ID] }</div>
-                    <div className="-center-container">{ this.calculateWinRate(gamesWon[YOSHIS_STORY_ID], gamesLost[YOSHIS_STORY_ID]) }%</div>
+                    <div className="-center-container">
+                        <div>{ gamesWon[YOSHIS_STORY_ID] } - { gamesLost[YOSHIS_STORY_ID] }</div>
+                        <div>{ this.calculateWinRate(gamesWon[YOSHIS_STORY_ID], gamesLost[YOSHIS_STORY_ID]) }%</div>
+                    </div>
                 </div>
             </div>
         );

@@ -10,7 +10,6 @@ import { GoToSetButton } from './GoToSetButton';
 
 interface AddGameState {
     game: IGame;
-    tournamentId: number;
     isLoading: boolean;
 }
 
@@ -24,7 +23,6 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         super();
         this.state = {
             game: {} as IGame,
-            tournamentId: 0,
             isLoading: true
         }
 
@@ -42,7 +40,6 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
     private setDefaultGameValues(selectedSetId: number) {
         let game = JSON.parse(JSON.stringify(this.state.game));
-        const selectedTournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
         game = {
             setId: selectedSetId,
@@ -54,7 +51,6 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
         this.setState({
             game: game,
-            tournamentId: selectedTournamentId,
             isLoading: false
         });
     }
@@ -65,7 +61,8 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         if (isLoading)
             return <Preloader />
         else {
-            const { tournamentId, game } = this.state;
+            const game = this.state.game;
+            const tournamentId = parseInt(this.props.match.params.tournamentId) || 0;
 
             return (
                 <div>
@@ -91,7 +88,8 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        const { game, tournamentId } = this.state;
+        const game = this.state.game;
+        const tournamentId = parseInt(this.props.match.params.tournamentId) || 0;
         let userId = Token.getUserId();
 
         fetch(`api/Game/User/${userId}`, {

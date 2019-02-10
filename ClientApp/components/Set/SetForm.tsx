@@ -23,9 +23,6 @@ export class SetForm extends React.Component<SetFormProps, {}> {
 
         return (
             <form onSubmit={ handleSubmit } >
-                <label>Tournament</label>
-                <TournamentDropdown handleFieldChange={ this.props.handleFieldChange } tournamentId={ this.props.set.tournamentId } />
-
                 <label>Player</label>
                 <div>
                     <PlayerDropdown handleFieldChange={ this.props.handleFieldChange } playerId={ this.props.set.playerId } />

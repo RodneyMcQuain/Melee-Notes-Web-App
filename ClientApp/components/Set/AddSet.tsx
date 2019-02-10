@@ -6,6 +6,7 @@ import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { TITLE_PREFIX } from '../../helpers/constants';
+import { GoToTournamentButton } from './GoToTournamentButton';
 
 interface AddSetState {
     set: ISet;
@@ -68,7 +69,9 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
 
         if (isLoading)
             return <Preloader />
-        else
+        else {
+            const tournamentId = parseInt(this.props.match.params.tournamentId) || 0;
+
             return (
                 <div>
                     <div className="-horizontal-table-form-parent-container">
@@ -76,10 +79,12 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
                             <h1>Add Set</h1>
 
                             <SetForm handleFieldChange={ this.handleFieldChange } set={ this.state.set } handleSubmit={ this.handleSubmit } submitButtonName="Add Set" history={ this.props.history } />
+                            <GoToTournamentButton tournamentId={ tournamentId } history={ this.props.history } />
                         </div>
                     </div>
                 </div>
             );
+        }
     }
 
     private handleFieldChange(event: React.ChangeEvent<HTMLSelectElement>) {

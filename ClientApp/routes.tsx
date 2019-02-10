@@ -39,7 +39,6 @@ export const routes = <Layout>
         <PrivateRoute path='/addSet/:tournamentId' component={ AddSet } />
         <PrivateRoute path='/addSet' component={ AddSet } />
         <PrivateRoute path='/addGame/tournament/:tournamentId/set/:setId' component={ AddGame } />
-        <PrivateRoute path='/addGame' component={ AddGame } />
         <PrivateRoute path='/addPlayer' component={ AddPlayer } />
         <PrivateRoute path='/tournament/:tournamentId/set/:setId/game/:gameId' component={ SelectedGame } />
         <PrivateRoute path='/tournament/:tournamentId/set/:setId' component={ SelectedSet } />

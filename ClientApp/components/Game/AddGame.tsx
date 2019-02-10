@@ -6,6 +6,7 @@ import { Preloader } from '../General/Preloader';
 import { Token } from '../../helpers/token';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { TITLE_PREFIX } from '../../helpers/constants';
+import { GoToSetButton } from './GoToSetButton';
 
 interface AddGameState {
     game: IGame;
@@ -76,7 +77,9 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
 
         if (isLoading)
             return <Preloader />
-        else
+        else {
+            const { tournamentId, game } = this.state;
+
             return (
                 <div>
                     <div className="-horizontal-table-form-parent-container">
@@ -84,10 +87,12 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
                             <h1>Add Game</h1>
 
                             <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Add Game" />
+                            <GoToSetButton tournamentId={ tournamentId } setId={ game.setId } history={ this.props.history } /> 
                         </div>
                     </div>
                 </div>
-            )
+            );
+        }
     }
 
     private handleFieldChange(event: React.ChangeEvent<HTMLSelectElement>) {

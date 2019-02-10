@@ -9,6 +9,7 @@ import { handleResponse } from '../../helpers/handleResponseErrors';
 import { PopUp } from '../PopUps/PopUp';
 import { POP_UP_MS } from '../../helpers/constants';
 import { TITLE_PREFIX } from '../../helpers/constants';
+import { GoToSetButton } from './GoToSetButton';
 
 interface SelectedGameState {
     game: IGame,
@@ -65,7 +66,7 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
 
                             <GameForm handleFieldChange={ this.handleFieldChange } game={ this.state.game } handleSubmit={ this.handleSubmit } submitButtonName="Update Game" />
                             <button className="btn" onClick={ () => this.onClick_btRemoveGame(game, tournamentId) } >Remove Game</button>
-                            <button className="btn" onClick={ () => this.onClick_btGoToSet(tournamentId, game.setId) } >Go Back to Set</button>
+                            <GoToSetButton tournamentId={ tournamentId } setId={ game.setId } history={ this.props.history } /> 
                         </div>
                     </div>
                 </div>
@@ -104,9 +105,5 @@ export class SelectedGame extends React.Component<SelectedGameProps, SelectedGam
             .then(response => handleResponse(this.props.history, response))
             .then(() => this.props.history.push(`/tournament/${tournamentId}/set/${game.setId}`))
             .catch(error => console.log(error));
-    }
-
-    private onClick_btGoToSet(tournamentId: number, setId: number) {
-        this.props.history.push(`/tournament/${tournamentId}/set/${setId}`);
     }
 }

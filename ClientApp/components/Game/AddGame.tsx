@@ -37,20 +37,7 @@ export class AddGame extends React.Component<AddGameProps, AddGameState> {
         let selectedSetId = parseInt(this.props.match.params.setId) || 0;
         let game = {} as IGame;
 
-        if (selectedSetId === 0) {
-            let userId = Token.getUserId();
-
-            fetch(`api/Set/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
-                .then(response => handleResponse(this.props.history, response))
-                .then(response => response.json() as Promise<ISet[]>)
-                .then(sets => {
-                    selectedSetId = sets[0].id;
-                    this.setDefaultGameValues(selectedSetId);
-                })
-                .catch(error => console.log(error));
-        } else {
-            this.setDefaultGameValues(selectedSetId);
-        }
+        this.setDefaultGameValues(selectedSetId);
     }
 
     private setDefaultGameValues(selectedSetId: number) {

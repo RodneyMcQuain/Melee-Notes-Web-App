@@ -33,25 +33,8 @@ export class AddSet extends React.Component<SelectedTournamentProps, AddSetState
         let set = {} as ISet;
         let userId = Token.getUserId();
 
-        if (selectedTournamentId === 0) {
-            fetch(`api/Tournament/User/${userId}`, { headers: Token.getAuthorizationHeaders() })
-                .then(response => handleResponse(this.props.history, response))
-                .then(response => response.json() as Promise<ITournament[]>)
-                .then(tournaments => {
-                    if (tournaments[0])
-                        return tournaments[0].id
-
-                    return -1;
-                })
-                .then(initialTournamentId => {
-                    let initialPlayerId = this.fetchInitialPlayerId(userId);
-                    initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(initialTournamentId, initialPlayerId));
-                })
-                .catch(error => console.log(error));
-        } else {
-            let initialPlayerId = this.fetchInitialPlayerId(userId);
-            initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(selectedTournamentId, initialPlayerId));
-        }        
+        let initialPlayerId = this.fetchInitialPlayerId(userId);
+        initialPlayerId.then(initialPlayerId => this.setDefaultSetValues(selectedTournamentId, initialPlayerId));
     }
 
     private fetchInitialPlayerId(userId: string): Promise<number> {

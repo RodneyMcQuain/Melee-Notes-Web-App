@@ -50,22 +50,26 @@ export class Login extends React.Component<RouteComponentProps<{}>, LoginState> 
             return <Preloader />
         else
             return (
-                <div className="login-container -center-container -curved-border">
-                    <h1>Login</h1>
+                <div>
+                    <h1 className="-center-container">Melee Notes</h1>
 
-                    <form onSubmit={ this.handleSubmit } >
-                        <label>Username or Email</label>
-                        <input type="text" name="username" className="form-control input-md" placeholder="Username or Email" value={ user.username } onChange={ e => this.handleFieldChange(e) } />
+                    <div className="login-container -center-container -curved-border">
+                        <h1>Login</h1>
 
-                        <label>Password</label>
-                        <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handleFieldChange(e) } />
+                        <form onSubmit={ this.handleSubmit } >
+                            <label>Username or Email</label>
+                            <input type="text" name="username" className="form-control input-md" placeholder="Username or Email" value={ user.username } onChange={ e => this.handleFieldChange(e) } />
 
-                        { errorMessage }
+                            <label>Password</label>
+                            <input type="password" name="password" className="form-control input-md" placeholder="Password" value={ user.password } onChange={ e => this.handleFieldChange(e) } />
 
-                        <input type="submit" value="Login" className="btn" />
-                    </form>
+                            { errorMessage }
 
-                    <button className="btn" onClick={ () => this.onClick_btRegistration() } >Go To Registration</button>
+                            <input type="submit" value="Login" className="btn" />
+                        </form>
+
+                        <button className="btn" onClick={ () => this.onClick_btRegistration() } >Go To Registration</button>
+                    </div>
                 </div>
             );
     }

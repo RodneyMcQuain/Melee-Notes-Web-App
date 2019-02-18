@@ -5,6 +5,7 @@ import { IUser } from '../../helpers/interfaces';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { formatDate } from '../../helpers/formatDate';
 import { TITLE_PREFIX } from '../../helpers/constants';
+import { Preloader } from '../General/Preloader';
 
 interface MyAccountState {
     user: IUser;
@@ -35,17 +36,21 @@ export class MyAccount extends React.Component<RouteComponentProps<{}>, MyAccoun
     }
 
     public render() {
-        const user = this.state.user;
+        const { isLoading, user } = this.state;
 
-        return (
-            <div>
-                <h1>My Account</h1>
-                <p>Username: { user.username }</p>
-                <p>Email: { user.email }</p>
-                <p>Date Created: { formatDate(user.dateCreated) }</p>
-                <button className="btn" onClick={ () => this.onClick_btLogout() } >Logout</button>
-            </div>
-        );
+
+        if (isLoading)
+           return  <Preloader />
+        else 
+            return (
+                <div>
+                    <h1>My Account</h1>
+                    <p>Username: { user.username }</p>
+                    <p>Email: { user.email }</p>
+                    <p>Date Created: { formatDate(user.dateCreated) }</p>
+                    <button className="btn" onClick={ () => this.onClick_btLogout() } >Logout</button>
+                </div>
+            );
     }
 
     private onClick_btLogout() {

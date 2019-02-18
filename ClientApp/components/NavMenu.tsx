@@ -30,7 +30,7 @@ export class NavMenu extends React.Component<{}, {}> {
                             </li>
                             <li>
                                 <NavLink to={'/addTournament'} activeClassName='active'>
-                                    <span className='glyphicon glyphicon-th-list'></span> Add Tournament
+                                    <span className='glyphicon glyphicon-plus'></span> Add Tournament
                                 </NavLink>
                             </li>
                             <li>
@@ -40,12 +40,12 @@ export class NavMenu extends React.Component<{}, {}> {
                             </li>
                             <li>
                                 <NavLink to={'/statistics'} activeClassName='active'>
-                                    <span className='glyphicon glyphicon-th-list'></span> Statistics
+                                    <span className='glyphicon glyphicon-stats'></span> Statistics
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to={'/myAccount'} activeClassName='active'>
-                                    <span className='glyphicon glyphicon-th-list'></span> My Account
+                                    <span className='glyphicon glyphicon-user'></span> My Account
                                 </NavLink>
                             </li>
                         </ul>

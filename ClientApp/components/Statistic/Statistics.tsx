@@ -39,6 +39,9 @@ interface StatisticsState {
 type OnChangeSelectInputEvent = React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>;
 
 export class Statistics extends React.Component<RouteComponentProps<{}>, StatisticsState> {
+    END_DATE: string;
+    START_DATE: string;
+
     constructor() {
         super();
 
@@ -54,6 +57,8 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             gamesLost: []
         }
 
+        this.START_DATE = "2001-01-01"; //year the game was released in
+        this.END_DATE = new Date().toISOString().slice(0, 10); //today's date
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleDateDropdownChange = this.handleDateDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,7 +66,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
     public componentDidMount() {
         document.title = TITLE_PREFIX + "Statistics";
-        let today = new Date().toISOString().slice(0, 10);
 
         let statistic = {
             myCharacter: "All Characters",
@@ -69,8 +73,8 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             playerId: 0, //this will indicate all players
             format: "All Formats",
             type: "All Types",
-            startDate: "2001-01-01", //year the game was released in
-            endDate: today,
+            startDate: this.START_DATE,
+            endDate: this.END_DATE
         }
 
         this.setState({ statistic: statistic })
@@ -324,6 +328,12 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
         if (statistic.type === "All Types")
             statistic.type = "";
+
+        if (this.state.dateDropdown === "All Time") {
+            statistic.startDate = this.START_DATE;
+            statistic.endDate = this.END_DATE;
+        }
+
 
         return statistic;
     }

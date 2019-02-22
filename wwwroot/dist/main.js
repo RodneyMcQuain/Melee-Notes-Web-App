@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d937532c56400c5906c8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f96f3af00a38012bdf55"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10781,6 +10781,8 @@ var Statistics = (function (_super) {
             gamesWon: [],
             gamesLost: []
         };
+        _this.START_DATE = "2001-01-01"; //year the game was released in
+        _this.END_DATE = new Date().toISOString().slice(0, 10); //today's date
         _this.handleFieldChange = _this.handleFieldChange.bind(_this);
         _this.handleDateDropdownChange = _this.handleDateDropdownChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -10788,15 +10790,14 @@ var Statistics = (function (_super) {
     }
     Statistics.prototype.componentDidMount = function () {
         document.title = __WEBPACK_IMPORTED_MODULE_10__helpers_constants__["a" /* TITLE_PREFIX */] + "Statistics";
-        var today = new Date().toISOString().slice(0, 10);
         var statistic = {
             myCharacter: "All Characters",
             opponentCharacter: "All Characters",
             playerId: 0,
             format: "All Formats",
             type: "All Types",
-            startDate: "2001-01-01",
-            endDate: today,
+            startDate: this.START_DATE,
+            endDate: this.END_DATE
         };
         this.setState({ statistic: statistic });
     };
@@ -11027,6 +11028,10 @@ var Statistics = (function (_super) {
             statistic.format = "";
         if (statistic.type === "All Types")
             statistic.type = "";
+        if (this.state.dateDropdown === "All Time") {
+            statistic.startDate = this.START_DATE;
+            statistic.endDate = this.END_DATE;
+        }
         return statistic;
     };
     return Statistics;

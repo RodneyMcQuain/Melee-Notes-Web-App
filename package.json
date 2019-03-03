@@ -6,17 +6,17 @@
     "@types/enzyme": "^3.9.0",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/es6-promise": "^3.3.0",
-    "@types/history": "4.6.0",
-    "@types/jest": "^24.0.6",
-    "@types/react": "15.0.35",
-    "@types/react-dom": "15.5.1",
-    "@types/react-hot-loader": "3.0.3",
-    "@types/react-router": "4.0.12",
-    "@types/react-router-dom": "4.0.5",
+    "@types/history": "^4.7.2",
+    "@types/jest": "^24.0.9",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
+    "@types/react-hot-loader": "^3.0.3",
+    "@types/react-router": "^4.4.4",
+    "@types/react-router-dom": "^4.3.1",
     "@types/webpack-env": "1.13.0",
     "aspnet-webpack": "^2.0.1",
     "aspnet-webpack-react": "^3.0.0",
-    "awesome-typescript-loader": "3.2.1",
+    "awesome-typescript-loader": "^3.2.1",
     "bootstrap": "3.3.7",
     "css-loader": "0.28.4",
     "enzyme": "^3.9.0",
@@ -32,14 +32,14 @@
     "jquery": "3.2.1",
     "json-loader": "0.5.4",
     "node-sass": "^4.11.0",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.4.2",
     "react-hot-loader": "3.0.0-beta.7",
     "react-router-dom": "4.1.1",
     "sass-loader": "^7.1.0",
     "style-loader": "0.18.2",
     "ts-jest": "^24.0.0",
-    "typescript": "2.4.1",
+    "typescript": "^3.3.3333",
     "url-loader": "0.5.9",
     "webpack": "2.5.1",
     "webpack-hot-middleware": "2.18.2"
@@ -47,5 +47,8 @@
   "dependencies": {
     "@types/jwt-decode": "^2.2.1",
     "jwt-decode": "^2.2.0"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

@@ -224,11 +224,11 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         );
     }
 
-    private calculateWinRate(wonCount: number, lostCount: number) {
+    public calculateWinRate(wonCount: number, lostCount: number) : string {
         let totalGames = wonCount + lostCount;
 
         if (totalGames <= 0)
-            return 0;
+            return "0.00";
 
         let winRate = (wonCount / totalGames) * 100;
 

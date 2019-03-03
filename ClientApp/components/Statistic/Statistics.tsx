@@ -42,8 +42,8 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     END_DATE: string;
     START_DATE: string;
 
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
 
         this.state = {
             statistic: {} as IStatistic,

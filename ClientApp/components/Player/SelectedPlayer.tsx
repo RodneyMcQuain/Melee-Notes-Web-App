@@ -16,11 +16,11 @@ interface SelectedPlayerState {
     isPopUpVisible: boolean;
 }
 
-type SelectedTournamentProps = RouteComponentProps<{ playerId: string }>;
+type SelectedPlayerProps = RouteComponentProps<{ playerId: string }>;
 
-export class SelectedPlayer extends React.Component<SelectedTournamentProps, SelectedPlayerState> {
-    constructor() {
-        super();
+export class SelectedPlayer extends React.Component<SelectedPlayerProps, SelectedPlayerState> {
+    constructor(props: SelectedPlayerProps) {
+        super(props);
         this.state = {
             player: {} as IPlayer,
             isLoading: true,

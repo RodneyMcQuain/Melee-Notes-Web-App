@@ -14,8 +14,8 @@ interface TournamentState {
 }
 
 export class Tournaments extends React.Component<RouteComponentProps<{}>, TournamentState> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
         this.state = { tournaments: [], isLoading: true }
 
         this.onClick_trTournament = this.onClick_trTournament.bind(this);

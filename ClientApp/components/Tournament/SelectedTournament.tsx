@@ -20,8 +20,9 @@ interface SelectedTournamentState {
 type SelectedTournamentProps = RouteComponentProps<{ tournamentId: string }>;
 
 export class SelectedTournament extends React.Component<SelectedTournamentProps, SelectedTournamentState> {
-    constructor() {
-        super();
+    constructor(props: SelectedTournamentProps) {
+        super(props);
+
         this.state = {
             tournament: {} as ITournament,
             playerTags: [],

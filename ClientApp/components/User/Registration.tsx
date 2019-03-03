@@ -24,8 +24,8 @@ interface RegistrationState {
 }
 
 export class Registration extends React.Component<RouteComponentProps<{}>, RegistrationState> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
 
         this.state = {
             user: {} as IUser,

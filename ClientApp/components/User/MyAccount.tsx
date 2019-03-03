@@ -13,8 +13,8 @@ interface MyAccountState {
 }
 
 export class MyAccount extends React.Component<RouteComponentProps<{}>, MyAccountState> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props)
         this.state = {
             user: {} as IUser,
             isLoading: true

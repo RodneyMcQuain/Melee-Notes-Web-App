@@ -18,8 +18,8 @@ interface OptionalRouteComponentProps {
 }
 
 export class TournamentDropdown extends React.Component<TournamentDropdownProps & OptionalRouteComponentProps, TournamentDropdownState> {
-    constructor() {
-        super();
+    constructor(props: TournamentDropdownProps & OptionalRouteComponentProps) {
+        super(props);
 
         this.state = { tournaments: [] }
     }

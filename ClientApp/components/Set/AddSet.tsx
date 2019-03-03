@@ -16,8 +16,8 @@ interface AddSetState {
 type SelectedTournamentProps = RouteComponentProps<{ tournamentId: string }>;
 
 export class AddSet extends React.Component<SelectedTournamentProps, AddSetState> {
-    constructor() {
-        super();
+    constructor(props: SelectedTournamentProps) {
+        super(props);
         this.state = {
             set: {} as ISet,
             isLoading: true

@@ -19,8 +19,9 @@ type AddGameProps = RouteComponentProps<{
 }>;
 
 export class AddGame extends React.Component<AddGameProps, AddGameState> {
-    constructor() {
-        super();
+    constructor(props: AddGameProps) {
+        super(props);
+
         this.state = {
             game: {} as IGame,
             isLoading: true

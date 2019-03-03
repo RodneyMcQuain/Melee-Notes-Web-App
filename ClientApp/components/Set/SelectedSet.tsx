@@ -23,8 +23,8 @@ type SelectedSetProps = RouteComponentProps<{
 }>;
 
 export class SelectedSet extends React.Component<SelectedSetProps, SelectedSetState> {
-    constructor() {
-        super();
+    constructor(props: SelectedSetProps) {
+        super(props);
 
         this.state = {
             set: {} as ISet,

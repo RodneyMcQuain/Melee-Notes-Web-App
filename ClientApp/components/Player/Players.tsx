@@ -12,8 +12,8 @@ interface PlayersState {
 }
 
 export class Players extends React.Component<RouteComponentProps<{}>, PlayersState> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
         this.state = {
             players: [] as IPlayer[],
             isLoading: true

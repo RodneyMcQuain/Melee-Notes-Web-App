@@ -19,8 +19,8 @@ interface OptionalRouteComponentProps {
 }
 
 export class PlayerDropdown extends React.Component<PlayerDropdownProps & OptionalRouteComponentProps, PlayerDropdownState> {
-    constructor() {
-        super();
+    constructor(props: PlayerDropdownProps & OptionalRouteComponentProps) {
+        super(props);
 
         this.state = { players: [] as IPlayer[] }
     }

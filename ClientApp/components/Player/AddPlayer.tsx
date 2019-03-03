@@ -9,8 +9,9 @@ import { TITLE_PREFIX } from '../../helpers/constants';
 interface AddPlayerState { player: IPlayer; }
 
 export class AddPlayer extends React.Component<RouteComponentProps<{}>, AddPlayerState> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
+
         this.state = { player: {} as IPlayer }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);

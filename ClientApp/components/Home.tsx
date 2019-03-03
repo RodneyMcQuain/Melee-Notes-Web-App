@@ -2,8 +2,8 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
 export class Home extends React.Component<RouteComponentProps<{}>, {}> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
     }
 
     public render() {

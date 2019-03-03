@@ -10,8 +10,8 @@ import { TITLE_PREFIX } from '../../helpers/constants';
 interface AddTournamentState { tournament: ITournament; }
 
 export class AddTournament extends React.Component<RouteComponentProps<{}>, AddTournamentState> {
-    constructor() {
-        super();
+    constructor(props: RouteComponentProps<{}>) {
+        super(props);
         this.state = { tournament: { date: getTodaysFormattedDate() } as ITournament }
 
         this.handleFieldChange = this.handleFieldChange.bind(this);

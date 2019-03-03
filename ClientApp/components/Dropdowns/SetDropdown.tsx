@@ -19,8 +19,8 @@ interface OptionalRouteComponentProps {
 }
 
 export class SetDropdown extends React.Component<SetDropdownProps & OptionalRouteComponentProps, SetDropdownState> {
-    constructor() {
-        super();
+    constructor(props: SetDropdownProps & OptionalRouteComponentProps) {
+        super(props);
 
         this.state = { sets: [] }
     }

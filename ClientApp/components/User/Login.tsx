@@ -15,8 +15,8 @@ interface LoginState {
     isUnauthorizedError: boolean;
 }
 
-export class Login extends React.Component<RouteComponentProps<any>, LoginState> {
-    constructor(props: RouteComponentProps<any>) {
+export class Login extends React.Component<RouteComponentProps<{}>, LoginState> {
+    constructor(props: RouteComponentProps<{}>) {
         super(props);
 
         this.state = {

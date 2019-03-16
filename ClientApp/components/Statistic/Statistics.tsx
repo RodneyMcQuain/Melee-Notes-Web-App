@@ -3,15 +3,14 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import { FormatDropdown } from '../Dropdowns/FormatDropdown';
 import { CharacterDropdown } from '../Dropdowns/CharacterDropdown';
-import { StageDropdown } from '../Dropdowns/StageDropdown';
 import { PlayerDropdown } from '../Dropdowns/PlayerDropdown';
 import { TypeDropdown } from '../Dropdowns/TypeDropdown';
-import { ISet, IGame } from '../../helpers/interfaces';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { Token } from '../../helpers/token';
 import { ContentPreloader } from '../General/ContentPreloader';
 import { Promise } from 'es6-promise';
 import { TITLE_PREFIX } from '../../helpers/constants';
+import { StartEndDate } from './StartEndDate';
 
 interface IStatistic {
     myCharacter: string;
@@ -84,17 +83,11 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit } = this.state;
 
         const date = this.state.dateDropdown === "Specify Date"
-            ? <div>
-                <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <label htmlFor="startDate" >Start Date</label>
-                    <input type="date" name="startDate" className="form-control" value={statistic.startDate} onChange={this.handleFieldChange} />
-                </div>
-
-                <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <label htmlFor="endDate" >End Date</label>
-                    <input type="date" name="endDate" className="form-control" value={statistic.endDate} onChange={this.handleFieldChange} />
-                </div>
-            </div>
+            ? <StartEndDate 
+                startDate={ statistic.startDate } 
+                endDate={ statistic.endDate } 
+                handleFieldChange={ this.handleFieldChange } 
+            />
             : <div></div>
         
         const statisticContent = isStatisticLoading

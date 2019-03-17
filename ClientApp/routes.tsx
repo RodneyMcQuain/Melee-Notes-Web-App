@@ -22,9 +22,10 @@ import { ServerError } from './components/Errors/ServerError';
 import { UnhandledError } from './components/Errors/UnhandledError';
 import { Token } from './helpers/token';
 import { Tournaments } from './components/Tournament/Tournaments';
+import { PasswordReset } from './components/User/PasswordReset';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (
-    <Route {...rest} render={(props) => (
+    <Route {...rest} component={(props: any) => (
         Token.isUserAuthenticated() === true
             ? <Component {...props} />
             : <Redirect to='/login' />
@@ -35,7 +36,7 @@ export const routes = <Layout>
     <Switch>
         <PrivateRoute exact path='/' component={ Home } />
         <Route path='/login' component={ Login } />
-        <Route path='/registration' component={Registration} />
+        <Route path='/registration' component={ Registration } />
         <PrivateRoute path='/tournaments' component={ Tournaments } />
         <PrivateRoute path='/addTournament' component={ AddTournament } />
         <PrivateRoute path='/addSet/:tournamentId' component={ AddSet } />
@@ -48,7 +49,8 @@ export const routes = <Layout>
         <PrivateRoute path='/players' component={ Players } />
         <PrivateRoute path='/statistics' component={ Statistics } />
         <PrivateRoute path='/myAccount' component={ MyAccount } />
-        <Route path='/notFoundError' component={ NotFoundError } />
+        <PrivateRoute path='/passwordReset' component={ PasswordReset } />
+        <Route path='/notFoundError' component={NotFoundError} />
         <Route path='/unauthorizedError' component={ UnauthorizedError } />
         <Route path='/serverError' component={ ServerError } />
         <Route path='/error' component={ UnhandledError } />

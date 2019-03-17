@@ -8,7 +8,7 @@ import { Promise } from 'es6-promise';
 import { TITLE_PREFIX } from '../../helpers/constants';
 import { Stages } from './Stages';
 import { StatisticDropdowns } from './StatisticDropdowns';
-import { IStatistic } from '../../../helpers/interfaces';
+import { IStatistic } from '../../helpers/interfaces';
 
 interface StatisticsState {
     statistic: IStatistic;
@@ -16,6 +16,7 @@ interface StatisticsState {
     setsLost: number;
     gamesWon: number[];
     gamesLost: number[];
+    dateDropdown: string;
     isStatisticLoading: boolean;
     isAfterFirstSubmit: boolean;
     isLoading: boolean;
@@ -35,6 +36,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             isLoading: true,
             isStatisticLoading: false,
             isAfterFirstSubmit: false,
+            dateDropdown: "All Time",
             setsWon: -1,
             setsLost: -1,
             gamesWon: [],
@@ -44,6 +46,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         this.START_DATE = "2001-01-01"; //year the game was released in
         this.END_DATE = new Date().toISOString().slice(0, 10); //today's date
         this.handleFieldChange = this.handleFieldChange.bind(this);
+        this.handleDateDropdownChange = this.handleDateDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -64,7 +67,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     }
 
     public render() {
-        const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit } = this.state;
+        const { statistic, setsWon, setsLost, gamesWon, gamesLost, dateDropdown, isStatisticLoading, isAfterFirstSubmit } = this.state;
         
         const statisticContent = isStatisticLoading
             ? <ContentPreloader />
@@ -85,7 +88,12 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 <h1>Statistics</h1>
 
                 <form className="form-horizontal" onSubmit={this.handleSubmit} >
-                    <StatisticDropdowns statistic={ statistic } handleFieldChange={ this.handleFieldChange } />
+                    <StatisticDropdowns 
+                        statistic={ statistic } 
+                        dateDropdown={ dateDropdown }
+                        handleFieldChange={ this.handleFieldChange } 
+                        handleDateDropdownChange={ this.handleDateDropdownChange }
+                    />
 
                     <div className="col-xs-12 statistic-submit-button" >
                         <input type="submit" value="Get Statistics" className="btn" />
@@ -104,9 +112,14 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         this.setState({ statistic: statistic });
     }
 
+    private handleDateDropdownChange(event: React.ChangeEvent<HTMLSelectElement>) {
+        this.setState({ dateDropdown: event.target.value });
+    }
+
     public handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        let statistic = this.modifyStatisticBeforeSubmit(this.state.statistic);
+        const { statistic, dateDropdown } = this.state;
+        let statisticModified = this.modifyStatisticBeforeSubmit(statistic, dateDropdown);
         let userId = Token.getUserId();
         this.setState({
             isAfterFirstSubmit: true,
@@ -117,7 +130,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         let setsLost = 0;
         let gamesWon = [] as number[];
         let gamesLost = [] as number[];
-        this.getSetsWon(userId, statistic)
+        this.getSetsWon(userId, statisticModified)
             .then(setsWonResult => setsWon = setsWonResult)
             .then(() => this.getSetsLost(userId, statistic))
             .then(setsLostResult => setsLost = setsLostResult)
@@ -174,7 +187,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             .then(response => response.json() as Promise<number>)
     }
 
-    private modifyStatisticBeforeSubmit(statistic: IStatistic) {
+    private modifyStatisticBeforeSubmit(statistic: IStatistic, dateDropdown: string) {
         if (statistic.myCharacter === "All Characters")
             statistic.myCharacter = "";
 
@@ -187,11 +200,10 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         if (statistic.type === "All Types")
             statistic.type = "";
 
-        if (this.state.dateDropdown === "All Time") {
+        if (dateDropdown === "All Time") {
             statistic.startDate = this.START_DATE;
             statistic.endDate = this.END_DATE;
         }
-
 
         return statistic;
     }

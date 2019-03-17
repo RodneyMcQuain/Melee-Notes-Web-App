@@ -1,10 +1,6 @@
 ﻿import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
-import { FormatDropdown } from '../Dropdowns/FormatDropdown';
-import { CharacterDropdown } from '../Dropdowns/CharacterDropdown';
-import { PlayerDropdown } from '../Dropdowns/PlayerDropdown';
-import { TypeDropdown } from '../Dropdowns/TypeDropdown';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { Token } from '../../helpers/token';
 import { ContentPreloader } from '../General/ContentPreloader';
@@ -12,6 +8,7 @@ import { Promise } from 'es6-promise';
 import { TITLE_PREFIX } from '../../helpers/constants';
 import { StartEndDate } from './StartEndDate';
 import { Stages } from './Stages';
+import { StatisticDropdowns } from './StatisticDropdowns';
 
 interface IStatistic {
     myCharacter: string;
@@ -60,7 +57,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         this.START_DATE = "2001-01-01"; //year the game was released in
         this.END_DATE = new Date().toISOString().slice(0, 10); //today's date
         this.handleFieldChange = this.handleFieldChange.bind(this);
-        this.handleDateDropdownChange = this.handleDateDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -82,14 +78,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
     public render() {
         const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit, dateDropdown } = this.state;
-
-        const date = dateDropdown === "Specify Date"
-            ? <StartEndDate 
-                startDate={ statistic.startDate } 
-                endDate={ statistic.endDate } 
-                handleFieldChange={ this.handleFieldChange } 
-            />
-            : <div></div>
         
         const statisticContent = isStatisticLoading
             ? <ContentPreloader />
@@ -110,40 +98,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 <h1>Statistics</h1>
 
                 <form className="form-horizontal" onSubmit={this.handleSubmit} >
-                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                        <label htmlFor="myCharacter" >My Character</label>
-                        <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.myCharacter} characterType="myCharacter" hasAll={true} />
-                    </div>
-
-                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                        <label htmlFor="oppponentCharacter" >Opponent Character</label>
-                        <CharacterDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} character={statistic.opponentCharacter} characterType="opponentCharacter" hasAll={true} />
-                    </div>
-
-                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                        <label htmlFor="player" >Player</label>
-                        <PlayerDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} playerId={statistic.playerId} hasAll={true} />
-                    </div>
-
-                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-                        <label htmlFor="format" >Format</label>
-                        <FormatDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} format={statistic.format} hasAll={true} />
-                    </div>
-
-                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <label htmlFor="type" >Type</label>
-                        <TypeDropdown handleFieldChange={(e: OnChangeSelectInputEvent) => this.handleFieldChange(e)} type={statistic.type} hasAll={true} />
-                    </div>
-
-                    <div className="statistic-form-margin form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <label htmlFor="dateType" >Date</label> 
-                        <select name="dateType" className="form-control" value={this.state.dateDropdown} onChange={this.handleDateDropdownChange} >
-                            <option value="All Time">All Time</option>
-                            <option value="Specify Date">Specify Date</option>
-                        </select>
-                    </div>
-
-                    { date }
+                    <StatisticDropdowns statistic={statistic} handleFieldChange={this.handleFieldChange} />
 
                     <div className="col-xs-12 statistic-submit-button" >
                         <input type="submit" value="Get Statistics" className="btn" />
@@ -160,10 +115,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         let statistic = this.state.statistic;
         statistic[key] = event.target.value;
         this.setState({ statistic: statistic });
-    }
-
-    private handleDateDropdownChange(event: React.ChangeEvent<HTMLSelectElement>) {
-        this.setState({ dateDropdown: event.target.value });
     }
 
     public handleSubmit(event: React.FormEvent<EventTarget>) {

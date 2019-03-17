@@ -56,3 +56,14 @@ export interface IToken {
     email: string;
     dateCreated: string;
 }
+
+export interface IStatistic {
+    myCharacter: string;
+    opponentCharacter: string;
+    playerId: number;
+    format: string;
+    type: string;
+    startDate: string;
+    endDate: string;
+    [key: string]: any;
+}

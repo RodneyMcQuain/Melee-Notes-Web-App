@@ -12,7 +12,6 @@ import { IStatistic } from '../../../helpers/interfaces';
 
 interface StatisticsState {
     statistic: IStatistic;
-    dateDropdown: string;
     setsWon: number;
     setsLost: number;
     gamesWon: number[];
@@ -36,7 +35,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             isLoading: true,
             isStatisticLoading: false,
             isAfterFirstSubmit: false,
-            dateDropdown: "All Time",
             setsWon: -1,
             setsLost: -1,
             gamesWon: [],
@@ -66,7 +64,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     }
 
     public render() {
-        const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit, dateDropdown } = this.state;
+        const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit } = this.state;
         
         const statisticContent = isStatisticLoading
             ? <ContentPreloader />

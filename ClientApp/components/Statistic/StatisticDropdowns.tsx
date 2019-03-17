@@ -4,17 +4,7 @@ import { PlayerDropdown } from '../Dropdowns/PlayerDropdown';
 import { FormatDropdown } from '../Dropdowns/FormatDropdown';
 import { TypeDropdown } from '../Dropdowns/TypeDropdown';
 import { StartEndDate } from './StartEndDate';
-
-interface IStatistic {
-    myCharacter: string;
-    opponentCharacter: string;
-    playerId: number;
-    format: string;
-    type: string;
-    startDate: string;
-    endDate: string;
-    [key: string]: any;
-}
+import { IStatistic } from '../../../helpers/interfaces';
 
 interface StatisticDropdownsProps {
     statistic: IStatistic;

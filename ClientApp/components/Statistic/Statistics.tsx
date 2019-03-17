@@ -6,20 +6,9 @@ import { Token } from '../../helpers/token';
 import { ContentPreloader } from '../General/ContentPreloader';
 import { Promise } from 'es6-promise';
 import { TITLE_PREFIX } from '../../helpers/constants';
-import { StartEndDate } from './StartEndDate';
 import { Stages } from './Stages';
 import { StatisticDropdowns } from './StatisticDropdowns';
-
-interface IStatistic {
-    myCharacter: string;
-    opponentCharacter: string;
-    playerId: number;
-    format: string;
-    type: string;
-    startDate: string;
-    endDate: string;
-    [key: string]: any;
-}
+import { IStatistic } from '../../../helpers/interfaces';
 
 interface StatisticsState {
     statistic: IStatistic;
@@ -98,7 +87,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 <h1>Statistics</h1>
 
                 <form className="form-horizontal" onSubmit={this.handleSubmit} >
-                    <StatisticDropdowns statistic={statistic} handleFieldChange={this.handleFieldChange} />
+                    <StatisticDropdowns statistic={ statistic } handleFieldChange={ this.handleFieldChange } />
 
                     <div className="col-xs-12 statistic-submit-button" >
                         <input type="submit" value="Get Statistics" className="btn" />

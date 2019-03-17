@@ -11,6 +11,7 @@ import { ContentPreloader } from '../General/ContentPreloader';
 import { Promise } from 'es6-promise';
 import { TITLE_PREFIX } from '../../helpers/constants';
 import { StartEndDate } from './StartEndDate';
+import { Stages } from './Stages';
 
 interface IStatistic {
     myCharacter: string;
@@ -80,9 +81,9 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     }
 
     public render() {
-        const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit } = this.state;
+        const { statistic, setsWon, setsLost, gamesWon, gamesLost, isStatisticLoading, isAfterFirstSubmit, dateDropdown } = this.state;
 
-        const date = this.state.dateDropdown === "Specify Date"
+        const date = dateDropdown === "Specify Date"
             ? <StartEndDate 
                 startDate={ statistic.startDate } 
                 endDate={ statistic.endDate } 
@@ -95,7 +96,7 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             : <div>
                 <div className="col-xs-12" >Set Count: { setsWon }-{ setsLost } (excludes character in query)</div>
 
-                { this.renderStages(gamesWon, gamesLost) }
+                <Stages gamesWon={ gamesWon } gamesLost={ gamesLost } />
             </div>
 
         const afterFirstSubmit = isAfterFirstSubmit
@@ -152,80 +153,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
                 { afterFirstSubmit }
             </div>
         );
-    }
-
-    private renderStages(gamesWon: number[], gamesLost: number[]) {
-        const BATTLEFIELD_ID = 0;
-        const DREAMLAND_ID = 1;
-        const YOSHIS_STORY_ID = 2;
-        const FOUNTAIN_OF_DREAMS_ID = 3;
-        const FINAL_DESTINATION_ID = 4;
-        const POKEMON_STADIUM_ID = 5;
-        const WIN_LOSS = "Win-Loss: ";
-        const WIN_PERCENTAGE = "Win Percentage: ";
-
-        return (
-            <div>
-                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img className="stage" src={require('../../images/Battlefield.jpg')}></img>
-                    <div className="-center-container">
-                        <div>{ WIN_LOSS }{ gamesWon[BATTLEFIELD_ID] } - { gamesLost[BATTLEFIELD_ID] }</div>
-                        <div>{ WIN_PERCENTAGE }{ this.calculateWinRate(gamesWon[BATTLEFIELD_ID], gamesLost[BATTLEFIELD_ID]) }%</div>
-                    </div>
-                </div>
-
-                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img className="stage" src={require('../../images/Dreamland.jpg')}></img>
-                    <div className="-center-container">
-                        <div>{ WIN_LOSS }{ gamesWon[DREAMLAND_ID] } - { gamesLost[DREAMLAND_ID] }</div>
-                        <div>{ WIN_PERCENTAGE }{ this.calculateWinRate(gamesWon[DREAMLAND_ID], gamesLost[DREAMLAND_ID]) }%</div>
-                    </div>
-                </div>
-
-                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img className="stage" src={require('../../images/FinalDestination.jpg')}></img>
-                    <div className="-center-container">
-                        <div>{ WIN_LOSS }{ gamesWon[FINAL_DESTINATION_ID] } - { gamesLost[FINAL_DESTINATION_ID] }</div>
-                        <div>{ WIN_PERCENTAGE }{ this.calculateWinRate(gamesWon[FINAL_DESTINATION_ID], gamesLost[FINAL_DESTINATION_ID]) }%</div>
-                    </div>
-                </div>
-
-                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img className="stage" src={require('../../images/FountainOfDreams.jpg')}></img>
-                    <div className="-center-container">
-                        <div>{ WIN_LOSS }{ gamesWon[FOUNTAIN_OF_DREAMS_ID] } - { gamesLost[FOUNTAIN_OF_DREAMS_ID] }</div>
-                        <div>{ WIN_PERCENTAGE }{ this.calculateWinRate(gamesWon[FOUNTAIN_OF_DREAMS_ID], gamesLost[FOUNTAIN_OF_DREAMS_ID]) }%</div>
-                    </div>
-                </div>
-
-                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img className="stage" src={require('../../images/PokemonStadium.jpg')}></img>
-                    <div className="-center-container">
-                        <div>{ WIN_LOSS }{ gamesWon[POKEMON_STADIUM_ID] } - { gamesLost[POKEMON_STADIUM_ID] }</div>
-                        <div>{ WIN_PERCENTAGE }{ this.calculateWinRate(gamesWon[POKEMON_STADIUM_ID], gamesLost[POKEMON_STADIUM_ID]) }%</div>
-                    </div>
-                </div>
-
-                <div className="img-padding-margin col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <img className="stage" src={require('../../images/YoshisIsland.jpg')}></img>
-                    <div className="-center-container">
-                        <div>{ WIN_LOSS }{ gamesWon[YOSHIS_STORY_ID] } - { gamesLost[YOSHIS_STORY_ID] }</div>
-                        <div>{ WIN_PERCENTAGE }{ this.calculateWinRate(gamesWon[YOSHIS_STORY_ID], gamesLost[YOSHIS_STORY_ID]) }%</div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    public calculateWinRate(wonCount: number, lostCount: number) : string {
-        let totalGames = wonCount + lostCount;
-
-        if (totalGames <= 0)
-            return "0.00";
-
-        let winRate = (wonCount / totalGames) * 100;
-
-        return winRate.toFixed(2);
     }
 
     private handleFieldChange(event: OnChangeSelectInputEvent) {

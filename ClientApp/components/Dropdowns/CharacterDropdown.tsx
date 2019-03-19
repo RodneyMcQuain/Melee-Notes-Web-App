@@ -16,10 +16,16 @@ export class CharacterDropdown extends React.Component<CharacterDropdownProps, {
         if (this.props.hasAll)
             characters.unshift("All Characters")
 
-        let characterOptions = characters.map(character => <option value={character}>{character}</option>);
+        let characterOptions = characters.map(character => <option value={ character } key={ character }>{ character }</option>);
 
         return (
-            <select name={ this.props.characterType } className="form-control" onChange={e => this.props.handleFieldChange(e)} value={ this.props.character }>
+            <select 
+                className="form-control" 
+                id={ this.props.characterType } 
+                name={ this.props.characterType } 
+                onChange={ e => this.props.handleFieldChange(e) } 
+                value={ this.props.character }
+            >
                 { characterOptions }
             </select>
         );

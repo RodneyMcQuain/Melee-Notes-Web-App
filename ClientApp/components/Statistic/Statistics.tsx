@@ -9,6 +9,7 @@ import { TITLE_PREFIX } from '../../helpers/constants';
 import { Stages } from './Stages';
 import { StatisticDropdowns } from './StatisticDropdowns';
 import { IStatistic } from '../../helpers/interfaces';
+import { SetRatio } from './SetRatio';
 
 interface StatisticsState {
     statistic: IStatistic;
@@ -71,11 +72,10 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
         
         const statisticContent = isStatisticLoading
             ? <ContentPreloader />
-            : <div>
-                <div className="col-xs-12" >Set Count: { setsWon }-{ setsLost } (excludes character in query)</div>
-
+            : <>
+                <SetRatio setsWon={ setsWon } setsLost={ setsLost } />
                 <Stages gamesWon={ gamesWon } gamesLost={ gamesLost } />
-            </div>
+            </>
 
         const afterFirstSubmit = isAfterFirstSubmit
             ? <div className="row statistic-negative-margin" >

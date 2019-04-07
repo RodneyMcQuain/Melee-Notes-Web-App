@@ -176,10 +176,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
     }
 
     private isNotEmpty(text: string) {
-        if (text.trim().length !== 0)
-            return true;
-        else
-            return false;
+        return text.trim().length !== 0;
     }
 
     private handlePasswordValidity(isPasswordValid: boolean) {

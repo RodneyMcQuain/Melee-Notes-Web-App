@@ -5,7 +5,8 @@ import { formatDate } from '../../helpers/formatDate';
 import { Preloader } from '../General/Preloader';
 import { TITLE_PREFIX } from '../../helpers/constants';
 import { PasswordValidation } from './PasswordValidation';
-import { handleResponse } from 'ClientApp/helpers/handleResponseErrors';
+import { handleResponse } from '../../helpers/handleResponseErrors';
+import { UsernameValidationText } from './UsernameValidationText';
 
 interface RegistrationState {
     user: IUser;
@@ -35,6 +36,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             isPasswordValid: false
         }
 
+        this.setArrayValidity = this.setArrayValidity.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handlePasswordCheckChange = this.handlePasswordCheckChange.bind(this);
@@ -59,11 +61,8 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             ? <input type="submit" value="Register" className="btn" /> 
             : <input type="submit" value="Register" className="btn" disabled />
 
-        let usernameValidationArray = [isUsernameNotEmpty, isUsernameDuplicate]
-        let usernameValidationClassNames = usernameValidationArray.map(isValid => this.setValidity(isValid));
-
         let emailValidationArray = [isEmailNotEmpty, isEmailValid, isEmailDuplicate]
-        let emailValidationClassNames = emailValidationArray.map(isValid => this.setValidity(isValid));
+        let emailValidationClassNames = this.setArrayValidity(emailValidationArray);
 
         if (isLoading)
             return <Preloader />
@@ -75,8 +74,11 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
                     <form onSubmit={ this.handleSubmit } >
                         <label>Username</label>
                         <input type="text" name="username" className="form-control input-md" placeholder="Username" value={ user.username } onChange={ e => this.handleUsernameChange(e) } />
-                        <p className={ usernameValidationClassNames[0] }>Username is not empty</p>
-                        <p className={ usernameValidationClassNames[1] }>Username is available</p>
+                        <UsernameValidationText
+                            isUsernameNotEmpty={ isUsernameNotEmpty }
+                            isUsernameDuplicate={ isUsernameDuplicate }
+                            setArrayValidity={ this.setArrayValidity }
+                        />
 
                         <label>Email</label>
                         <input type="text" name="email" className="form-control input-md" placeholder="Email" value={ user.email } onChange={ e => this.handleEmailChange(e) } />
@@ -103,7 +105,11 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         else return "invalid";
     }
 
-    private isButtonEnabled(possibleErrors: boolean[]) {
+    private setArrayValidity(validityArray: boolean[]): string[] {
+        return validityArray.map(isValid => this.setValidity(isValid));
+    }
+
+    private isButtonEnabled(possibleErrors: boolean[]): boolean {
         let isError = false;
 
         possibleErrors.map(validationType => {

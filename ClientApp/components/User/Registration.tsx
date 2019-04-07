@@ -100,7 +100,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             );
     }
 
-    private setValidity(isValid: boolean) {
+    private setValidity(isValid: boolean): string {
         if (isValid) return "valid";
         else return "invalid";
     }
@@ -163,10 +163,13 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
         });
     }
 
-    private isEmailValid(email: string) {
+    private isEmailValid(email: string): boolean {
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        return email.match(emailRegex);
+        if (email.match(emailRegex))
+            return true;
+        else
+            return false;
     }
 
     private isEmailDuplicate(email: string): Promise<boolean> {
@@ -178,7 +181,7 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             });
     }
 
-    private isNotEmpty(text: string) {
+    private isNotEmpty(text: string): boolean {
         return text.trim().length !== 0;
     }
 

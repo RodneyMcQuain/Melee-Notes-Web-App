@@ -7,6 +7,7 @@ import { TITLE_PREFIX } from '../../helpers/constants';
 import { PasswordValidation } from './PasswordValidation';
 import { handleResponse } from '../../helpers/handleResponseErrors';
 import { UsernameValidationText } from './UsernameValidationText';
+import { EmailValidationText } from './EmailValidationText';
 
 interface RegistrationState {
     user: IUser;
@@ -61,9 +62,6 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
             ? <input type="submit" value="Register" className="btn" /> 
             : <input type="submit" value="Register" className="btn" disabled />
 
-        let emailValidationArray = [isEmailNotEmpty, isEmailValid, isEmailDuplicate]
-        let emailValidationClassNames = this.setArrayValidity(emailValidationArray);
-
         if (isLoading)
             return <Preloader />
         else
@@ -82,9 +80,12 @@ export class Registration extends React.Component<RouteComponentProps<{}>, Regis
 
                         <label>Email</label>
                         <input type="text" name="email" className="form-control input-md" placeholder="Email" value={ user.email } onChange={ e => this.handleEmailChange(e) } />
-                        <p className={ emailValidationClassNames[0] }>Email is not empty</p>
-                        <p className={ emailValidationClassNames[1] }>Email is valid</p>
-                        <p className={ emailValidationClassNames[2] }>Email is available</p>
+                        <EmailValidationText
+                            isEmailNotEmpty={ isEmailNotEmpty }
+                            isEmailDuplicate={ isEmailDuplicate }
+                            isEmailValid={ isEmailValid }
+                            setArrayValidity={ this.setArrayValidity }
+                        />
 
                         <PasswordValidation
                             password={ user.password } 

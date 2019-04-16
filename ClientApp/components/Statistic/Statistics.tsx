@@ -32,8 +32,19 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
     constructor(props: RouteComponentProps<{}>) {
         super(props);
 
+        this.START_DATE = "2001-01-01"; //year the game was released in
+        this.END_DATE = new Date().toISOString().slice(0, 10); //today's date
+
         this.state = {
-            statistic: {} as IStatistic,
+            statistic: {
+                myCharacter: "All Characters",
+                opponentCharacter: "All Characters",
+                playerId: 0, //this will indicate all players
+                format: "All Formats",
+                type: "All Types",
+                startDate: this.START_DATE,
+                endDate: this.END_DATE
+            } as IStatistic,
             isLoading: true,
             isStatisticLoading: false,
             isAfterFirstSubmit: false,
@@ -44,8 +55,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
             gamesLost: []
         }
 
-        this.START_DATE = "2001-01-01"; //year the game was released in
-        this.END_DATE = new Date().toISOString().slice(0, 10); //today's date
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleDateDropdownChange = this.handleDateDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,18 +62,6 @@ export class Statistics extends React.Component<RouteComponentProps<{}>, Statist
 
     public componentDidMount() {
         document.title = TITLE_PREFIX + "Statistics";
-
-        let statistic = {
-            myCharacter: "All Characters",
-            opponentCharacter: "All Characters",
-            playerId: 0, //this will indicate all players
-            format: "All Formats",
-            type: "All Types",
-            startDate: this.START_DATE,
-            endDate: this.END_DATE
-        }
-
-        this.setState({ statistic: statistic })
     }
 
     public render() {
